@@ -1,6 +1,6 @@
 # SysCar
 * Exemplo de API
-> Informaçoes Importantes sobre sistema
+> * Informaçoes Importantes sobre sistema
 >>> SysCar BankEnd
 >>> Banco de dados local: App_Data/SysCar.mdf
 >>> url swagger: http://localhost:50221/swagger/ui/index
