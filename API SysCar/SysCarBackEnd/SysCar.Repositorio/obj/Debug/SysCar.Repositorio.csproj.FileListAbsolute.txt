@@ -1,0 +1,9 @@
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Repositorio\bin\Debug\SysCar.Repositorio.dll
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Repositorio\bin\Debug\SysCar.Repositorio.pdb
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Repositorio\bin\Debug\SysCar.Dominio.dll
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Repositorio\bin\Debug\SysCar.Dominio.pdb
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Repositorio\obj\Debug\SysCar.Repositorio.csproj.AssemblyReference.cache
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Repositorio\obj\Debug\SysCar.Repositorio.csproj.CoreCompileInputs.cache
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Repositorio\obj\Debug\SysCar.Repositorio.csproj.CopyComplete
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Repositorio\obj\Debug\SysCar.Repositorio.dll
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Repositorio\obj\Debug\SysCar.Repositorio.pdb

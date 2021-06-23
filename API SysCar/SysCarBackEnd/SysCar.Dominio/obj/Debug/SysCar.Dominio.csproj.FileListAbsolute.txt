@@ -1,0 +1,16 @@
+E:\Estudo\Asp Net C# com MVC\Seja FullStack\SysCarBackEnd\SysCar.Dominio\bin\Debug\App.Domain.dll
+E:\Estudo\Asp Net C# com MVC\Seja FullStack\SysCarBackEnd\SysCar.Dominio\bin\Debug\App.Domain.pdb
+E:\Estudo\Asp Net C# com MVC\Seja FullStack\SysCarBackEnd\SysCar.Dominio\obj\Debug\SysCar.Dominio.csproj.AssemblyReference.cache
+E:\Estudo\Asp Net C# com MVC\Seja FullStack\SysCarBackEnd\SysCar.Dominio\obj\Debug\SysCar.Dominio.csproj.CoreCompileInputs.cache
+E:\Estudo\Asp Net C# com MVC\Seja FullStack\SysCarBackEnd\SysCar.Dominio\obj\Debug\App.Domain.dll
+E:\Estudo\Asp Net C# com MVC\Seja FullStack\SysCarBackEnd\SysCar.Dominio\obj\Debug\App.Domain.pdb
+E:\Estudo\Asp Net C# com MVC\TestePraticoSeidor\SysCarBackEnd\SysCar.Dominio\bin\Debug\App.Domain.dll
+E:\Estudo\Asp Net C# com MVC\TestePraticoSeidor\SysCarBackEnd\SysCar.Dominio\bin\Debug\App.Domain.pdb
+E:\Estudo\Asp Net C# com MVC\TestePraticoSeidor\SysCarBackEnd\SysCar.Dominio\obj\Debug\SysCar.Dominio.csproj.CoreCompileInputs.cache
+E:\Estudo\Asp Net C# com MVC\TestePraticoSeidor\SysCarBackEnd\SysCar.Dominio\obj\Debug\App.Domain.dll
+E:\Estudo\Asp Net C# com MVC\TestePraticoSeidor\SysCarBackEnd\SysCar.Dominio\obj\Debug\App.Domain.pdb
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Dominio\bin\Debug\SysCar.Dominio.dll
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Dominio\bin\Debug\SysCar.Dominio.pdb
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Dominio\obj\Debug\SysCar.Dominio.csproj.CoreCompileInputs.cache
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Dominio\obj\Debug\SysCar.Dominio.dll
+E:\Estudo\Asp Net C# com MVC\API\SysCar\SysCarBackEnd\SysCar.Dominio\obj\Debug\SysCar.Dominio.pdb
