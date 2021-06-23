@@ -1,4 +1,6 @@
 # SysCar
 
 	* Demostrativo de um API
-	>Com Banco local
+	>Informaçoes Importantes
+	>>Banco de dados local: App_Data/SysCar.mdf
+	>>
