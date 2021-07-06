@@ -1,0 +1,16 @@
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\bin\Debug\net5.0\Servico.HostDebugger.exe
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\bin\Debug\net5.0\Servico.HostDebugger.deps.json
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\bin\Debug\net5.0\Servico.HostDebugger.runtimeconfig.json
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\bin\Debug\net5.0\Servico.HostDebugger.runtimeconfig.dev.json
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\bin\Debug\net5.0\Servico.HostDebugger.dll
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\bin\Debug\net5.0\ref\Servico.HostDebugger.dll
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\bin\Debug\net5.0\Servico.HostDebugger.pdb
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\obj\Debug\net5.0\Servico.HostDebugger.GeneratedMSBuildEditorConfig.editorconfig
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\obj\Debug\net5.0\Servico.HostDebugger.AssemblyInfoInputs.cache
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\obj\Debug\net5.0\Servico.HostDebugger.AssemblyInfo.cs
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\obj\Debug\net5.0\Servico.HostDebugger.csproj.CoreCompileInputs.cache
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\obj\Debug\net5.0\Servico.HostDebugger.dll
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\obj\Debug\net5.0\ref\Servico.HostDebugger.dll
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\obj\Debug\net5.0\Servico.HostDebugger.pdb
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\obj\Debug\net5.0\Servico.HostDebugger.genruntimeconfig.cache
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\HostDebugger\obj\Debug\net5.0\Servico.HostDebugger.csproj.AssemblyReference.cache

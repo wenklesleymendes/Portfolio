@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "xUlUsSJapBOZn0rMJfbTc6o+WtoArZ79qyHSNV1tKjWhZKwyARbpXsbUprQAmSXqDLB+/Xn5nJ6xjcUCyoNPIQ==",
+  "success": true,
+  "projectFilePath": "D:\\WorkWenklesley\\Clones\\Portfolio\\SysAcesso\\Acesso.Dispositivos\\Acesso.Integracoes.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\WMO\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\WMO\\.nuget\\packages\\restsharp\\106.11.7\\restsharp.106.11.7.nupkg.sha512"
+  ],
+  "logs": []
+}

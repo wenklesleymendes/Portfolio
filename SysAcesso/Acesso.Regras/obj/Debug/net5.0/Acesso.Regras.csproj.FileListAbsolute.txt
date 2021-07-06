@@ -1,0 +1,5 @@
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.csproj.AssemblyReference.cache
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.GeneratedMSBuildEditorConfig.editorconfig
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.AssemblyInfoInputs.cache
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.AssemblyInfo.cs
+D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.csproj.CoreCompileInputs.cache

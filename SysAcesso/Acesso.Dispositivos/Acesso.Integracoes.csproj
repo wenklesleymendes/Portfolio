@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Acesso.Integracoes</AssemblyName>
+    <RootNamespace>Acesso.Integracoes</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Henry\" />
+    <Folder Include="Neokoros\" />
+    <Folder Include="TopData\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Acesso.Dominio\Acesso.Dominio.csproj" />
+    <ProjectReference Include="..\Acesso.Interfaces\Acesso.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

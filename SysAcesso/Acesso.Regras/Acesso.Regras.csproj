@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Acesso.Repositorio\Acesso.Repositorio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Acesso.TopData">
+      <HintPath>..\..\..\integracaocatraca\Acesso\Binarios\Acesso.TopData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
