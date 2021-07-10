@@ -1,7 +1,6 @@
 ﻿using Acesso.Dominio;
+using Acesso.Dominio.Pessoas.Tipo;
 using Acesso.Servicos;
-using Newtonsoft.Json;
-using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +10,6 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using Acesso.Dominio.Pessoas.Tipo;
 using static Acesso.Control.ID.EstadoCatracaControlID;
 
 namespace Acesso.Control.ID

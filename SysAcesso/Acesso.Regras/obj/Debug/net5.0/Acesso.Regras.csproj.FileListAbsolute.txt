@@ -3,3 +3,8 @@ D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Aces
 D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.AssemblyInfoInputs.cache
 D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.AssemblyInfo.cs
 D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.csproj.CoreCompileInputs.cache
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.csprojAssemblyReference.cache
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.AssemblyInfoInputs.cache
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.AssemblyInfo.cs
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Regras\obj\Debug\net5.0\Acesso.Regras.csproj.CoreCompileInputs.cache

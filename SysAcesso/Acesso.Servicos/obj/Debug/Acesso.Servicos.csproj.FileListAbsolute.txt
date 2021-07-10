@@ -4,3 +4,9 @@ D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Servicos\obj\Debug\Acesso.Se
 D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Servicos\obj\Debug\Acesso.Servicos.csproj.CoreCompileInputs.cache
 D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Servicos\obj\Debug\Acesso.Servicos.dll
 D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Servicos\obj\Debug\Acesso.Servicos.pdb
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Servicos\bin\Debug\Acesso.Servicos.dll
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Servicos\bin\Debug\Acesso.Servicos.pdb
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Servicos\obj\Debug\Acesso.Servicos.csprojAssemblyReference.cache
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Servicos\obj\Debug\Acesso.Servicos.csproj.CoreCompileInputs.cache
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Servicos\obj\Debug\Acesso.Servicos.dll
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Servicos\obj\Debug\Acesso.Servicos.pdb

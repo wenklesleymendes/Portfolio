@@ -4,3 +4,5 @@ D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Dominio\bin\Debug\Acesso.Dom
 D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Dominio\bin\Debug\Acesso.Dominio.t.pdb
 D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Dominio\obj\Debug\Acesso.Dominio.t.dll
 D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Dominio\obj\Debug\Acesso.Dominio.t.pdb
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Dominio\obj\Debug\Acesso.Dominio.csprojAssemblyReference.cache
+C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Dominio\obj\Debug\Acesso.Dominio.csproj.CoreCompileInputs.cache
