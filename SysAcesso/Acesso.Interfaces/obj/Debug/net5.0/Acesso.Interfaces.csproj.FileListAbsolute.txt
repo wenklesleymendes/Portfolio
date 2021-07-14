@@ -1,9 +1,0 @@
-D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Interfaces\obj\Debug\net5.0\Acesso.Interfaces.csproj.AssemblyReference.cache
-D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Interfaces\obj\Debug\net5.0\Acesso.Interfaces.GeneratedMSBuildEditorConfig.editorconfig
-D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Interfaces\obj\Debug\net5.0\Acesso.Interfaces.AssemblyInfoInputs.cache
-D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Interfaces\obj\Debug\net5.0\Acesso.Interfaces.AssemblyInfo.cs
-D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Interfaces\obj\Debug\net5.0\Acesso.Interfaces.csproj.CoreCompileInputs.cache
-C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Interfaces\obj\Debug\net5.0\Acesso.Interfaces.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Interfaces\obj\Debug\net5.0\Acesso.Interfaces.AssemblyInfoInputs.cache
-C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Interfaces\obj\Debug\net5.0\Acesso.Interfaces.AssemblyInfo.cs
-C:\Users\Wenklesley mendes\Desktop\Repositorio\Portfolio\SysAcesso\Acesso.Interfaces\obj\Debug\net5.0\Acesso.Interfaces.csproj.CoreCompileInputs.cache

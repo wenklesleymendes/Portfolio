@@ -1,5 +1,0 @@
-D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Dispositivos\obj\Debug\net5.0\Acesso.Integracoes.csproj.AssemblyReference.cache
-D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Dispositivos\obj\Debug\net5.0\Acesso.Integracoes.GeneratedMSBuildEditorConfig.editorconfig
-D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Dispositivos\obj\Debug\net5.0\Acesso.Integracoes.AssemblyInfoInputs.cache
-D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Dispositivos\obj\Debug\net5.0\Acesso.Integracoes.AssemblyInfo.cs
-D:\WorkWenklesley\Clones\Portfolio\SysAcesso\Acesso.Dispositivos\obj\Debug\net5.0\Acesso.Integracoes.csproj.CoreCompileInputs.cache
