@@ -1,0 +1,129 @@
+<div class="body">
+
+    <div class="main-home">
+
+        <div class="div-titulo">
+
+            <div class="div-logo-unidade">
+                <img src="../../../../assets/portal_logos.png" class="img-logo-unidade" alt="logo-unidade">
+            </div>
+
+            <div class="div-bem-vindo">
+
+                <p class="p-bem-vindo">
+                    Bem-vindo ao Atendimento Exclusivo
+                </p>
+
+                <label>Unidade {{nomeUnidade}}</label>
+
+            </div>
+
+        </div>
+
+        <button mat-button class="botao-sair" (click)="abrirConfirmacaoSair()">
+            Sair
+            <mat-icon>logout</mat-icon>
+        </button>
+
+        <div class="div-body">
+
+            <div class="div-outbounds-restantes">
+
+                <p class="p-outbounds-restantes">
+                    <a class="a-p-outbounds-restantes" href="javascript:informaNumeroDeAtendimentos()"
+                        (click)="informaNumeroDeAtendimentos()">
+                        {{numeroDeAtendimentos}} outbounds restantes
+                    </a>
+                </p>
+                <p class="p-outbounds-restantes">
+                    <a class="a-p-outbounds-restantes" href="javascript:informaNumeroDeAtendimentos()"
+                        (click)="informaNumeroDeAtendimentos()">
+                        <mat-icon>refresh</mat-icon>
+                    </a>
+                </p>
+            </div>
+
+            <div class="div-menu-opcoes">
+
+                <div class="div-borda-externa">
+                    <div class="div-novo-atendimento" (click)="goToNovoAtendimento()">
+                        <mat-icon class="mat-icon-body"> add </mat-icon>
+                        <p class="p-novo-atendimento">
+                            Novo Atendimento
+                        </p>
+                    </div>
+                </div>
+
+                <div class="div-borda-externa">
+                    <div class="div-pesquisar" (click)="goToPesquisar()">
+                        <mat-icon class="mat-icon-body"> search </mat-icon>
+                        <p class="p-pesquisar">
+                            Pesquisar
+                        </p>
+                    </div>
+                </div>
+
+                <div class="div-borda-externa">
+                    <div class="div-outbound" (click)="goToOutbound()">
+                        <mat-icon class="mat-icon-body"> call </mat-icon>
+                        <p class="p-outbound">
+                            Outbound
+                        </p>
+                    </div>
+                </div>
+
+                <div class="div-borda-externa">
+                    <div class="div-agendados" (click)="goToAgendados()">
+                        <mat-icon class="mat-icon-body"> calendar_today </mat-icon>
+                        <p class="p-agendados">
+                            Agendados
+                        </p>
+                    </div>
+                </div>
+
+                <div class="div-borda-externa">
+                    <div class="div-contatos-prioritarios" (click)="goToContatosPrioritarios()">
+                        <img src="../../../../assets/gif-telefone-branco-sem-fundo.gif" class="loop-gif-body" alt="gif">
+                        <p class="p-contatos-prioritarios">
+                            Contatos Prioritários
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="div-rodape">
+
+            <div class="div-barra-navegacao">
+
+                <button class="b-home">
+                    <mat-icon class="mat-icon-button" (click)="goToHome()"> home </mat-icon>
+                </button>
+
+                <button class="b-novo-atendimento">
+                    <mat-icon class="mat-icon-button" (click)="goToNovoAtendimento()"> add </mat-icon>
+                </button>
+
+                <button class="b-pesquisar">
+                    <mat-icon class="mat-icon-button" (click)="goToPesquisar()"> search </mat-icon>
+                </button>
+
+                <button class="b-outbound">
+                    <mat-icon class="mat-icon-button" (click)="goToOutbound()"> call </mat-icon>
+                </button>
+
+                <button class="b-agendados">
+                    <mat-icon class="mat-icon-button" (click)="goToAgendados()"> calendar_today </mat-icon>
+                </button>
+
+                <button class="b-contatos-prioritarios" (click)="goToContatosPrioritarios()">
+                    <img src="../../../../assets/gif-telefone-branco-sem-fundo.gif" class="loop-gif-rodape" alt="gif">
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

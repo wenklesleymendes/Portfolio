@@ -1,0 +1,20 @@
+1 - Configurar CFGs.
+	1.1 Configurar caminho do banco.
+2 - Configurar catracas
+	2.1 Configurar local desligar catraca aperte a tecla ok quando ligar
+	2.2 Selecionae o numero que sera da catraca exemplo catraca 1 como numero 1
+	2.3 Se quiser resetar configuraçoes ok se não esc.
+	2.4 Configurar IP Servidor depois aperte ok.
+	2.5 Configurar IP Catraca depois aperte ok.
+	2.6 Configurar porta
+	2.7 Configurar o modelo.
+	2.8 Configurar linha da catraca.
+	
+3 - Servidor
+	3.1 Instalar o programa Em.
+	3.1 Configurar Windows Defender Firewall  enderenço: Painel de Controle\Sistema e Segurança\Windows Defender Firewall
+		3.1.1 Configuraçoes avançadas
+		3.1.2 Criar regras Entradas e Saidas.,
+		
+4 Inciar o serviço no windons.
+	

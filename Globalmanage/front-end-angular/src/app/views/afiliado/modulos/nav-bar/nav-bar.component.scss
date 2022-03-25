@@ -1,0 +1,33 @@
+@import '../../../../../scss/theme.scss';
+@import '../../../../../scss/variable.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  width: 100%;
+
+  .mat-list-item.active {
+    font-weight: bold;
+    color: #fff;
+    //background-color: $darker-grey-color;
+  }
+  &:hover,
+  &:focus {
+    >.mat-list-item:not(.expanded) {
+      // background-color: mat-color($theme-accent, 700) !important;
+      background-color: #607d8b;
+    }
+  }
+}
+
+.mat-list-item {
+  display: flex;
+  width: auto;
+  font-size: 11pt;
+  color: #ffffff;
+
+  .routeIcon {
+    margin-right: 10px;
+  }
+}

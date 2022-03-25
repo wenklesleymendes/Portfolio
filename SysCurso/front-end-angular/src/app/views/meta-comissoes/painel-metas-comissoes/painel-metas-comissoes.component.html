@@ -1,0 +1,108 @@
+<div class="body">
+    <header>Metas e Comissões</header>
+
+    <mat-card class="mat-elevation-z8">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="content">
+                <form [formGroup]="form" class="flex flex-row">
+                    <mat-form-field class="flex-column" *ngIf="unidadesDefault; else loading">
+                        <mat-label>Unidade</mat-label>
+                        <input matInput [matAutocomplete]="auto" formControlName="unidadeSelect">
+                        <mat-icon matSuffix>arrow_drop_down</mat-icon>
+                    <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let unidade of filterUnidades | async" [value]="unidade.nome">
+                              <span>{{unidade.nome}}</span>
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-error>Informação necessária</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="flex-column" *ngIf="metasDefault; else loading">
+                        <mat-label>Nome da meta</mat-label>
+                        <input matInput [matAutocomplete]="auto" formControlName="nomeMeta">
+                        <mat-icon matSuffix>arrow_drop_down</mat-icon>
+                    <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let meta of filterMetas | async" [value]="meta">
+                              <span>{{meta}}</span>
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-error>Informação necessária</mat-error>
+                    </mat-form-field>
+
+                    <div class="form-options">
+                        <div class="align-center">
+                            <button (click)="getAll()" mat-button color="primary">
+                                Pesquisar
+                                <mat-icon>search</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="grid grid--auto-fill info-grid">
+                    <div class="filter-info">
+                        <mat-label>Bônus da meta período:</mat-label>
+                        <mat-chip-list>
+                            <mat-chip class="bg-blue" selected>{{valorComissaoEquipe ? (valorComissaoEquipe | currency) : ' - ' }}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+    
+                    <div class="filter-info">
+                        <mat-label>Comissão mensal 1° parcela paga:</mat-label>
+                        <mat-chip-list>
+                            <mat-chip class="bg-green" selected>{{valorComissaoIndividual ? (valorComissaoIndividual | currency) : ' - ' }}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="grid grid--auto-fit-lg mt-3">
+        <mat-card class="mat-elevation-z8" *ngIf="graficoDiario">
+            <mat-card-title>Visão Diária</mat-card-title>
+            <mat-card-content>
+                <div class="content">
+                    <app-visao-semanal [graficoDiario]="graficoDiario"></app-visao-semanal>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    
+        <mat-card class="mat-elevation-z8" *ngIf="graficoMensal">
+            <mat-card-title>Visão Mensal</mat-card-title>
+            <mat-card-content>
+                <div class="content">
+                    <app-visao-mensal [graficoMensal]="graficoMensal"></app-visao-mensal>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="mat-elevation-z8" *ngIf="graficoFinal">
+            <mat-card-title>Visão Final</mat-card-title>
+            <mat-card-content>
+                <div class="content">
+                    <app-visao-final [graficoFinal]="graficoFinal"></app-visao-final>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="mat-elevation-z8" *ngIf="metaComissoes">
+            <mat-card-title>Minhas Comissões</mat-card-title>
+            <mat-card-content>
+                <div class="content">
+                    <app-minhas-comissoes [metaComissoes]="metaComissoes"></app-minhas-comissoes>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #loading>
+    <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>

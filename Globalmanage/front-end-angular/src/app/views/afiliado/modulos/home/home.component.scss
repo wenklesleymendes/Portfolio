@@ -1,0 +1,81 @@
+@import "../../../../../scss/functions.scss";
+@import "../../../../../scss/theme.scss";
+
+.div-main {
+    background-color: #d5d5d5;
+    padding: 1rem;
+}
+
+.div-body {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 1.5%;
+    box-shadow: #4f4f4f 0em 0em 0.1em 0.1em;
+}
+
+.p-titulo {
+    font-size: 24px;
+    text-shadow: #a5a5a5a5 0.1em 0.1em 0.1em;
+    font-weight: 600;
+}
+
+.p-subtitulo {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.p-txtgrande {
+    font-size: 22px;
+    text-align: center;
+    text-shadow: #a5a5a5a5 0.1em 0.1em 0.1em;
+    font-weight: 500;
+}
+
+.p-selecione {
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.div-download {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.div-img-download {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-download {
+    width: 20%;
+    padding: 15px;
+    max-width: 150px;
+    min-width: 90px;
+}
+
+.div-img-compartilhe {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.img-compartilhe {
+    //width: 10%;
+    padding: 5px;
+    max-width: 95px;
+    min-width: 75px;
+}
+
+.centro {
+    text-align: center;
+}
+
+.margin-bot0 {
+    margin-bottom: 2px;
+}

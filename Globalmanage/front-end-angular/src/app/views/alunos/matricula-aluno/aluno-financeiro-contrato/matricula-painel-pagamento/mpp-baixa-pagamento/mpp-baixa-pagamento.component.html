@@ -1,0 +1,128 @@
+<div mat-dialog-title class="flex flex-row">
+  Baixa do Pagamento
+  <div class="flex-fill"></div>
+  <div class="btn-options">
+    <button color="primary" (click)="dialogRef.close()" mat-icon-button matTooltip="Fechar">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<div mat-dialog-content>
+  <div class="loading-shade" *ngIf="false">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!error; else errorTemplate">
+    <form [formGroup]="form">
+      <div class="table-boleto">
+        <mat-form-field class="flex-fill">
+          <mat-label>Tipo Pagamento</mat-label>
+          <mat-select formControlName="tipoPagamento">
+            <mat-option [value]="null"> - </mat-option>
+            <mat-option [value]="1">Cartão de crédito</mat-option>
+            <mat-option [value]="2">Cartão de débito</mat-option>
+            <mat-option [value]="3" [disabled]="multiplasParcelas" >Boleto bancário</mat-option>
+          </mat-select>
+          <mat-error>Informação necessária</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex form-registro">
+        <div class="cartao">
+          <title-line title="Detalhe do pagamento"></title-line>
+          <mat-form-field>
+            <mat-label>Valor Pago</mat-label>
+            <span matPrefix><strong>R$</strong> &nbsp;</span>
+            <input formControlName="valorPago" currencyMask matInput />
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Data do Pagamento</mat-label>
+            <input formControlName="dataPagamento" matInput [max]="today" [matDatepicker]="picker"/>
+            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+          </mat-form-field>
+          <div [hidden]="!cartao">
+            <mat-form-field>
+              <mat-label>Bandeira</mat-label>
+              <mat-select formControlName="bandeiraCartao">
+                <mat-option [value]="'MASTER'">MASTER</mat-option>
+                <mat-option [value]="'VISA'">VISA</mat-option>
+                <mat-option [value]="'ELO'">ELO</mat-option>
+                <mat-option [value]="'AMERICAN EXPRESS'">AMERICAN EXPRESS</mat-option>
+                <mat-option [value]="'SOROCRED'">SOROCRED</mat-option>
+                <mat-option [value]="'DINERS CLUB'">DINERS CLUB</mat-option>
+                <mat-option [value]="'AGIPLAN'">AGIPLAN</mat-option>
+                <mat-option [value]="'BANES CARD'">BANES CARD</mat-option>
+                <mat-option [value]="'CABAL'">CABAL</mat-option>
+                <mat-option [value]="'HIPERCARD'">HIPERCARD</mat-option>
+                <mat-option [value]="'CREDSYSTEM'">CREDSYSTEM</mat-option>
+                <mat-option [value]="'JCB'">JCB</mat-option>
+                <mat-option [value]="'CREDZ'">CREDZ</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Código Autorização / NSU-DOC</mat-label>
+              <input formControlName="codigoAutorizacao" matInput />
+              <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Número do Cartão</mat-label>
+              <input formControlName="numeroCartao" matInput  mask="0000"/>
+              <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Adquirente</mat-label>
+              <mat-select formControlName="acquirer">
+                <mat-option [value]="0">Cielo</mat-option>
+                <mat-option [value]="1">Rede</mat-option>
+                <mat-option [value]="2">TEF</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <title-line title="Histórico da transação"></title-line>
+            <mat-form-field>
+              <mat-label>Número de Parcelas</mat-label>
+              <mat-select formControlName="quantidadeParcela">
+                <mat-option [value]=1>1</mat-option>
+                <mat-option [value]=2>2</mat-option>
+                <mat-option [value]=3>3</mat-option>
+                <mat-option [value]=4>4</mat-option>
+                <mat-option [value]=5>5</mat-option>
+                <mat-option [value]=6>6</mat-option>
+                <mat-option [value]=7>7</mat-option>
+                <mat-option [value]=8>8</mat-option>
+                <mat-option [value]=9>9</mat-option>
+                <mat-option [value]=10>10</mat-option>
+                <mat-option [value]=11>11</mat-option>
+                <mat-option [value]=12>12</mat-option>
+              </mat-select>
+              <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Valor Parcela</mat-label>
+              <span matPrefix><strong>R$</strong> &nbsp;</span>
+              <input formControlName="valorParcela" currencyMask matInput />
+              <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <mat-card-actions>
+        <div class="flex">
+          <div class="flex-fill"></div>
+          <div>
+            <button mat-raised-button color="primary" (click)="salvar()" cdkFocusInitial>
+              Salvar
+            </button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </form>
+  </div>
+  <!-- <mat-progress-bar *ngIf="sending" mode="indeterminate" color="primary"></mat-progress-bar> -->
+</div>
+
+<ng-template #errorTemplate>
+  <app-server-error></app-server-error>
+</ng-template>
+<ng-template #loading>
+  <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>

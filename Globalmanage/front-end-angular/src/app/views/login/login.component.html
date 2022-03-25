@@ -1,0 +1,48 @@
+<div id="body">
+    <mat-card class="login mat-elevation-z8">
+        <mat-card-title>
+            <span class="title">
+                PORTAL
+            </span>
+        </mat-card-title>
+        <mat-card-subtitle>
+            <span class="subtitle">
+                <img class="portal_logos" src="../../../assets/portal_logos.png" alt="logos">
+            </span>
+        </mat-card-subtitle>
+        <mat-card-content>
+            <mat-tab-group (focusChange)="form.reset(); pwdhide = true">
+                <mat-tab label="Entrar">
+                    <ng-template matTabContent>
+                        <br>
+                        <!-- SIGN FORM -->
+                        <form [formGroup]="form">
+                            <mat-form-field>
+                                <mat-label>Login</mat-label>
+                                <input formControlName="userName" matInput>
+                                <mat-icon matSuffix>account_circle</mat-icon>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Senha</mat-label>
+                                <input formControlName="password" matInput [type]="pwdhide ? 'password' : 'text'">
+                                <mat-icon matSuffix (click)="pwdhide = !pwdhide">{{pwdhide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </mat-form-field>
+                        </form>
+                        <div class="flex-row">
+                            <div class="flex-column">
+                                <button mat-button color="warn" (click)="forgotPassword()" [disabled]="form.get('userName').errors">
+                                    Esqueci minha senha
+                                </button>
+                            </div>
+                            <div class="flex-column">
+                                <button mat-button color="primary" (click)="login()" [disabled]="form.get('password').errors || form.get('userName').errors">
+                                    Entrar
+                                </button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
+    </mat-card>
+</div>

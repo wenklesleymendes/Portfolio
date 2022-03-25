@@ -1,0 +1,396 @@
+@import '../../../../../scss/theme.scss';
+@import "../../../../../scss/functions.scss";
+@import "../../../../../scss/variable.scss";
+
+.card-principal {
+    min-height: 300px !important;
+    margin: 0 auto 0;
+    width: 89%;
+    margin-top: -8px;
+    margin-bottom: 4%;
+    z-index: 0;
+}
+
+mat-checkbox {
+    margin: 0.5rem 1rem;
+}
+
+form {
+    padding-bottom: 0;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-right: 1.5rem;
+}
+
+.grid--auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(26rem, 1fr));
+}
+
+mat-form-field, mat-chip-list, .form-select {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    min-width: 400px;
+}
+
+mat-divider {
+    position: relative !important;
+    align-self: center;
+    margin: 0 2rem;
+}
+
+.grid, .grid--auto-fit-lg {
+    padding: 0;
+}
+
+.sm-column {
+    max-width: 15% !important;
+}
+
+.btn-options {
+    display: flex;
+    justify-content: flex-end;
+}
+
+mat-divider {
+    align-self: center;
+    margin: 0 2rem;
+}
+
+table {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.btn-add {
+    max-width: 300px;
+}
+
+::ng-deep.mat-dialog-container {
+    max-height: 90vh !important;
+    overflow-y: auto;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+
+    mat-label {
+        margin-right: 0.5rem;
+    }
+
+    @include mobile {
+        padding: 0.5rem 0;
+        margin-top: unset;
+    }
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.upload-warning {
+    text-align: center;
+    font-size: 8pt;
+    color: $red
+}
+
+.center {
+    align-self: center;
+}
+
+@include mobile {
+    form, .mat-form-field, .form-select, .checkbox, .mat-radio-button {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form-options {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding-right: 1.5rem;
+    }
+
+    .form-registro {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    .mat-card {
+        padding: 1rem 0 !important;
+    }
+
+    .grid--auto-fill, .grid--auto-fit-lg {
+        grid-template-columns: unset;
+    }
+
+    .mat-form-field, .mat-chip-list {
+        min-width: 0 !important;
+    }
+
+    .options {
+        flex-direction: column-reverse;
+        align-items: unset;
+    }
+
+    .mat-chip-list {
+        padding: 0;
+    }
+}
+
+.grade-icones {
+    background-color: #f1f1f1;
+}
+
+.icone_grade {
+    width: 25%;
+    height: 75%;
+    padding-bottom: 2%;
+
+    @include mobile {
+        width: 50%;
+        height: 85%;
+    }
+
+    @include ipad {
+        width: 25%;
+        height: 75%;
+    }
+
+    @include bigscreen {
+        width: 20%;
+        height: 70%;
+    }
+}
+
+.nome-unidade-curso {
+    background-color: #ffffff;
+    padding-bottom: 1.5%;
+}
+
+.aluno_curso {
+    font-size: 2.5ex;
+    text-align: center;
+    display: block !important;
+    padding-top: 5px;
+    color: #767171;
+
+    @include mobile {
+        font-size: 13px;
+    }
+}
+
+.aluno_unidade {
+    font-size: 2ex;
+    text-align: center;
+    display: block !important;
+    margin: 0px;
+    color: #767171;
+    
+    @include mobile {
+        font-size: 12px;
+    }
+}
+
+.card-cabeça-portal {
+    background-color: transparent;
+    box-shadow: transparent;
+    padding: 0% !important;
+}
+
+.botao-icone {
+    flex-direction: column;
+}
+
+.p-icone {
+    margin: -5%;
+    padding: 0;
+    color: #534f4f;
+
+    @include mobile {
+        font-size: 12.5px;
+    }
+}
+
+.qwert {
+    max-height: 255px !important;
+    min-height: 195px !important;
+    height: 100%;
+    padding: 0;
+
+    @include mobile {
+        max-height: 165px !important;
+        min-height: 155px !important;
+    }
+
+    @include bigscreen {
+        max-height: 325px !important;
+        min-height: 255px !important;
+    }
+}
+
+.mat-grid-tile .mat-figure {
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    box-sizing: border-box;
+}
+
+.tab-icones-palavras {
+    flex-direction: column;
+}
+
+.example-tab-icon {
+    flex-direction: column;
+}
+
+.grid4 {
+    left: 17% !important;
+}
+
+.grid6 {
+    right: 17% !important;
+    left: 49% !important;
+}
+
+.div-bloco-financeiro {
+    background-color: #147bcd;
+    margin: 0 auto 0;
+    margin-top: 15px;
+    width: 90%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.titulo-bloco-financeiro {
+    color: #f1f1f1;
+    text-align: center;
+}
+
+// .div-financeiro {
+
+// }
+
+.card-financeiro {
+    text-align: center;
+    margin: 0 auto 0;
+    width: 89%;
+    margin-top: -8px;
+    margin-bottom: 4%;
+    z-index: 0;
+}
+
+.grid-lista-video {
+    grid-area: grid-img-aluno;
+    display: flex;
+    flex-direction: column;
+}
+
+.lista-materias {
+    cursor: pointer;
+}
+
+.icone-materias {
+    color: #147bcd;
+}
+
+.mat-divider {
+    width: 100%;
+    margin: 0;
+}
+
+.card-parcelas {
+    background-color: #d7d7d7;
+    width: 40%;
+    border-radius: 27px;
+    padding: 2%;
+    margin: 0 auto 0;
+    margin-top: 2% !important;
+
+    @include mobile{
+        width: 90%;
+        margin-top: 3% !important;
+        margin-bottom: 7% !important;
+    }
+}
+
+.p-parcela {
+    font-size: 21px;
+    text-align: center;
+    margin: 0;
+    margin-top: -2px;
+}
+.p-vencimento {
+    text-align: center;
+}
+
+.p-situacao {
+    text-align: center;
+    font-weight: 450;
+}
+
+.p-valor {
+    text-align: center;
+}
+
+.botao-pagar {
+    background-color: #147bcd;
+}
+
+.p-botao-pagar1 {
+    margin: 0;
+    padding: 0;
+    margin-top: -5px;
+    margin-bottom: -10px;
+    color: #f1f1f1;
+}
+
+.p-botao-pagar2 {
+    margin: 0;
+    padding: 0;
+    margin-top: -10px;
+    margin-bottom: -5px;
+    color: #f1f1f1;
+}
+
+.bg-green {
+    color: green;
+}
+
+.bg-red {
+    color: red;
+}
+
+.bg-orange {
+    color: orange;
+}
+
+.botao-pendencias {
+    margin-top: 5px;
+    line-height: 42.4px;
+    background-color: #147bcd;
+    margin-bottom: 5px;
+}
+
+.p-pendencias{
+    font-size: 17px;
+    margin-top: 5px !important;
+
+    @include mobile {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}

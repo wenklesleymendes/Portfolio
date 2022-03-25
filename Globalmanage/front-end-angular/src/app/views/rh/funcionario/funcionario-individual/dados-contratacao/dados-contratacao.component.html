@@ -1,0 +1,441 @@
+<div class="body">
+    <form [formGroup]="form">
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Regime</mat-label>
+                <mat-select formControlName="tipoRegimeContratacao">
+                    <mat-option value="1"> CLT Seg a Sex </mat-option>
+                    <mat-option value="6"> CLT Seg a Sab </mat-option>
+                    <mat-option value="2"> Estágio Seg a Sex</mat-option>
+                    <mat-option value="7"> Estágio Seg a Sab </mat-option>
+                    <mat-option value="3"> Professor Autônomo</mat-option>
+                    <mat-option value="4"> Professor CLT</mat-option>
+                    <mat-option value="5"> Profissional Autônomo</mat-option>
+                    <mat-option value="8"> Autônomo Pré CLT Seg a Sex </mat-option>
+                    <mat-option value="9"> Autônomo Pré CLT Seg a Sab </mat-option>
+                    <mat-option value="10"> Autônomo Pré Estágio Seg a Sex </mat-option>
+                    <mat-option value="11"> Autônomo Pré Estágio Seg a Sab </mat-option>
+                </mat-select>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Matrícula</mat-label>
+                <input formControlName="matricula" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label> {{ labelAdmissao() }}</mat-label>
+                <input formControlName="dataAtestadoAdmissao" matInput [matDatepicker]="dataAdimissao">
+                <mat-error>Informação necessária</mat-error>
+                <mat-datepicker-toggle matSuffix [for]="dataAdimissao"></mat-datepicker-toggle>
+                <mat-datepicker #dataAdimissao></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>{{ labelDemissao() }}</mat-label>
+                <input formControlName="dataAtestadoDemissao" matInput [matDatepicker]="dataDemissao">
+                <mat-error>Informação necessária</mat-error>
+                <mat-datepicker-toggle matSuffix [for]="dataDemissao"></mat-datepicker-toggle>
+                <mat-datepicker #dataDemissao></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="form.get('tipoRegimeContratacao').value != 1
+            && form.get('tipoRegimeContratacao').value != 6
+            && form.get('tipoRegimeContratacao').value != 4">
+                <mat-label>{{ labelRecisao() }}</mat-label>
+                <input formControlName="dataRecisao" matInput [matDatepicker]="dataRecisao">
+                <mat-error>Informação necessária</mat-error>
+                <mat-datepicker-toggle matSuffix [for]="dataRecisao"></mat-datepicker-toggle>
+                <mat-datepicker #dataRecisao></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label> Data Alteração do Regime</mat-label>
+                <input formControlName="dataAlteracaoRegime" matInput [matDatepicker]="dataAlteracaoRegime">
+                <mat-datepicker-toggle matSuffix [for]="dataAlteracaoRegime"></mat-datepicker-toggle>
+                <mat-datepicker #dataAlteracaoRegime></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div formGroupName="dadosBancario" class="grid grid--auto-fill" *ngIf="bancos; else loading">
+            <mat-form-field>
+                <mat-label>Banco</mat-label>
+                <mat-select formControlName="codigoBanco">
+                    <mat-option *ngFor="let banco of bancos" [value]="banco.codigoBanco">
+                        {{ banco.nomeBanco }}
+                    </mat-option>
+                </mat-select>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Tipo de conta</mat-label>
+                <mat-select formControlName="tipoContaBancaria">
+                    <mat-option value="1"> Conta corrente </mat-option>
+                    <mat-option value="2"> Poupança </mat-option>
+                    <mat-option value="3"> Conta salário </mat-option>
+                </mat-select>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Agência Bancária</mat-label>
+                <input formControlName="numeroAgencia" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Conta Bancária</mat-label>
+                <input formControlName="numeroConta" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Tempo de Almoço / Pausa</mat-label>
+                <input formControlName="tempoAlmoco" [mask]="hourMinute" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Vale Transporte (Auxílio) por dia</mat-label>
+                <span matPrefix><strong>R$</strong> &nbsp;</span>
+                <input formControlName="valeTransporte" currencyMask matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Vale Alimentação por dia</mat-label>
+                <span matPrefix><strong>R$</strong> &nbsp;</span>
+                <input formControlName="valeAlimentacao" currencyMask matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="grid grid--auto-fill" *ngIf="form.get('tipoRegimeContratacao').value == 1
+        || form.get('tipoRegimeContratacao').value == 6
+        || form.get('tipoRegimeContratacao').value == 8
+        || form.get('tipoRegimeContratacao').value == 9
+        || form.get('tipoRegimeContratacao').value == 4">
+            <mat-form-field>
+                <mat-label>Número da Carteira</mat-label>
+                <input formControlName="numeroCT" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Data da Emissão</mat-label>
+                <input formControlName="dataEmissaoCT" matInput [matDatepicker]="dataEmissao">
+                <mat-error>Informação necessária</mat-error>
+                <mat-datepicker-toggle matSuffix [for]="dataEmissao"></mat-datepicker-toggle>
+                <mat-datepicker #dataEmissao></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Série</mat-label>
+                <input formControlName="serieCT" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Carga Horário de Trabalho Semanal</mat-label>
+                <input formControlName="cargaHorarioSemanalCT" [mask]="WeekMask" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Número do PIS ou Contrato</mat-label>
+                <input formControlName="numeroPIS" matInput>
+                <mat-error>Deve conter 11 digítos</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Titulo de eleitor</mat-label>
+                <input formControlName="numeroTituloEleitor" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Zona</mat-label>
+                <input formControlName="zonaTituloEleitor" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Seção</mat-label>
+                <input formControlName="secaoTituloEleitor" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <!-- Salário / Unidade -->
+    <form [formGroup]="salarioUnidadeForm">
+        <title-line title="Salário / Unidade"></title-line>
+        <div class="grid grid--auto-fill" *ngIf="(filterUnidades | async).length != 0; else loading">
+            <mat-form-field>
+                <mat-label>Unidades</mat-label>
+                <input matInput [matAutocomplete]="auto" formControlName="unidadeSelect">
+                <mat-icon matSuffix>arrow_drop_down</mat-icon>
+                    <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let unidade of filterUnidades | async" [value]="unidade.nome">
+                      <span>{{unidade.nome}}</span>
+                    </mat-option>
+                </mat-autocomplete>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Cargo</mat-label>
+                <input formControlName="descricaoCargo" matInput appTitlecase>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>{{ labelSalario() }}</mat-label>
+                <span matPrefix><strong>R$</strong> &nbsp;</span>
+                <input formControlName="valorSalario" currencyMask matInput>
+            </mat-form-field>
+
+            <div class="flex align-center">
+                <button mat-button type="button" [disabled]="UnidadeBtnAddHidden" (click)="add()" color="primary">
+                    Adicionar &nbsp;
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="flex flex-fill">
+            <div class="table">
+                <table mat-table [dataSource]="unidadeDataSource">
+                    <ng-container matColumnDef="descricao">
+                        <th mat-header-cell *matHeaderCellDef> Unidade </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nomeUnidade ? element.nomeUnidade : '-'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="descricaoCargo">
+                        <th mat-header-cell *matHeaderCellDef> Cargo </th>
+                        <td mat-cell *matCellDef="let element"> {{element.descricaoCargo ? element.descricaoCargo : '-'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="valor" class="column-sm">
+                        <th mat-header-cell *matHeaderCellDef>{{ labelSalario() }}</th>
+                        <td mat-cell *matCellDef="let element"> {{element.valorSalario ? (element.valorSalario | currency) : '-'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="options">
+                        <th mat-header-cell *matHeaderCellDef class="sm-column"> </th>
+                        <td mat-cell *matCellDef="let element; let i = index">
+                           <div class="btn-options">
+                                <button type="button" (click)="remove(i)" color="warn" mat-icon-button matTooltip="Excluir" >
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                           </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="unidadeDisplayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: unidadeDisplayedColumns;"
+                    (click)="selection.toggle(row)" [ngClass]="{ 'selected': selection.isSelected(row) }"></tr>
+                </table>
+            </div>
+        </div>
+    </form>
+
+    <!-- Materias professor -->
+    <form [formGroup]="materiasProfessorForm" *ngIf="form.get('tipoRegimeContratacao').value == 3 || form.get('tipoRegimeContratacao').value == 4">
+        <title-line title="Curso"></title-line>
+        <div class="flex form-registro" *ngIf="(filterCursos | async).length != 0; else loading">
+            <mat-form-field class="flex-fill">
+                <mat-label>Cursos</mat-label>
+                <input formControlName="cursoSelect" matInput [matAutocomplete]="auto">
+                <mat-icon matSuffix>arrow_drop_down</mat-icon>
+                    <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let curso of filterCursos | async" [value]="curso.descricao">
+                      <span>{{curso.descricao}}</span>
+                    </mat-option>
+                </mat-autocomplete>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <div class="flex align-center prl-1-5">
+                <button mat-button type="button" (click)="addCurso()" color="primary">
+                    Adicionar &nbsp;
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div formArrayName="cursoProfessor" class="grid grid--auto-fill prl-0">
+            <ng-container *ngFor="let curso of cursoProfessor.controls; let i=index">
+                <div [formGroupName]="i" class="flex form-registro">
+                    <mat-form-field class="flex-fill mw-0">
+                        <mat-label>{{ curso.get('descricao') ? (curso.get('descricao').value ? curso.get('descricao').value : '-') : '-' }}</mat-label>
+                        <mat-select formControlName="materia" multiple>
+                            <mat-option *ngFor="let cursoOptions of loadCursoOptions(curso.get('id').value)" [value]="cursoOptions.id">
+                                 {{ cursoOptions.nomeMateria ? cursoOptions.nomeMateria : '-' }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="align-center">
+                        <button (click)="removeDoFormArray(materiasProfessorForm.get('cursoProfessor'), i)" color="warn" mat-icon-button matTooltip="Excluir" >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </form>
+
+    <!-- Agente integração -->
+    <form [formGroup]="agenteIntegracaoForm"
+        *ngIf="form.get('tipoRegimeContratacao').value == 2
+            || form.get('tipoRegimeContratacao').value == 7
+            || form.get('tipoRegimeContratacao').value == 10
+            || form.get('tipoRegimeContratacao').value == 11
+        ">
+        <title-line title="Agente de integração"></title-line>
+
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Nome</mat-label>
+                <input formControlName="nome" matInput appTitlecase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Telefone</mat-label>
+                <input formControlName="telefone" [mask]="maskTelefoneFixoPrincipal" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>E-mail</mat-label>
+                <input formControlName="email" matInput appLowwercase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Site</mat-label>
+                <input formControlName="site" matInput appLowwercase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Pessoa para contato</mat-label>
+                <input formControlName="pessoaContato" matInput appTitlecase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <!-- Jornada de trabalho -->
+    <form [formGroup]="jornadaTrabalhoForm" *ngIf="form.get('tipoRegimeContratacao').value == 1
+    || form.get('tipoRegimeContratacao').value == 6
+    || form.get('tipoRegimeContratacao').value == 8
+    || form.get('tipoRegimeContratacao').value == 9
+    || form.get('tipoRegimeContratacao').value == 2
+    || form.get('tipoRegimeContratacao').value == 7
+    || form.get('tipoRegimeContratacao').value == 10
+    || form.get('tipoRegimeContratacao').value == 11">
+        <title-line title="Jornada de trabalho"></title-line>
+        <div class="grid grid--auto-fill mb-1">
+            <mat-slide-toggle formControlName="isActive" color="primary">Ativado / Desativado</mat-slide-toggle>
+        </div>
+
+        <mat-label class="align-center"><strong>Segunda-Feira</strong></mat-label>
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Entrada</mat-label>
+                <input formControlName="segundaFeiraInicio" [mask]="hourMinute" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Saída</mat-label>
+                <input formControlName="segundaFeiraTermino" [mask]="hourMinute" matInput>
+            </mat-form-field>
+        </div>
+
+        <mat-label class="align-center"><strong>Terça-Feira</strong></mat-label>
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Entrada</mat-label>
+                <input formControlName="tercaFeiraInicio" [mask]="hourMinute" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Saída</mat-label>
+                <input formControlName="tercaFeiraTermino" [mask]="hourMinute" matInput>
+            </mat-form-field>
+        </div>
+
+        <mat-label class="align-center"><strong>Quarta-Feira</strong></mat-label>
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Entrada</mat-label>
+                <input formControlName="quartaFeiraInicio" [mask]="hourMinute" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Saída</mat-label>
+                <input formControlName="quartaFeiraTermino" [mask]="hourMinute" matInput>
+            </mat-form-field>
+        </div>
+
+        <mat-label class="align-center"><strong>Quinta-Feira</strong></mat-label>
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Entrada</mat-label>
+                <input formControlName="quintaFeiraInicio" [mask]="hourMinute" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Saída</mat-label>
+                <input formControlName="quintaFeiraTermino" [mask]="hourMinute" matInput>
+            </mat-form-field>
+        </div>
+
+        <mat-label class="align-center"><strong>Sexta-Feira</strong></mat-label>
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Entrada</mat-label>
+                <input formControlName="sextaFeiraInicio" [mask]="hourMinute" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Saída</mat-label>
+                <input formControlName="sextaFeiraTermino" [mask]="hourMinute" matInput>
+            </mat-form-field>
+        </div>
+
+        <mat-label class="align-center"><strong>Sábado</strong></mat-label>
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Entrada</mat-label>
+                <input formControlName="sabadoInicio" [mask]="hourMinute" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Saída</mat-label>
+                <input formControlName="sabadoTermino" [mask]="hourMinute" matInput>
+            </mat-form-field>
+        </div>
+
+        <mat-label class="align-center"><strong>Domingo</strong></mat-label>
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Entrada</mat-label>
+                <input formControlName="domingoInicio" [mask]="hourMinute" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Saída</mat-label>
+                <input formControlName="domingoTermino" [mask]="hourMinute" matInput>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+
+<ng-template #loading>
+    <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>

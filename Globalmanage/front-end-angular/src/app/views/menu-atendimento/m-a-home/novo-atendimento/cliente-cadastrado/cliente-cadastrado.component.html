@@ -1,0 +1,23 @@
+<div class="body">
+
+    <p class="p-titulo">
+        Atendimento Existente
+    </p>
+
+    <div class="content" *ngIf="!isLoadingResults">
+
+        <form [formGroup]="form">
+
+            <div class="grid grid--auto-fill">
+
+                <mat-label>O cliente já possui atendimento! Clique em Abrir Cadastro.</mat-label>
+
+            </div>
+
+            <button mat-raised-button class="b-enviar" (click)="goToEditarResultados()">
+                Abrir Cadastro
+            </button>
+
+        </form>
+    </div>
+</div>

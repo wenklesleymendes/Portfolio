@@ -1,0 +1,93 @@
+--------------------SEM BIOMETRIA------------------------------------------------------------------------------------
+Binário    Decimal  Forma de Entrada sem BIOMETRIA
+10000000   128      Leitores 1 e 2 Desabilitados, Teclado Desabilitado 
+10000001   129      Leitores 1 e 2 Desabilitados, Teclado Habilitado   
+10000010   130      Leitor 1 Desabilitado, Leitor 2 Só Entrada, Teclado Desabilitado
+10000011   131      Leitor 1 Desabilitado, Leitor 2 Só Entrada, Teclado Habilitado
+10000100   132      Leitor 1 Desabilitado, Leitor 2 Só Saída, Teclado Desabilitado
+10000101   133      Leitor 1 Desabilitado, Leitor 2 Só Saída, Teclado Habilitado
+10000110   134      Leitor 1 Desabilitado, Leitor 2 Entrada e Saída, Teclado Desabilitado
+10000111   135      Leitor 1 Desabilitado, Leitor 2 Entrada e Saída, Teclado Habilitado
+10001000   136      Leitor 1 Desabilitado, Leitor 2 Entrada e Saída Invertido, Teclado Desabilitado
+10001001   137      Leitor 1 Desabilitado, Leitor 2 Entrada e Saída Invertido, Teclado Habilitado
+10010000   144      Leitor 1 Só Entrada, Leitor 2 Desabilitado, Teclado Desabilitado
+10010001   145      Leitor 1 Só Entrada, Leitor 2 Desabilitado, Teclado Habilitado
+10010010   146      Leitor 1 Só Entrada, Leitor 2 Só Entrada, Teclado Desabilitado
+10010011   147      Leitor 1 Só Entrada, Leitor 2 Só Entrada, Teclado Habilitado
+10010100   148      Leitor 1 Só Entrada, Leitor 2 Só Saída, Teclado Desabilitado
+10010101   149      Leitor 1 Só Entrada, Leitor 2 Só Saída, Teclado Habilitado
+10010110   150      Leitor 1 Só Entrada, Leitor 2 Entrada e Saída, Teclado Desabilitado
+10010111   151      Leitor 1 Só Entrada, Leitor 2 Entrada e Saída, Teclado Habilitado
+10011000   152      Leitor 1 Só Entrada, Leitor 2 Entrada e Saída Invertidos, Teclado Desabilitado
+10011001   153      Leitor 1 Só Entrada, Leitor 2 Entrada e Saída Invertidos, Teclado Habilitado
+10100000   160      Leitor 1 Só Saída, Leitor 2 Desabilitado, Teclado Desabilitado
+10100001   161      Leitor 1 Só Saída, Leitor 2 Desabilitado, Teclado Habilitado
+10100010   162      Leitor 1 Só Saída, Leitor 2 Só Entrada, Teclado Desabilitado
+10100011   163      Leitor 1 Só Saída, Leitor 2 Só Entrada, Teclado Habilitado
+10100100   164      Leitor 1 Só Saída, Leitor 2 Só Saída, Teclado Desabilitado
+10100101   165      Leitor 1 Só Saída, Leitor 2 Só Saída, Teclado Habilitado
+10100110   166      Leitor 1 Só Saída, Leitor 2 Entrada e Saída, Teclado Desabilitado
+10100111   167      Leitor 1 Só Saída, Leitor 2 Entrada e Saída, Teclado Habilitado
+10101000   168      Leitor 1 Só Saída, Leitor 2 Entrada e Saída Invertido, Teclado Desabilitado
+10101001   169      Leitor 1 Só Saída, Leitor 2 Entrada e Saída Invertido, Teclado Habilitado
+10110000   176      Leitor 1 Entrada e Saída, Leitor 2 Desabilitado, Teclado Desabilitado
+10110001   177      Leitor 1 Entrada e Saída, Leitor 2 Desabilitado, Teclado Habilitado
+10110010   178      Leitor 1 Entrada e Saída, Leitor 2 Só Entrada, Teclado Desabilitado
+10110011   179      Leitor 1 Entrada e Saída, Leitor 2 Só Entrada, Teclado Habilitado
+10110100   180      Leitor 1 Entrada e Saída, Leitor 2 Só Saída, Teclado Desabilitado
+10110101   181      Leitor 1 Entrada e Saída, Leitor 2 Só Saída, Teclado Habilitado
+10110110   182      Leitor 1 Entrada e Saída, Leitor 2 Entrada e Saída, Teclado Desabilitado
+10110111   183      Leitor 1 Entrada e Saída, Leitor 2 Entrada e Saída, Teclado Habilitado
+10111000   184      Leitor 1 Entrada e Saída, Leitor 2 Entrada e Saída Invertido, Teclado Desabilitado
+10111001   185      Leitor 1 Entrada e Saída, Leitor 2 Entrada e Saída Invertido, Teclado Habilitado
+11000000   192      Leitor 1 Entrada e Saída Invertido, Leitor 2 Desabilitado, Teclado Desabilitado
+11000001   193      Leitor 1 Entrada e Saída Invertido, Leitor 2 Desabilitado, Teclado Habilitado
+11000010   194      Leitor 1 Entrada e Saída Invertido, Leitor 2 Só Entrada, Teclado Desabilitado
+11000011   195      Leitor 1 Entrada e Saída Invertido, Leitor 2 Só Entrada, Teclado Habilitado
+11000100   196      Leitor 1 Entrada e Saída Invertido, Leitor 2 Só Saída, Teclado Desabilitado
+11000101   197      Leitor 1 Entrada e Saída Invertido, Leitor 2 Só Saída, Teclado Habilitado
+11000110   198      Leitor 1 Entrada e Saída Invertido, Leitor 2 Entrada e Saída, Teclado Desabilitado
+11000111   199      Leitor 1 Entrada e Saída Invertido, Leitor 2 Entrada e Saída, Teclado Habilitado
+																																	
+--------------------COMBIOMETRIA----------------------------------------------------------------------------------------------
+Binário    Decimal  Forma de Entrada com BIOMETRIA (Online >> OffLine)
+1000000    64       Identificação Desabilitada, Verificação Desabilitada, Leitores 1 e 2 Desabilitados, Teclado Desabilitado
+1000001    65       Identificação Desabilitada, Verificação Desabilitada, Leitores 1 e 2 Desabilitados, Teclado Habilitado
+1000010    66       Identificação Desabilitada, Verificação Desabilitada, Somente Leitor 2 Habilitado, Teclado Desabilitado
+1000011    67       Identificação Desabilitada, Verificação Desabilitada, Somente Leitor 2 Habilitado, Teclado Habilitado
+1000100    68       Identificação Desabilitada, Verificação Desabilitada, Somente Leitor 1 Habilitado, Teclado Desabilitado
+1000101    69       Identificação Desabilitada, Verificação Desabilitada, Somente Leitor 1 Habilitado, Teclado Habilitado
+1000110    70       Identificação Desabilitada, Verificação Desabilitada, Leitores 1 e 2 Habilitados, Teclado Desabilitado
+1000111    71       Identificação Desabilitada, Verificação Desabilitada, Leitores 1 e 2 Habilitados, Teclado Habilitado
+1001000    72       Identificação Desabilitada, Verificação Desabilitada, Leitor 1 Entrada/Saída invertidas, Teclado Desabilitado
+1001001    73       Identificação Desabilitada, Verificação Desabilitada, Leitor 1 Entrada/Saída invertidas, Teclado Habilitado
+1010000    80       Identificação Desabilitada, Verificação Habilitada, Leitores 1 e 2 Desabilitados, Teclado Desabilitado
+1010001    81       Identificação Desabilitada, Verificação Habilitada, Leitores 1 e 2 Desabilitados, Teclado Habilitado
+1010010    82       Identificação Desabilitada, Verificação Habilitada, Somente Leitor 2 Habilitado, Teclado Desabilitado
+1010011    83       Identificação Desabilitada, Verificação Habilitada, Somente Leitor 2 Habilitado, Teclado Habilitado
+1010100    84       Identificação Desabilitada, Verificação Habilitada, Somente Leitor 1 Habilitado, Teclado Desabilitado
+1010101    85       Identificação Desabilitada, Verificação Habilitada, Somente Leitor 1 Habilitado, Teclado Habilitado
+1010110    86       Identificação Desabilitada, Verificação Habilitada, Leitores 1 e 2 Habilitados, Teclado Desabilitado
+1010111    87       Identificação Desabilitada, Verificação Habilitada, Leitores 1 e 2 Habilitados, Teclado Habilitado
+1011000    88       Identificação Desabilitada, Verificação Habilitada, Leitor 1 Entrada/Saída invertidas, Teclado Desabilitado
+1011001    89       Identificação Desabilitada, Verificação Habilitada, Leitor 1 Entrada/Saída invertidas, Teclado Habilitado
+1100000    96       Identificação Habilitada, Verificação Desabilitada, Leitores 1 e 2 Desabilitados, Teclado Desabilitado
+1100001    97       Identificação Habilitada, Verificação Desabilitada, Leitores 1 e 2 Desabilitados, Teclado Habilitado
+1100010    98       Identificação Habilitada, Verificação Desabilitada, Somente Leitor 2 Habilitado, Teclado Desabilitado
+1100011    99       Identificação Habilitada, Verificação Desabilitada, Somente Leitor 2 Habilitado, Teclado Habilitado
+1100100    100      Identificação Habilitada, Verificação Desabilitada, Somente Leitor 1 Habilitado, Teclado Desabilitado
+1100101    101      Identificação Habilitada, Verificação Desabilitada, Somente Leitor 1 Habilitado, Teclado Habilitado
+1100110    102      Identificação Habilitada, Verificação Desabilitada, Leitores 1 e 2 Habilitados, Teclado Desabilitado
+1100111    103      Identificação Habilitada, Verificação Desabilitada, Leitores 1 e 2 Habilitados, Teclado Habilitado
+1101000    104      Identificação Habilitada, Verificação Desabilitada, Leitor 1 Entrada/Saída invertidas, Teclado Desabilitado
+1101001    105      Identificação Habilitada, Verificação Desabilitada, Leitor 1 Entrada/Saída invertidas, Teclado Habilitado
+1110000    112      Identificação Habilitada, Verificação Habilitada, Leitores 1 e 2 Desabilitados, Teclado Desabilitado
+1110001    113      Identificação Habilitada, Verificação Habilitada, Leitores 1 e 2 Desabilitados, Teclado Habilitado
+1110010    114      Identificação Habilitada, Verificação Habilitada, Somente Leitor 2 Habilitado, Teclado Desabilitado
+1110011    115      Identificação Habilitada, Verificação Habilitada, Somente Leitor 2 Habilitado, Teclado Habilitado
+1110100    116      Identificação Habilitada, Verificação Habilitada, Somente Leitor 1 Habilitado, Teclado Desabilitado
+1110101    117      Identificação Habilitada, Verificação Habilitada, Somente Leitor 1 Habilitado, Teclado Habilitado
+1110110    118      Identificação Habilitada, Verificação Habilitada, Leitores 1 e 2 Habilitados, Teclado Desabilitado
+1110111    119      Identificação Habilitada, Verificação Habilitada, Leitores 1 e 2 Habilitados, Teclado Habilitado
+1111000    120      Identificação Habilitada, Verificação Habilitada, Leitor 1 Entrada/Saída invertidas, Teclado Desabilitado
+1111001    121      Identificação Habilitada, Verificação Habilitada, Leitor 1 Entrada/Saída invertidas, Teclado Habilitado

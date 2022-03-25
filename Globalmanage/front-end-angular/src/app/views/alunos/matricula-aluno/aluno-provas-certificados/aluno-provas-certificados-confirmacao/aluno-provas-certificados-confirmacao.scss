@@ -1,0 +1,153 @@
+@import '../../../../../../scss/theme.scss';
+@import "../../../../../../scss/functions.scss";
+@import "../../../../../../scss/variable.scss";
+
+.content {
+    padding: 0 1rem;
+}
+
+mat-panel-title {
+    color: mat-color($theme-primary) !important;
+}
+
+mat-checkbox {
+    margin: 0.5rem 1rem;
+}
+
+.checkbox, .mat-radio-button {
+    padding: 0 1.5rem 1rem 1.5rem;
+}
+
+.mat-dialog-content {
+    max-height: none !important;
+}
+
+.mat-card {
+    min-height: 150px;
+    @include mobile {
+        padding: 1rem 0.5rem !important;
+    }
+}
+
+form {
+    padding-bottom: 0;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-right: 1.5rem;
+}
+
+mat-form-field, mat-chip-list, .form-select {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    min-width: 400px;
+}
+
+.mat-header-cell {
+    min-width: 150px;
+}
+
+.sm-column {
+    max-width: 3rem !important;
+    min-width: 3rem !important;
+    width: 3rem !important;
+}
+
+mat-divider {
+    position: relative !important;
+    align-self: center;
+    margin: 0 2rem;
+}
+
+.grid {
+    padding: 0;
+}
+
+table {
+    width: 100%;
+    text-align: left;
+}
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.grid--auto-fit-lg {
+    padding: 0;
+}
+
+.filter-info {
+    display: flex;
+    align-items: center;
+    .mat-chip-list {
+        min-width: 0 !important;
+    }
+
+    mat-label {
+        @include desktop {
+            flex: 1 0 auto;
+        }
+        margin-right: 0.5rem;
+    }
+
+    @include mobile {
+        padding: 0.5rem 0;
+    }
+}
+
+.selected {
+    background-color: #dddddd;
+}
+
+.th-bordered {
+    // border: 1px solid #f4f4f4;
+    padding: 8px;
+    font-weight: inherit;
+    //border-bottom: 1px solid #ddd;
+}
+
+.descricao {
+    width: 15em;
+}
+
+@include mobile {
+    form, .mat-form-field {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form-registro {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    .mat-card {
+        padding-left: 5 !important;
+        padding-right: 5 !important;
+    }
+
+    .grid--auto-fill {
+        grid-template-columns: none;
+    }
+
+    .grid--auto-fill-lg {
+        grid-template-columns: none;
+    }
+
+    .mat-form-field {
+        min-width: 0 !important;
+    }
+    
+    .grid {
+        padding: 0;
+    }
+
+    ::ng-deep.mat-dialog-container {
+        max-height: 90vh !important;
+        overflow-y: auto;
+    }
+}

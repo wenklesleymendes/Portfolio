@@ -1,0 +1,68 @@
+<div mat-dialog-title class="flex flex-row">
+  Autorizar Isenção
+  <div class="flex-fill"></div>
+  <div class="btn-options">
+    <button
+      color="primary"
+      (click)="dialogRef.close(update)"
+      mat-icon-button
+      matTooltip="Fechar"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<div mat-dialog-content>
+  <div class="loading-shade" *ngIf="false">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div>
+    <title-line title=""></title-line>
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Login</mat-label>
+        <input  formControlName="userName" matInput />
+        <mat-error>Informação necessária</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label> <mat-label>Senha</mat-label> </mat-label>
+        <input appTitlecase formControlName="password" matInput [type]="pwdhide ? 'password' : 'text'"/>
+        <mat-error>Informação necessária</mat-error>
+      </mat-form-field>
+      <mat-form-field class="flex-fill">
+        <mat-label>Justificativa</mat-label>
+        <textarea formControlName="justificativa" matInput></textarea>
+      </mat-form-field>
+      <mat-form-field class="flex-fill">
+        <mat-label>Motivo da isenção</mat-label>
+        <mat-select formControlName="motivoIsencao" [(ngModel)]="motivoIsencao">
+          <mat-option [value]="null"> - </mat-option>
+          <mat-option [value]="1">Nova matrícula</mat-option>
+          <mat-option [value]="2">Apresentou atestado médico</mat-option>
+          <mat-option [value]="3">Acordo Juridico</mat-option>
+          <mat-option [value]="4">Acordo administrativo</mat-option>
+          <mat-option [value]="5">Outros</mat-option>
+        </mat-select>
+        <mat-error>Informação necessária</mat-error>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <div class="flex">
+          <div style="padding-right: 10px" *ngIf="motivoIsencao === 2">
+            <button mat-raised-button color="primary" type="button" (click)="fileUp.click()" >
+              Atestado &nbsp;
+              <mat-icon>cloud_upload</mat-icon>
+            </button>
+          </div>
+          <div class="flex-fill"></div>
+          <div>
+            <button mat-raised-button color="warn" [disabled]="disableButton" (click)="autorizarCancelamento()">
+              Salvar Isenção
+            </button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </form>
+  </div>
+</div>
+<input #fileUp class="file-upload" type="file" (change)="uploadAtestado($event)">

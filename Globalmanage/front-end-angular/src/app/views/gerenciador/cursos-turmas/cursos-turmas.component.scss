@@ -1,0 +1,7 @@
+@import "../../../../scss/functions.scss";
+
+.mat-card {
+    @include mobile {
+        padding: 1rem 0.5rem !important;
+    }
+}

@@ -1,0 +1,102 @@
+<!-- <div class="body">
+
+    <div class="footer-initial">
+        <span>
+            Qual curso você quer acessar?
+        </span>
+    </div>
+
+    <div class="bloco-curso">
+
+        <mat-card class="geral1" style="padding-top: 40px; padding-left: 2%; padding-right: 2%;">
+
+            <div fxLayout="row wrap" fxLayoutAling="start center" style="padding: 2%;">
+                <ng-container *ngFor="let dados of dadosMatricula" style="margin: 0.5%;">
+
+                    <mat-card class="mat-card-bloco-curso"
+                    fxFlex="0 1 calc(33.3% - 11px)"
+                    fxFlex.lt-md="0 1 calc(50% - 11px)"
+                    fx.Flex.lt-sm="100%">
+
+                            <mat-card-title class="login-title">
+                                <div class="conteudo-curso">
+                                    <p class="bottom05">
+                                        <img class="logo-curso-unidade" src="../../../assets/logo_campinas.png" alt="logo_curso">
+                                    </p>
+                                    <p class="bottom05">
+                                        {{ dadosMatricula.curso }} ** curso **
+                                    </p>
+                                    <button mat-raised-button class="mat-chip mat-focus-indicator mat-primary mat-standard-chip bg-green" (click)="dadosMatricula">
+                                        acessar
+                                    </button>
+                                </div>
+                            </mat-card-title>
+
+                    </mat-card>
+
+                </ng-container>
+            </div>
+
+        </mat-card>
+
+    </div>
+
+    <div class="footer-initial">
+        <span>
+            “O Certificado escolar é o maior patrimônio do trabalhador”
+        </span>
+    </div>
+
+</div> -->
+<div id="body">
+
+    <div class="col-xs-12 no-padding">
+        <div class="col-xs-12 no-padding wrap-login">
+
+            <div class="col-xs-12 no-padding" id="block-curso">
+                <p class="title-initial">Qual curso você quer acessar?</p>
+
+                <!-- <div class="col-xs-12"> -->
+                    <div class="col-xs-12 no-padding">
+                        
+                        <div class="col-xs-12 no-padding flex wrap logos-outros-cursos">
+                            <div class="col-xs-12 no-padding" id="block-login">
+                                <div class="col-xs-12 center-block">
+                                  <!---->
+                                </div>
+                              </div>
+                            <ng-container *ngFor="let dados of dadosMatricula" style="margin: 0.5%;">
+
+                                <mat-card class="bg-light-gray-2 bottom-2 rounded panel-heading right-1 left-1 text-center outro-curso pagamento-outro-curso_unicid"
+                                fxFlex="0 1 calc(33.3% - 11px)"
+                                fxFlex.lt-md="0 1 calc(50% - 11px)"
+                                fx.Flex.lt-sm="100%">
+
+                                    <div>
+                                        <img class="center-block bottom-05" [src]="dados.logo" id="idLogoUnidade">
+
+                                        <p class="bottom-05" name="nomePCurso">
+                                            {{ dados.curso }}
+                                        </p>
+
+                                        <button mat-raised-button class="mat-chip mat-focus-indicator mat-primary mat-standard-chip bg-green" (click)="goToMatricula(dados.matriculaId, dados.logo, dados.curso, dados.unidade, dados.cursoId, dados.alunoId)" name="nameBotaoAcessar">
+                                            acessar
+                                        </button>
+                                    </div>
+                                </mat-card>
+                            </ng-container>
+                        </div>
+                        
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+
+        <footer class="footer-initial">
+            <span >
+                “O Certificado escolar é o maior patrimônio do trabalhador”
+            </span>
+        </footer>
+    </div>
+
+</div>

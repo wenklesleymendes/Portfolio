@@ -1,0 +1,2 @@
+frmConfiguraAcesso: Para acessar modo desenvolvedor ver cfg sem esta criptografado clique 2 vezes abaixo do botão cancelar e posteriormente tecla F1
+

@@ -1,0 +1,73 @@
+<div class="container">
+    
+    <!-- <div class="logo-central-barra-top"> -->
+        <!-- <span class="logo-central-barra-top">
+            <img class="title logo" [src]="logoLocalStorage" alt="logo_unidade" (click)="goHome()">
+        </span> -->
+    <!-- </div> -->
+
+    <mat-toolbar class="mat-elevation-z2 noselect" style="position: initial;">
+        <div class="loading-shade" id="carregamento" style="visibility: hidden;">
+            <mat-spinner></mat-spinner>
+        </div>
+
+        <span class="logo-central-barra-top">
+            <img class="logo" [src]="logoLocalStorage" alt="logo_unidade" (click)="goHome()">
+        </span>
+            
+        <button mat-icon-button (click)="menuClick()" style="color: #df1e1e;"
+        style="position: relative; z-index: 1000;">
+            <div id="hamburgerMenu" class="hamburgerMenu" (click)="toggleNav()">
+                <!--onclick="toggleNav(this)"-->
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </button>
+        
+        <!-- <span class="title logo" (click)="goHome()">
+            <img class="logo" [src]="logoLocalStorage" alt="logo_unidade">
+        </span> -->
+
+        <!-- <span class="barra-topo"></span> -->
+        
+        <div *ngIf="!isAlunoBody">
+            <div class="menu" [matMenuTriggerFor]="menu">
+                <img src="../../../assets/avatar-sm.png" alt="profile">
+                <span>{{ nome ? nome : '' }}</span>
+            </div>
+            <mat-menu #menu="matMenu">
+                <div class="profile">
+                    <img src="../../../assets/avatar-md.png" alt="profile">
+                    <span>{{ user?.funcionario?.nome ? user.funcionario.nome : '' }}</span>
+                    <span class="setor">{{ user?.departamento?.nome ? user.departamento.nome : '' }}</span>
+                </div>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>power_settings_new</mat-icon>
+                    <span>Sair</span>
+                </button>
+            </mat-menu> 
+        </div>
+    </mat-toolbar>
+
+    <mat-progress-bar *ngIf="showBar" mode="indeterminate"color="primary"></mat-progress-bar>
+
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #menuList [mode]="sidebarMode" opened="true" fixedTopGap="56" id="menuSideNav">
+            <mat-nav-list>
+                <app-menu-list-item *ngFor="let item of navItemList" [item]="item"></app-menu-list-item>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <div *ngIf="!isAlunoBody" class="router" style="padding: 1.5rem">
+                <router-outlet></router-outlet>
+            </div>
+
+            <div *ngIf="isAlunoBody" class="router">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+

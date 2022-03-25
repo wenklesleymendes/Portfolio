@@ -1,0 +1,234 @@
+
+<!-- <div>
+    <app-aluno-portal></app-aluno-portal>
+</div> -->
+
+<!-- <mat-card class="div-minhas-aulas">
+    <p class="titulo-minhas-aulas">
+        Provas e Certificados
+    </p>
+</mat-card> -->
+
+<div class="body">
+  <mat-card class="mat-elevation-z8 noshadow card-principal" *ngIf="!error;else errorTemplate">
+    <mat-card-title></mat-card-title>
+    <mat-card-content>
+      <div class="loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner></mat-spinner>
+      </div>
+      <div class="content" *ngIf="!isLoadingResults">
+        <title-line title="Inscrição de Prova"></title-line>
+        <form [formGroup]="form" class="flex flex-form">
+          <div class="flex form-column">
+            <div class="flex form-registro">
+              <mat-form-field>
+                <mat-label>Status da Prova</mat-label>
+                <mat-select formControlName="statusProva" [disabled]="desabilitarForm">
+                  <mat-option [value]="1" [disabled]="inscrito">Não Inscrito</mat-option>
+                  <mat-option [value]="2" [disabled]="!podeInscrever">Inscrito para Prova</mat-option>
+                  <mat-option [value]="3" [disabled]="!podeAprovar">Aprovado</mat-option>
+                  <mat-option [value]="4" [disabled]="!podeAprovar">Reprovado</mat-option>
+                  <mat-option [value]="5" [disabled]="!podeAprovar">Faltou / Reprovado</mat-option>
+                </mat-select>
+                <mat-error>Informação necessária</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="flex form-registro">
+              <mat-form-field *ngIf="unidadesDefault;">
+                <mat-label>Local da Prova</mat-label>
+                <input matInput [matAutocomplete]="auto" formControlName="colegioSelect" [disabled]="desabilitarForm">
+                <mat-icon matSuffix>arrow_drop_down</mat-icon>
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let unidade of filterUnidades | async" [value]="unidade.nomeColegioAutorizado"
+                    [disabled]="desabilitarForm">
+                    <span>{{unidade.nomeColegioAutorizado}}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error>Informação necessária</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="flex form-registro">
+              <mat-form-field>
+                <mat-label>Tipo de Prova</mat-label>
+                <mat-select formControlName="tipoProva" [disabled]="desabilitarForm">
+                  <mat-option [value]="1">Presencial</mat-option>
+                  <mat-option [value]="2">On-line</mat-option>
+                </mat-select>
+                <mat-error>Informação necessária</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="flex form-registro" *ngIf="tipoProva == 1">
+              <mat-form-field>
+                <mat-label>Data de Prova</mat-label>
+                <input formControlName="dataProva" matInput [min]="today" [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker [dateClass]="datePickerClass()"></mat-datepicker>
+                <mat-error>Informação necessária</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="flex form-registro" *ngIf="tipoProva == 2">
+              <mat-form-field>
+                <mat-label>Data de Inscrição</mat-label>
+                <input formControlName="dataInscricao" matInput [readonly]="true">
+              </mat-form-field>
+            </div>
+            <div class="flex form-registro" *ngIf="tipoProva == 1">
+              <mat-form-field>
+                <mat-label>Tipo de Transporte</mat-label>
+                <mat-select formControlName="tipoTransporte" [disabled]="desabilitarForm">
+                  <mat-option [value]="1" [disabled]="!dataDefinida">Transporte da Escola</mat-option>
+                  <mat-option [value]="2">Transporte Próprio</mat-option>
+                </mat-select>
+                <mat-error>Informação necessária</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="flex">
+              <div class="flex-fill"></div>
+              <div>
+                <button *ngIf="inscrito" mat-stroked-button color="primary" type="button" [disabled]="desabilitarForm"
+                  (click)="imprimirFormulario()">Imprimir Formulário</button>
+                <button *ngIf="inscrito" mat-raised-button color="warn" type="button" (click)="cancelarInscricao()"
+                  [disabled]="desabilitarForm">Cancelar Inscrição</button>
+                <button mat-raised-button color="primary" type="button" (click)="salvarData()"
+                  [disabled]="desabilitarForm" cdkFocusInitial>{{inscrito == true ? "Atualizar Status" : "Efetuar
+                  Inscrição"}}</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex form-column">
+            <div class="flex form-registro" *ngIf="dadosTransporte">
+              <table class="table-bordered">
+                <thead>
+                  <tr>
+                    <th class="th-bordered">Data da Viagem:</th>
+                    <th class="th-bordered">{{this.dataProva}}</th>
+                  </tr>
+                  <tr>
+                    <th class="th-bordered">Número do Ônibus:</th>
+                    <th class="th-bordered">{{dadosTransporte?.numeroOnibus}}</th>
+                  </tr>
+                  <tr>
+                    <th class="th-bordered">Horário de Saída:</th>
+                    <th class="th-bordered">{{dadosTransporte?.unidadeParticipanteProva.horaSaida.substr(0,
+                      2)}}:{{dadosTransporte?.unidadeParticipanteProva.horaSaida.substr(-2, 2)}}</th>
+                  </tr>
+                  <tr>
+                    <th class="th-bordered">Local de Saída:</th>
+                    <th class="th-bordered">{{dadosTransporte?.unidadeParticipanteProva.localSaida}}</th>
+                  </tr>
+                  <tr>
+                    <th class="th-bordered">Data da Prova:</th>
+                    <th class="th-bordered">{{this.dataProva}}</th>
+                  </tr>
+                  <tr *ngIf="!inscrito">
+                    <th class="th-bordered">Assentos Disponíveis</th>
+                    <th class="th-bordered">{{dadosTransporte?.vagasRestantes}}</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div *ngIf="tipoProva == 2">
+              <div class="flex form-registro">
+                <mat-form-field>
+                  <mat-label>Identificação do Usuário</mat-label>
+                  <input formControlName="identificacaoUsuario" matInput maxlength='6' [readonly]="desabilitarForm">
+                </mat-form-field>
+              </div>
+              <div class="flex form-registro">
+                <mat-form-field>
+                  <mat-label>Senha para Prova</mat-label>
+                  <input formControlName="senhaProva" matInput maxlength="6" [readonly]="desabilitarForm">
+                </mat-form-field>
+              </div>
+              <div class="flex">
+                <div class="flex-fill"></div>
+                <button mat-raised-button color="primary" type="button" (click)="salvarCredenciais()"
+                  [disabled]="desabilitarForm">Salvar e Enviar
+                  Dados</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <title-line title="Provas Realizadas"></title-line>
+        <div class="table">
+          <table mat-table [dataSource]="provasRealizadas" *ngIf="provasRealizadas">
+            <ng-container matColumnDef="tabDataProva">
+              <th mat-header-cell *matHeaderCellDef> Data da Prova / Inscrição </th>
+              <td mat-cell *matCellDef="let element">
+                <label *ngIf="element.tipoProva === 'Presencial'">{{element.dataProva | date: 'dd/MM/yyyy'}}</label>
+                <label *ngIf="element.tipoProva !== 'Presencial'">{{element.dataInscricao | date: 'dd/MM/yyyy'}}</label>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tabTipoProva">
+              <th mat-header-cell *matHeaderCellDef> Tipo de Prova </th>
+              <td mat-cell *matCellDef="let element"> {{ element.tipoProva }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tabLocalProva">
+              <th mat-header-cell *matHeaderCellDef> Local </th>
+              <td mat-cell *matCellDef="let element"> {{ element.localProva }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tabStatusProva">
+              <th mat-header-cell *matHeaderCellDef> Status da Prova </th>
+              <td mat-cell *matCellDef="let element"> {{ element.statusProva }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tabNumeroOnibus">
+              <th mat-header-cell *matHeaderCellDef> Nº do Ônibus </th>
+              <td mat-cell *matCellDef="let element"> {{ element?.unidadeTransporteProva?.numeroOnibus }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tabHoraSaida">
+              <th mat-header-cell *matHeaderCellDef> Horário de Saída </th>
+              <td mat-cell *matCellDef="let element">
+                <label *ngIf="element?.unidadeTransporteProva !== null">{{
+                  element?.unidadeTransporteProva?.unidadeParticipanteProva?.horaSaida.substr(0,2)}}:
+                  {{element?.unidadeTransporteProva?.unidadeParticipanteProva?.horaSaida.substr(-2, 2) }}
+                </label>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tabMaterias">
+              <th mat-header-cell *matHeaderCellDef class="sm-column"></th>
+              <td mat-cell *matCellDef="let element">
+                <div class="btn-options">
+                  <button (click)="openMaterias(element.id, 0)" color="primary" mat-icon-button matTooltip="Matérias">
+                    <mat-icon>
+                      fact_check
+                    </mat-icon>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                            (click)="selection.toggle(row)" [ngClass]="{ 'selected': selection.isSelected(row) }"></tr>  -->
+          </table>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="flex align-center">
+        <div class="flex-fill">
+
+          <app-aluno-prova-certificado-emissao *ngIf="statusProvaAtual ===3">
+
+          </app-aluno-prova-certificado-emissao>
+        </div>
+      </div>
+    </mat-card-actions>
+    <div class="flex">
+      <div>
+        <button mat-button color="primary" (click)="voltar()" type="button">Voltar</button>
+      </div>
+      </div>
+  </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+  <app-server-error></app-server-error>
+</ng-template>

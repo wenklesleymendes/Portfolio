@@ -1,0 +1,245 @@
+@import '../../../scss/functions.scss';
+
+#body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff url("../../../assets/fundo_desktop.png") no-repeat right top fixed;
+    background-size: cover;
+    background-attachment: fixed;
+
+    @include mobile {
+        // width: 100%;
+        height: max-content;
+        align-items: flex-start;
+    }
+
+    // @include ipad {
+    //     height: 100% !important;
+    // }
+
+    // @include desktop {
+    //     height: 100% !important;
+    // }
+
+    // @include bigscreen {
+    //     height: 100% !important;
+    // }
+}
+
+.title-initial {
+    background-color: #bfbfbf;
+    position: fixed;
+    top: -19px;
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    text-align: center;
+    z-index: 1;
+}
+
+.footer-initial {
+    background-color: #bfbfbf;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.no-padding {
+    padding: 0!important;
+}
+
+.center-block {
+    margin: 0 auto;
+    float: none;
+    display: block;
+}
+
+#login .logo {
+    width: 100%;
+}
+
+#block-curso {
+    margin-top: 20px;
+}
+
+#block-login {
+    @include mobile {
+        //margin-top: 300px;
+    }
+}
+
+.login-title {
+    color: #ededed;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+p {
+    margin: 0 0 10px;
+    line-height: 1.6em;
+}
+
+.col-xs-12 {
+    width: 100%;
+}
+
+// @media screen and (min-width: 455px)
+
+#login .logos-outros-cursos {
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+}
+
+#login #block-curso .panel-heading {
+    min-height: 222px;
+    height: auto;
+    /* display: -webkit-box; */
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 44%;
+}
+
+.logos-outros-cursos img {
+    height: 55px;
+    margin-top: 0;
+
+    @include mobile {
+        height: 65px;
+    }
+}
+
+.bottom-05 {
+    margin-bottom: 5px!important;
+    margin-top: 17px;
+}
+
+#login #block-curso .panel-heading {
+    min-height: 222px;
+    height: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 44%;
+}
+
+.wrap {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex !important;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+    @include mobile {
+        margin-top: 30px;
+        margin-bottom: 80px;
+    }
+}
+
+@media screen and (max-width: 599px) and (min-height: 500px) and (max-height: 640px) {
+    .flex {
+        margin-top: 10%;
+    }
+}
+
+@media screen and (max-width: 599px) and (min-height: 641px) and (max-height: 740px) {
+    .flex {
+        margin-top: 13%;
+    }
+}
+
+@media screen and (max-width: 599px) and (min-height: 741px) and (max-height: 825px) {
+    .flex {
+        margin-top: 30%;
+    }
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 17.5px;
+}
+
+.mat-card {
+    border-radius: 20px;
+    background-color: #bfbfbf;
+    margin-top: 30px;
+    // margin-bottom: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    height: 190px;
+    width: 200px;
+
+    @include mobile {
+        height: 200px;
+        width: 275px;
+    }
+}
+
+//margin-top: 53%;
+
+.mat-card:only-of-type {
+    @include mobile {
+        margin-top: 45%;
+    }
+    
+}
+
+.mat-card:nth-last-child(3) {
+    @include mobile {
+        margin-top: 30px;
+    }
+}
+
+.mat-raised-button {
+    min-width: 140px;
+    line-height: 40px;
+    padding: 0 16px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 200;
+    margin-top: 15%;
+
+    @include mobile {
+        min-width: 154px;
+        line-height: 52px;
+        padding: 0 16px;
+        border-radius: 18px;
+        font-size: 19px;
+        font-weight: 200;
+        margin-top: 10%;
+    }
+}

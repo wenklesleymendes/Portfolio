@@ -1,0 +1,56 @@
+@import '../../../../../scss/theme.scss';
+@import "../../../../../scss/functions.scss";
+
+mat-panel-title {
+    color: mat-color($theme-primary) !important;
+}
+
+.mat-dialog-content {
+    max-height: none !important;
+}
+
+.mat-card {
+    min-height: 300px;
+    @include mobile {
+        padding: 1rem 0.5rem !important;
+    }
+}
+
+.img-aluno {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 12.5rem;
+    height: 12.5rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+    }
+
+    .btn-mudar-img-aluno {
+        transition: opacity 250ms;
+        opacity: 0;
+        background-color: rgba(0,0,0,0.5);
+        position: absolute;
+        width: 12.5rem !important;
+        height: 12.5rem !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        span {
+            color: #fff;
+            font-size: 21pt;
+            text-align: center;
+        }
+    }
+}

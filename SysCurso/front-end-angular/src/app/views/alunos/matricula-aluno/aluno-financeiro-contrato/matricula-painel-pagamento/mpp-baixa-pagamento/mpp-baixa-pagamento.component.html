@@ -1,0 +1,142 @@
+<div mat-dialog-title class="flex flex-row">
+  Baixa do Pagamento
+  <div class="flex-fill"></div>
+  <div class="btn-options">
+    <button color="primary" (click)="dialogRef.close()" mat-icon-button matTooltip="Fechar">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<div mat-dialog-content>
+  <div class="loading-shade" *ngIf="false">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!error;else errorTemplate">
+    <form [formGroup]="form">
+      <div class="flex form-registro">
+        <title-line title="Detalhe dos pagamentos à baixa"></title-line>
+        <mat-form-field class="flex-fill">
+          <mat-label>Data do Vencimento</mat-label>
+          <input formControlName="dataVencimento" matInput disabled/>
+          <mat-error>Informação necessária</mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-fill">
+        <mat-label>Valor Total</mat-label>
+        <span matPrefix><strong>R$</strong> &nbsp;</span>
+        <input formControlName="valorTotal" currencyMask matInput disabled/>
+        <mat-error>Informação necessária</mat-error>
+      </mat-form-field>
+      </div>
+      <div class="flex form-registro">
+        <mat-form-field class="flex-fill">
+          <mat-label>Tipo Pagamento</mat-label>
+          <mat-select formControlName="tipoPagamento">
+            <mat-option [value]="null"> - </mat-option>
+            <mat-option [value]="1">Cartão de crédito</mat-option>
+            <mat-option [value]="2">Cartão de débito</mat-option>
+            <mat-option [value]="3">Boleto bancário</mat-option>
+          </mat-select>
+          <mat-error>Informação necessária</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex form-registro">
+        <div class="cartao" [hidden]="!cartao">
+          <title-line title="Detalhe do pagamento"></title-line>
+         <mat-form-field>
+            <mat-label>Valor Pago</mat-label>
+            <span matPrefix><strong>R$</strong> &nbsp;</span>
+            <input formControlName="valorPago" currencyMask matInput />
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Data do Pagamento</mat-label>
+            <input formControlName="dataPagamento" matInput [max]="today" [matDatepicker]="picker"/>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Bandeira</mat-label>
+            <mat-select formControlName="bandeiraCartao">
+              <mat-option [value]="1">Master</mat-option>
+              <mat-option [value]="2">Visa</mat-option>
+              <mat-option [value]="3">Elo</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Código Autorização / NSU-DOC</mat-label>
+            <input formControlName="codigoAutorizacao" matInput/>
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+          <title-line title="Histórico da transação"></title-line>
+          <mat-form-field>
+            <mat-label>Valor Total</mat-label>
+            <span matPrefix><strong>R$</strong> &nbsp;</span>
+            <input formControlName="valorTotal" currencyMask matInput />
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Número de Parcelas</mat-label>
+            <input formControlName="quantidadeParcela" matInput/>
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Valor Parcela</mat-label>
+            <span matPrefix><strong>R$</strong> &nbsp;</span>
+            <input formControlName="valorParcela" currencyMask matInput />
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="table-boleto" [hidden]="!boleto">
+          <title-line title="Detalhe do pagamento"></title-line>
+          <mat-form-field>
+            <mat-label>Valor</mat-label>
+            <span matPrefix><strong>R$</strong> &nbsp;</span>
+            <input formControlName="valor" currencyMask matInput />
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Data do Vencimento</mat-label>
+            <input formControlName="dataVencimento" matInput [max]="today" [matDatepicker]="picker"/>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Valor Pago</mat-label>
+            <span matPrefix><strong>R$</strong> &nbsp;</span>
+            <input formControlName="valorPago" currencyMask matInput />
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Data do Pagamento</mat-label>
+            <input formControlName="dataPagamentoBoleto" matInput [max]="today" [matDatepicker]="picker"/>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Desconto Pontualidade</mat-label>
+            <span matPrefix><strong>%</strong> &nbsp;</span>
+            <input formControlName="desconto" currencyMask matInput />
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <mat-card-actions>
+        <div class="flex">
+            <div class="flex-fill"></div>
+            <div>
+                <button mat-raised-button color="primary" (click)="salvar()" cdkFocusInitial>Salvar</button>
+            </div>
+        </div>
+    </mat-card-actions>
+    </form>
+  </div>
+  <!-- <mat-progress-bar *ngIf="sending" mode="indeterminate" color="primary"></mat-progress-bar> -->
+</div>
+
+<ng-template #errorTemplate>
+  <app-server-error></app-server-error>
+</ng-template>
+<ng-template #loading>
+  <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>

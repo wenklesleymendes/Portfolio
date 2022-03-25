@@ -1,0 +1,240 @@
+<div class="div-supletivo">
+
+    <div class="main-body">
+
+        <div class="div-header">
+            <mat-toolbar class="barra-topo">
+    
+                <div class="div-img-logo">
+                    <img  class="img-logo" src="../../../../assets/portal_logos.png">
+                </div>
+    
+            </mat-toolbar>
+        </div>
+    
+        <div class="div-body">
+    
+            <picture>
+                <source media="(min-width: 768px)" srcset="../../../../assets/afiliado/ate-100-off.PNG">
+                <source media="(min-width: 450px)" srcset="../../../../assets/afiliado/ate-100-off-mobile.PNG">
+                <img class="img-body" src="../../../../assets/afiliado/ate-100-off-mobile.PNG">
+            </picture>
+    
+            <div class="div-cadastre-se">
+    
+                <p class="p-cadastre-se">
+                    Cadastre-se para ganhar até 100% OFF na matrícula!
+                </p>
+    
+                <form [formGroup]="form">
+    
+                    <div class="div-form">
+                        
+                        <div class="div-form-field">
+                            <mat-form-field>
+                                <mat-label>Nome Completo</mat-label>
+                                <input appTitlecase formControlName="nomecompleto" matInput outline:none>
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="div-form-field">
+                            <mat-form-field>
+                                <mat-label>Email</mat-label>
+                                <input formControlName="email" id="idEmail" matInput appLowwercase ngModel email autocomplete="on">
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="div-form-field">
+                            <mat-form-field>
+                                <mat-label>Telefone</mat-label>
+                                <input formControlName="telefone" [mask]="maskTelefoneFixoPrincipal" matInput>
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="div-form-field">
+                            <mat-form-field>
+                                <mat-label>Cursos</mat-label>
+                                <mat-select formControlName="cursos">
+                                    <mat-option [value]="1">Supletivo Presencial</mat-option>
+                                    <mat-option [value]="2">Supletivo A Distância</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+    
+                        <button mat-raised-button color="primary" class="b-enviar"> 
+                            <p class="p-enviar">
+                                ENVIAR
+                            </p>
+                        </button>
+    
+                    </div>
+    
+                </form>
+    
+            </div>
+    
+            <div class="div-img-body">
+                <picture>
+                    <source media="(min-width: 768px)" srcset="../../../../assets/afiliado/veja-como-funciona.PNG">
+                    <source media="(min-width: 450px)" srcset="../../../../assets/afiliado/veja-como-funciona-mobile.PNG">
+                    <img class="img-body" src="../../../../assets/afiliado/veja-como-funciona-mobile.PNG">
+                </picture>
+            </div>
+    
+            <div class="div-inscreva-se">
+    
+                <button mat-raised-button color="primary" class="b-inscreva-se" (click)="voltarTopo()">
+                    <p class="p-inscreva-se">
+                        INSCREVA-SE
+                    </p>
+                </button>
+    
+            </div>
+    
+        </div>
+    
+        <div class="div-rodape">
+
+            <div id="icones-barra-rodape" class="div-icones">
+                <div class="icones">
+                    <img class="img-icones" src="../../../../assets/afiliado/icon-red-user.png">
+                    <p class="p-icones">
+                        <strong>SEJA UM AFILIADO</strong>
+                    </p>
+                </div>
+
+                <div class="icones" (click)="logout()">
+                    <img class="img-icones" src="../../../../assets/afiliado/icon-red-user.png">
+                    <p class="p-icones">
+                        <strong>LOGIN</strong>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    
+    </div>
+
+</div>
+
+<div class="div-nacionaltec">
+
+    <div class="main-body">
+
+        <div class="div-header">
+            <mat-toolbar class="barra-topo nacional-azul">
+
+                <div class="div-img-logo">
+                    <img  class="img-logo nacional-logo" src="../../../../assets/logo_nacionaltec-branco-fundo-azul.png">
+                </div>
+
+            </mat-toolbar>
+        </div>
+
+        <div class="div-body">
+
+            <picture class="fundo-nacional">
+                <source media="(min-width: 768px)" srcset="../../../../assets/afiliado/ate-100-off-nacional.PNG">
+                <source media="(min-width: 450px)" srcset="../../../../assets/afiliado/ate-100-off-mobile-nacional.PNG">
+                <img class="img-body" src="../../../../assets/afiliado/ate-100-off-mobile-nacional.PNG">
+            </picture>
+
+            <div class="div-cadastre-se nacional-azul">
+
+                <p class="p-cadastre-se">
+                    Cadastre-se para ganhar até 100% OFF na matrícula!
+                </p>
+
+                <form [formGroup]="form">
+
+                    <div class="div-form">
+                        
+                        <div class="div-form-field">
+                            <mat-form-field>
+                                <mat-label>Nome Completo</mat-label>
+                                <input appTitlecase formControlName="nomecompleto" matInput outline:none>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="div-form-field">
+                            <mat-form-field>
+                                <mat-label>Email</mat-label>
+                                <input formControlName="email" id="idEmail" matInput appLowwercase ngModel email autocomplete="on">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="div-form-field">
+                            <mat-form-field>
+                                <mat-label>Telefone</mat-label>
+                                <input formControlName="telefone" [mask]="maskTelefoneFixoPrincipal" matInput>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="div-form-field">
+                            <mat-form-field>
+                                <mat-label>Cursos</mat-label>
+                                <mat-select formControlName="cursos">
+                                    <mat-option [value]="1">Assistente Financeiro</mat-option>
+                                    <mat-option [value]="2">Assistente Comercial</mat-option>
+                                    <mat-option [value]="3">Assistente de Recursos Humanos</mat-option>
+                                    <mat-option [value]="4">Analista de Organização e Métodos</mat-option>
+                                    <mat-option [value]="5">Assistente de Produção e Compras</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <button mat-raised-button class="b-enviar nacional-amarelo"> 
+                            <p class="p-enviar">
+                                ENVIAR
+                            </p>
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="div-img-body">
+                <picture class="fundo-nacional">
+                    <source media="(min-width: 768px)" srcset="../../../../assets/afiliado/veja-como-funciona-nacional.PNG">
+                    <source media="(min-width: 450px)" srcset="../../../../assets/afiliado/veja-como-funciona-mobile-nacional.PNG">
+                    <img class="img-body" src="../../../../assets/afiliado/veja-como-funciona-mobile-nacional.PNG">
+                </picture>
+            </div>
+
+            <div class="div-inscreva-se-nacional">
+
+                <button mat-raised-button class="b-inscreva-se nacional-amarelo" (click)="voltarTopo()">
+                    <p class="p-inscreva-se">
+                        INSCREVA-SE
+                    </p>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="div-rodape nacional-azul">
+
+            <div id="icones-barra-rodape" class="div-icones">
+                <div class="icones">
+                    <img class="img-icones" src="../../../../assets/afiliado/icon-white-user.png">
+                    <p class="p-icones nacional-branco">
+                        <strong>SEJA UM AFILIADO</strong>
+                    </p>
+                </div>
+
+                <div class="icones" (click)="logout()">
+                    <img class="img-icones" src="../../../../assets/afiliado/icon-white-user.png">
+                    <p class="p-icones nacional-branco">
+                        <strong>LOGIN</strong>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

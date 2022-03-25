@@ -1,0 +1,54 @@
+@import '../../../../../../../scss/theme.scss';
+@import "../../../../../../../scss/functions.scss";
+
+form {
+    padding-bottom: 0;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 1.5rem;
+}
+
+mat-form-field, mat-chip-list, .form-select {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    min-width: 400px;
+}
+
+
+mat-divider {
+    position: relative !important;
+    align-self: center;
+    margin: 0 2rem;
+}
+
+mat-form-field[hidden] {
+    display: none;
+  }
+
+.grid {
+    padding: 0;
+}
+
+@include mobile {
+    form, .mat-form-field, .form-select, .checkbox, .mat-radio-button {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form-registro {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    .grid--auto-fill, .grid--auto-fit-lg {
+        grid-template-columns: none;
+    }
+
+    .mat-form-field, .mat-chip-list {
+        min-width: 0 !important;
+    }
+}

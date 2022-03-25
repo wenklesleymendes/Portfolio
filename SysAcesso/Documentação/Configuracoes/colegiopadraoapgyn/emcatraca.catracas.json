@@ -1,0 +1,26 @@
+[
+  {
+    "Codigo": 1,
+    "Descricao": "Catraca 1",
+    "IpV4": "192.168.15.38",
+    "Porta": 3000
+  },
+  {
+    "Codigo": 2,
+    "Descricao": "Catraca 2",
+    "IpV4": "192.168.15.39",
+    "Porta": 3000
+  },
+  {
+    "Codigo": 3,
+    "Descricao": "Catraca 3",
+    "IpV4": "192.168.15.40",
+    "Porta": 3000
+  },
+  {
+    "Codigo": 4,
+    "Descricao": "Catraca 4",
+    "IpV4": "192.168.15.41",
+    "Porta": 3000
+  }
+]

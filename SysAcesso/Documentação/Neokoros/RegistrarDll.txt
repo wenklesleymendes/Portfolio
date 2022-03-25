@@ -1,0 +1,28 @@
+1 - Variaveis de ambiente:
+    Nome da variavel sera: EM_INTEGRACAO_CATRACA
+    valor da viarevel Sera: id do cliente| ip maquina executara dll| caminho servidor na rede 
+	exemplo como vai ficar: 900000659|192.168.1.100|C:\Terabyte\EscolarManager\Dados\BDCOLEGIOWR.FDB
+	
+2 - Registrar DLL
+    Abre cmd Como Administrador
+	cmd comando : cd.. ate chegar raiz
+	
+	Windons de 64 bits
+	Cmd comando sera : cd C:\Windows\Microsoft.NET\Framework64\v4.0.30319\
+	
+	Windons de 32 bits
+	Cmd comando sera : cd C:\Windows\Microsoft.NET\Framework\v4.0.30319\
+	
+	Cmd Camando sera para registrar dll : RegAsm.exe "D:\Neokoros\exe\ValidacaoExterna.dll" /tlb
+	
+3 - Desregistrar DLL
+    Abre cmd Como Administrador
+	cmd comando : cd.. ate chegar raiz
+	
+	Windons de 64 bits
+	Cmd comando sera : cd C:\Windows\Microsoft.NET\Framework64\v4.0.30319\
+	
+	Windons de 32 bits
+	Cmd comando sera : cd C:\Windows\Microsoft.NET\Framework\v4.0.30319\
+	
+	Cmd Camando sera para registrar dll : RegAsm.exe "D:\Neokoros\exe\ValidacaoExterna.dll" -u

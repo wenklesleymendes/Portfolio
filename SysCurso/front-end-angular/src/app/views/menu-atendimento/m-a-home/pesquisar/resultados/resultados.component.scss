@@ -1,0 +1,218 @@
+@import '../../../../../../scss/functions.scss';
+@import '../../../../../../scss/theme.scss';
+
+.body {
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9;
+    // position: fixed;
+}
+
+.main-resultados {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 0;
+}
+
+.toolbar-titulo {
+    padding-top: 4%;
+    padding-bottom: 4%;
+    background-color: #56504c;
+    z-index: 100;
+}
+
+.div-botao-voltar {
+    display: flex;
+    align-items: center;
+    padding-left: 3%;
+}
+
+.botao-voltar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    padding-left: 5px;
+}
+
+.p-botao-voltar {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.barra-topo {
+    padding: 14%;
+}
+
+.div-resultados {
+    display: flex;
+}
+
+.p-resultados {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+}
+
+.div-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1%;
+    padding-bottom: 10%;
+    background-color: #f9f9f9;
+
+    @include ipad {
+        padding-bottom: 15%;
+    }
+}
+
+.div-botoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 3%;
+}
+
+.b-resetar-campos {
+    background-color: #d7d7d7;
+    //color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.b-filtrar {
+    background-color: #ff0000;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.div-rodape {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0 auto 0;
+    background-color: #56504c;
+}
+
+.div-barra-navegacao {
+    display: flex;
+}
+
+.b-home {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.b-novo-atendimento {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.b-pesquisar {
+    width: 100px;
+    height: 100%;
+    background-color: #3D3936;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.b-outbound {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.b-agendados {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.b-contatos-prioritarios {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding-bottom: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loop-gif-rodape {
+    width: 100%;
+}
+
+.mat-icon-button {
+    font-size: 50px;
+    font-weight: 500;
+    display: contents;
+}
+
+.mat-card-resultados {
+    display: flex;
+    width: 90%;
+}
+
+table {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+
+    @include mobile {
+        width: 93%;
+    }
+}

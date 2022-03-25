@@ -1,0 +1,177 @@
+<div mat-dialog-title class="flex flex-row">
+    Timeline do Ticket {{ assunto ? (' - ' + assunto) : '' }}
+    <div class="flex-fill"></div>
+    <div class="btn-options">
+        <button color="primary" (click)="dialogRef.close(updated)" mat-icon-button matTooltip="Fechar">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+<div mat-dialog-content>
+    <div class="loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!error;else errorTemplate">
+        <ng-container *ngIf="!isLoadingResults">
+            <mat-chip-list>
+                <mat-chip [ngClass]="false ? 'bg-green' : 'bg-red'">
+                    Abertura do Chamado {{ aberturaChamado | date: 'dd/MM/yyyy' }}
+                </mat-chip>
+            </mat-chip-list>
+
+            <ng-container>
+                <ng-container *ngFor="let item of mensagens; index as index">
+                    <div class="flex flex-column container-time-line">
+                        <div class="flex">
+                            <div class="time-line">
+                                <mat-icon [ngClass]="index === 0 ? 'yellow' : 'primary'">
+                                    {{ index === 0 ? 'report' : 'account_circle' }}</mat-icon>
+                                <div class="flex-fill line"></div>
+                            </div>
+                            <div class="flex-column flex-fill">
+                                <div class="flex-row">
+                                    <p class="flex-fill">
+                                        <strong>Unidade de {{ item?.unidade ? item.unidade : '' }}</strong>
+                                        {{ item?.atendente ? item.atendente : '' }}
+                                    </p>
+                                    <span class="time-line-hour">
+                                        <mat-icon>alarm</mat-icon>
+                                        {{ item?.data ? (item.data | date: 'dd/MM/yy HH:mm') : ' - ' }}
+                                    </span>
+                                </div>
+                                <mat-divider class="w-100"></mat-divider>
+                                <div class="flex-column">
+                                    <p class="flex-fill">{{ item?.mensagem ? item.mensagem : '' }}</p>
+                                    <div class="flex-row" *ngIf="item?.anexoId">
+                                        <button color="primary"
+                                            (click)="download(item.anexoId, item.arquivoString, item.extensao)"
+                                            mat-button>
+                                            Baixar anexo &nbsp;
+                                            <mat-icon>arrow_downward</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+
+            <div class="flex flex-column container-time-line">
+                <div class="flex">
+                    <div class="time-line">
+                        <mat-icon [ngClass]="statusTicket !== 4 ? 'accent' : 'green'">
+                            {{ statusTicket !== 4 ? 'alarm' : 'check_circle' }}</mat-icon>
+                    </div>
+                    <div class="flex-column flex-fill"></div>
+                </div>
+            </div>
+
+            <div>
+                <form [formGroup]="form" class="mt-1" *ngIf="statusTicket !== 4">
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field *ngIf="unidadesDefault; else loading">
+                            <mat-label>Enviar Para</mat-label>
+                            <input matInput [matAutocomplete]="auto" formControlName="unidadeSelect">
+                            <mat-icon matSuffix>arrow_drop_down</mat-icon>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let unidade of filterUnidades | async" [value]="unidade.nome">
+                                    <span>{{unidade.nome}}</span>
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="unidadesDefault; else loading">
+                            <mat-label>Departamento</mat-label>
+                            <mat-select formControlName="departamentoId">
+                                <mat-option [value]="null"> - </mat-option>
+                                <mat-option *ngFor="let departamento of departamentos" [value]="departamento.id">
+                                    {{departamento.nome}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Status do Ticket</mat-label>
+                            <mat-select formControlName="statusTicket">
+                                <mat-option [value]="2"> Devolvido</mat-option>
+                                <mat-option [value]="3"> Em Atendimento</mat-option>
+                                <mat-option [value]="4"> Finalizado </mat-option>
+                            </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex flex-fill">
+                        <div class="table">
+                            <table mat-table [dataSource]="colaboradorSource" [hidden]="!showColaborador">
+                                <ng-container matColumnDef="select">
+                                    <th mat-header-cell *matHeaderCellDef class="sm-column">
+                                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                                            [checked]="selection.hasValue() && isAllSelected()"
+                                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                            [aria-label]="checkboxLabel()" color="primary">
+                                        </mat-checkbox>
+                                    </th>
+                                    <td mat-cell *matCellDef="let row">
+                                        <mat-checkbox (click)="$event.stopPropagation()"
+                                            (change)="$event ? selection.toggle(row) : null"
+                                            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)"
+                                            color="primary">
+                                        </mat-checkbox>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="nome">
+                                    <th mat-header-cell *matHeaderCellDef> Nome </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{ element?.funcionario?.nome ? element.funcionario.nome : ' - '}} </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="colaboradorColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: colaboradorColumns;"
+                                (click)="selection.toggle(row)" [ngClass]="{ 'selected': selection.isSelected(row) }">
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="flex form-registro mt-1">
+                        <mat-form-field class="flex-fill">
+                            <mat-label>Mensagem</mat-label>
+                            <textarea formControlName="mensagem" matInput></textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="grid grid--auto-fill">
+                        <div class="flex align-center prl-1-5">
+                            <button mat-button type="button" (click)="fileUp.click()" color="primary">
+                                Anexar Documento &nbsp;
+                                <mat-icon>cloud_upload</mat-icon>
+                            </button>
+                            <mat-icon *ngIf="loadedFile" color="primary">check</mat-icon>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </ng-container>
+
+        <mat-progress-bar *ngIf="sendingAnexo" mode="indeterminate" color="primary"></mat-progress-bar>
+    </div>
+</div>
+
+<div mat-dialog-actions *ngIf="!isLoadingResults && !error">
+    <button mat-button *ngIf="statusTicket !== 4" (click)="salvarData()" color="primary">Salvar</button>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #loading>
+    <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>
+
+<input #fileUp class="file-upload" type="file" (change)="loadFile($event)">

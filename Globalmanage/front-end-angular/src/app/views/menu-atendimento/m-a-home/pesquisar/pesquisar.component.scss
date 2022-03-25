@@ -1,0 +1,434 @@
+@import '../../../../../scss/functions.scss';
+@import '../../../../../scss/theme.scss';
+
+.body {
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9;
+    // position: fixed;
+}
+
+.main-pesquisar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 0;
+}
+
+.toolbar-titulo {
+    padding-top: 4%;
+    padding-bottom: 4%;
+    background-color: #56504c;
+    z-index: 100;
+    justify-content: space-between;
+}
+
+.div-botao-voltar {
+    display: flex;
+    align-items: center;
+    padding-left: 3%;
+}
+
+.botao-voltar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    padding-left: 5px;
+}
+
+.p-botao-voltar {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.barra-topo {
+    padding-left: 13%;
+}
+
+.div-pesquisar {
+    display: flex;
+}
+
+.p-pesquisar {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+}
+
+.div-body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5%;
+    padding-bottom: 10%;
+    background-color: #f9f9f9;
+
+    @include ipad {
+        padding-bottom: 15%;
+    }
+}
+
+.div-botoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 3%;
+}
+
+.b-resetar-campos {
+    background-color: #d7d7d7;
+    //color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.b-filtrar {
+    background-color: #ff0000;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.p-resetar-campos {
+    margin: 0;
+    padding: 0;
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
+.p-filtrar {
+    margin: 0;
+    padding: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.div-rodape {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0 auto 0;
+    background-color: #56504c;
+}
+
+.div-barra-navegacao {
+    display: flex;
+}
+
+.b-home {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.b-novo-atendimento {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.b-pesquisar {
+    width: 100px;
+    height: 100%;
+    background-color: #3D3936;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.b-outbound {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.b-agendados {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.b-contatos-prioritarios {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding-bottom: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.loop-gif-rodape {
+    width: 100%;
+}
+
+.mat-icon-button {
+    font-size: 50px;
+    font-weight: 500;
+    display: contents;
+}
+
+//form
+
+
+.content {
+    width: 90%;
+    padding: 0 1rem;
+    margin: 0 auto 0;
+}
+
+mat-panel-title {
+    color: mat-color($theme-primary) !important;
+}
+
+mat-checkbox {
+    margin: 0.5rem 1rem;
+}
+
+.checkbox, .mat-radio-button {
+    padding: 0 1.5rem 1rem 1.5rem;
+}
+
+.mat-dialog-content {
+    max-height: none !important;
+}
+
+.mat-card {
+    min-height: 300px;
+    @include mobile {
+        padding: 1rem 0.5rem !important;
+    }
+}
+
+form {
+    padding-bottom: 0;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-right: 1.5rem;
+}
+
+mat-form-field, mat-chip-list, .form-select {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    min-width: 375px;
+}
+
+.mat-header-cell {
+    min-width: 150px;
+}
+
+.sm-column {
+    max-width: 100px !important;
+}
+
+mat-divider {
+    position: relative !important;
+    align-self: center;
+    margin: 0 2rem;
+}
+
+.grid {
+    padding: 0;
+}
+
+table {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.grid--auto-fit-lg {
+    padding: 0;
+}
+
+.filter-info {
+    display: flex;
+    align-items: center;
+    .mat-chip-list {
+        min-width: 0 !important;
+    }
+
+    mat-label {
+        @include desktop {
+            flex: 1 0 auto;
+        }
+        margin-right: 0.5rem;
+    }
+
+    @include mobile {
+        padding: 0.5rem 0;
+    }
+}
+
+.grid-aluno {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 4fr 1fr;
+    grid-template-areas:
+        "formulario  grid-img-aluno"
+        "formulario  grid-img-aluno"
+}
+
+.formulario {
+    grid-area: formulario;
+}
+
+.grid-img-aluno {
+    grid-area: grid-img-aluno;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .img-aluno {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 12.5rem;
+        height: 12.5rem;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        cursor: pointer;
+
+        img {
+            width: 100%;
+        }
+    
+        .btn-mudar-img-aluno {
+            transition: opacity 250ms;
+            opacity: 0;
+            background-color: rgba(0,0,0,0.5);
+            position: absolute;
+            width: 12.5rem !important;
+            height: 12.5rem !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            span {
+                color: #fff;
+                font-size: 21pt;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@include mobile {
+    form, .mat-form-field, .form-select, .checkbox, .mat-radio-button {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form-options {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding-right: 1.5rem;
+    }
+
+    .form-registro {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    .mat-card {
+        padding-left: 5 !important;
+        padding-right: 5 !important;
+    }
+
+    .grid-aluno {
+        grid-template-columns: none;
+        grid-template-rows: none;
+        grid-template-areas: none;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .mat-form-field, .mat-chip-list {
+        min-width: 0 !important;
+    }
+
+    .grid {
+        padding: 0;
+    }
+}
+
+.grid--auto-fill, .grid--auto-fit-lg {
+    grid-template-columns: none;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
+    color: black;
+}

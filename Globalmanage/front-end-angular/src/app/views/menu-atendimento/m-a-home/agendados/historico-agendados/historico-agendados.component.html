@@ -1,0 +1,152 @@
+<div class="div-tentativas-contato" *ngIf="data.dadosAgendamentos?.length > 0">
+
+    <div mat-dialog-actions align="end">
+        <button mat-button (click)="close()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div class="div-tentativas-anteriores">
+        <p class="p-tentativas-anteriores">
+            <strong>Agendamentos Anteriores:</strong>
+        </p>
+    </div>
+
+    <div class="div-main animate-up delay-2">
+        <ng-container *ngFor="let historico of data.dadosAgendamentos; let i = index">
+            <div class="div-tentativas">
+
+                <div class="div-dados-editaveis-tentativas">
+                    <p class="p-dados-editaveis-tentativas">
+                        <strong>{{ contadorAgendamentos - i }}ª Agendamento</strong>
+                    </p>
+                </div>
+
+                <div class="div-dados-editaveis-tentativas">
+                    <p class="p-dados-editaveis-tentativas">
+                        <strong>Data do Agendamento:</strong>
+                    </p>
+                    <p class="p-resposta">
+                        {{
+                        historico.dataAgendamento
+                        }}
+                    </p>
+                </div>
+
+                <div class="div-dados-editaveis-tentativas">
+                    <p class="p-dados-editaveis-tentativas">
+                        <strong>Hora do Agendamento:</strong>
+                    </p>
+                    <p class="p-resposta">
+                        {{
+                        historico.horaAgendamento
+                        }}
+                    </p>
+                </div>
+
+
+                <div class="div-dados-editaveis-tentativas">
+                    <p class="p-dados-editaveis-tentativas">
+                        <strong>Atendente:</strong>
+                    </p>
+                    <p class="p-resposta" *ngFor="let usuario of usuariosUnidade">
+                        {{usuario.id == historico.usuarioCadastro ? usuario.userName : ""}}
+                    </p>
+                </div>
+
+                <div class="div-dados-editaveis-tentativas">
+                    <p class="p-dados-editaveis-tentativas">
+                        <strong>Observações:</strong>
+                    </p>
+                    <p class="p-resposta">
+                        {{ historico.observacoes }}
+                    </p>
+                </div>
+
+                <div class="div-dados-editaveis-tentativas">
+                    <p class="p-dados-editaveis-tentativas">
+                        <strong>Situação de Confirmação:</strong>
+                    </p>
+                    <p class="p-resposta">
+                        {{
+                        historico.situacao == 1
+                        ? "Confirmado"
+                        : "Não Confirmado"
+                        }}
+                    </p>
+                </div>
+
+                <div class="div-dados-editaveis-tentativas">
+                    <p class="p-dados-editaveis-tentativas">
+                        <strong>Data e Hora de Contato:</strong>
+                    </p>
+                    <p class="p-resposta">
+                        {{ historico.dataeHoradoUltimoContato }}
+                    </p>
+                </div>
+
+                <div class="div-dados-editaveis-tentativas">
+                    <p class="p-dados-editaveis-tentativas">
+                        <strong>Motivo da Não Confirmação:</strong>
+                    </p>
+                    <p class="p-resposta">
+                        {{
+                        historico.situacao == 2
+                        ? "Cliente Está Indeciso"
+                        : historico.situacao == 3
+                        ? "Desempregado"
+                        : historico.situacao == 4
+                        ? "Sem Condições Financeiras"
+                        : historico.situacao == 5
+                        ? "Para outra pessoa"
+                        : historico.situacao == 6
+                        ? "Confirmar com terceiros"
+                        : historico.situacao == 7
+                        ? "Reagendou"
+                        : historico.situacao == 8
+                        ? "Telefone Incorreto ou Não Existe"
+                        : historico.situacao == 9
+                        ? "Já matriculado em nossa escola"
+                        : historico.situacao == 10
+                        ? "Realizou matricula em outra escola"
+                        : historico.situacao == 11
+                        ? "Não tem mais interesse"
+                        : historico.situacao == 12
+                        ? "Caixa postal"
+                        : historico.situacao == 13
+                        ? "Não atende"
+                        : historico.situacao == 14
+                        ? "Não tem idade para matricula "
+                        : historico.situacao == 15
+                        ? "Ligação Caiu"
+                        : " "
+                        }}
+                    </p>
+                </div>
+
+                <div class="div-espaco-final"></div>
+
+            </div>
+
+            <mat-divider></mat-divider>
+        </ng-container>
+    </div>
+
+</div>
+
+<div class="div-tentativas-contato"
+    *ngIf="data.dadosAgendamentos?.length === 0 || data.dadosAgendamentos == undefined || data.dadosAgendamentos === null">
+
+    <div class="div-texto">
+        <p class="p-nada">
+            Não Há Agendamentos Anteriores!
+        </p>
+    </div>
+
+    <div class="div-botao">
+        <button mat-raised-button color="primary" class="b-nada" (click)="close()">
+            OK
+        </button>
+    </div>
+
+</div>

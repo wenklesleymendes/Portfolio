@@ -1,0 +1,248 @@
+<div class="body">
+    <div class="flex">
+        <header>Informações do Fornecedor, Cliente ou Funcionário</header>
+        <div class="flex-fill"></div>
+        <div>
+            <button mat-button color="primary" (click)="voltar()">Voltar</button>
+        </div>
+    </div>
+
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div class="content" *ngIf="!isLoadingResults">
+                <form [formGroup]="form">
+                    <title-line title="Dados Gerais"></title-line>
+                    <div class="grid grid--auto-fill mt-1">
+                        <mat-form-field>
+                            <mat-label>Tipo de Pessoa</mat-label>
+                            <mat-select formControlName="tipoPessoa">
+                                <mat-option [value]="1"> Pessoa Jurídica </mat-option>
+                                <mat-option [value]="2"> Pessoa Física </mat-option>
+                            </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="categoriasDefault; else loading">
+                            <mat-label>Categoria</mat-label>
+                            <input matInput [matAutocomplete]="auto" formControlName="categoria">
+                            <mat-icon (click)="addCategoria()" class="pointer" color="primary" matSuffix
+                                matTooltip="Adicionar categoria">add_circle</mat-icon>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let categoria of filterCategorias | async"
+                                    [value]="categoria.descricao">
+                                    <div class="flex flex-row">
+                                        <span>{{categoria.descricao}}</span>
+                                        <div class="flex-fill"></div>
+                                        <div class="align-center">
+                                            <mat-icon (click)="deleteCategoria()" class="pointer" color="warn" matSuffix
+                                                matTooltip="Excluir">delete</mat-icon>
+                                        </div>
+                                    </div>
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <div class="flex align-center prl-1-5">
+                            <mat-slide-toggle formControlName="isActive" color="primary">Ativado / Desativado
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+
+                    <div class="grid grid--auto-fill mt-1">
+                        <mat-form-field>
+                            <mat-label>{{ form.get('tipoPessoa').value === 1 ? 'Nome Fantasia' : 'Nome' }}</mat-label>
+                            <input formControlName="nomeFantasia" matInput appTitlecase>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="form.get('tipoPessoa').value === 1">
+                            <mat-label>Razão Social</mat-label>
+                            <input formControlName="razaoSocial" matInput appTitlecase>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="form.get('tipoPessoa').value === 2">
+                            <mat-label>Data de nascimento</mat-label>
+                            <input formControlName="dataNascimento" matInput [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>{{ form.get('tipoPessoa').value === 1 ? 'CNPJ' : 'CPF' }}</mat-label>
+                            <input formControlName="cpfCnpj" [mask]="cpfCnpjMask" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="form.get('tipoPessoa').value === 1">
+                            <mat-label>Inscrição Municipal</mat-label>
+                            <input formControlName="inscricaoMunicipal" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="form.get('tipoPessoa').value === 1">
+                            <mat-label>Inscrição Estadual</mat-label>
+                            <input formControlName="inscricaoEstadual" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <div *ngIf="form.get('tipoPessoa').value === 1" class="flex align-center prl-1-5">
+                            <mat-slide-toggle formControlName="isento" color="primary">Isento</mat-slide-toggle>
+                        </div>
+                    </div>
+
+                    <title-line title="Contato"></title-line>
+                    <div formGroupName="contato" class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Telefone</mat-label>
+                            <input formControlName="telefoneFixo" [mask]="maskTelefoneFixoPrincipal" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Ramal</mat-label>
+                            <input formControlName="ramal" matInput>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Fax</mat-label>
+                            <input formControlName="fax" [mask]="maskTelefoneFixoPrincipal" matInput>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Celular</mat-label>
+                            <input formControlName="celular" [mask]="maskCelular" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>E-mail</mat-label>
+                            <input formControlName="email" matInput appLowwercase>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Website</mat-label>
+                            <input formControlName="site" matInput appLowwercase>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <title-line title="Endereço"></title-line>
+                    <div formGroupName="endereco" class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>CEP</mat-label>
+                            <input formControlName="cep" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Rua</mat-label>
+                            <input formControlName="rua" matInput appTitlecase>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Número</mat-label>
+                            <input formControlName="numero" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Complemento</mat-label>
+                            <input formControlName="complemento" matInput appTitlecase>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Bairro</mat-label>
+                            <input formControlName="bairro" matInput appTitlecase>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Cidade</mat-label>
+                            <input formControlName="cidade" matInput appTitlecase>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Estado</mat-label>
+                            <mat-select formControlName="estado">
+                                <mat-option *ngFor="let estado of estados" [value]="estado">
+                                    {{ estado }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <title-line title="Dados bancários"></title-line>
+                    <div formGroupName="dadosBancario" class="grid grid--auto-fill">
+                        <mat-form-field *ngIf="bancos; else loading">
+                            <mat-label>Banco</mat-label>
+                            <mat-select formControlName="codigoBanco">
+                                <mat-option *ngFor="let banco of bancos" [value]="banco.codigoBanco">
+                                    {{ banco.nomeBanco }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Tipo de conta</mat-label>
+                            <mat-select formControlName="tipoContaBancaria">
+                                <mat-option [value]="1"> Conta corrente </mat-option>
+                                <mat-option [value]="2"> Poupança </mat-option>
+                                <mat-option [value]="3"> Conta salário </mat-option>
+                            </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Agência Bancária</mat-label>
+                            <input formControlName="numeroAgencia" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Conta Bancária</mat-label>
+                            <input formControlName="numeroConta" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex form-registro">
+                        <mat-form-field class="flex-fill">
+                            <mat-label>Observações</mat-label>
+                            <textarea formControlName="observacao" matInput></textarea>
+                        </mat-form-field>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isLoadingResults" class="flex">
+                <div>
+                    <button mat-button color="primary" (click)="voltar()">Voltar</button>
+                </div>
+                <div class="flex-fill"></div>
+                <div>
+                    <button mat-raised-button color="primary" (click)="salvarData()" cdkFocusInitial>Salvar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #loading>
+    <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>

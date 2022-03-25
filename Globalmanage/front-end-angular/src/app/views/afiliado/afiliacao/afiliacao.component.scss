@@ -1,0 +1,428 @@
+@import "../../../../scss/functions.scss";
+@import "../../../../scss/theme.scss";
+
+.main-body {
+    width: 100%;
+    height: 100%;
+}
+
+.div-header {
+    display: block;
+}
+
+.barra-topo {
+    display: flex;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    z-index: 100;
+    justify-content: space-between;
+    height: max-content;
+
+    @include mobile {
+        flex-direction: column;
+    }
+}
+
+.div-img-logo {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+
+    @include mobile {
+        padding: 2%;
+        justify-content: center;
+    }
+}
+
+.img-logo {
+    width: 25%;
+    margin: 0;
+    padding: 0;
+
+    @include mobile {
+        width: 70%;
+    }
+}
+
+.img-logo-nacional {
+    width: 50%;
+    margin: 0;
+    padding: 0;
+
+    @include mobile {
+        width: 70%;
+    }
+}
+
+.div-icones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.icones {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px 0 5px;
+    cursor: pointer;
+}
+
+.img-icones {
+    width: 35px;
+    height: 35px;
+    padding: 0 10px 0 20px;
+
+    @include mobile {
+        padding: 0 5px 0 5px;
+    }
+}
+
+.p-icones {
+    white-space: nowrap;
+    text-align: center;
+    font-family: 'Roboto','Helvetica Neue',sans-serif;
+    font-size: 11pt;
+    color: #ff0000;
+}
+
+.div-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.div-img-body {
+    background: #ffffff url("../../../../assets/afiliacao/fundo-cadastrar.png");
+}
+
+.img-body {
+    width: 100%;
+}
+
+.div-cadastro {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #383838;
+    padding-bottom: 3%;
+    margin-top: -4px;
+
+    @include mobile {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.div-crie {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 35%;
+
+    @include mobile {
+        width: 100%
+    }
+}
+
+.p-cadastro {
+    white-space: normal;
+    text-align: center;
+    font-family: sans-serif;
+    color: #ffffff;
+    font-size: 50px;
+
+    @include mobile {
+        white-space: normal;
+        font-size: 18px;
+    }
+}
+
+.div-faca {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 65%;
+
+    @include mobile {
+        width: 100%
+    }
+}
+
+.p-faca {
+    color: #ffffff;
+    font-size: 30px;
+    margin: 15px 0 0 0;
+}
+
+mat-checkbox {
+    padding: 0 10px 0 17px;
+}
+
+::ng-deep .mat-checkbox-frame {
+    background-color: #ffffff !important;
+}
+
+.div-li-condordo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.p-li-condordo {
+    color: #ffffff;
+    font-size: 16px;
+    margin-right: 15px;
+}
+
+.div-rodape {
+    display: flex;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    z-index: 100;
+    justify-content: flex-end;
+    padding: 5px 20px 2px 0px;
+
+    @include mobile {
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: max-content;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+}
+
+// form
+
+form {
+    width: 100%;
+}
+
+.div-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    @include mobile {
+        flex-direction: column;
+    }
+}
+
+.div-form-field {
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin: 0 1% 0 1%;
+
+    @include mobile {
+        margin: 3%;
+        width: -webkit-fill-available !important;
+    }
+}
+
+.div-form-nome-sobrenome, .div-form-email-data-nascimento, .div-form-estado-cidade-telefone, .div-form-cpf-enviar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding: 1.5%;
+
+    @include mobile {
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+}
+
+mat-form-field {
+    width: -webkit-fill-available;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    padding: 1% 0 0 0;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+    color: #ffffff;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline, .mat-form-field-appearance-outline.mat-form-field-invalid .mat-form-field-outline {
+    color: #ffffff;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #ffffff;
+}
+
+.b-cadastrar {
+    min-width: max-content;
+    background-color: #ffcc00;
+
+    @include mobile {
+        margin: 3% 4% 3% 4%;
+    }
+}
+
+.p-cadastrar {
+    font-size: 25px;
+    color: #ffffff;
+    text-shadow: black 0.1em 0.1em 0.2em;
+    margin: 10px;
+}
+
+.div-inscreva-se {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff url("../../../../assets/afiliacao/fundo-cadastrar.png");
+    margin-top: -7px;
+    padding-bottom: 6%;
+}
+
+.b-inscreva-se {
+    scroll-behavior: smooth;
+}
+
+.p-inscreva-se {
+    color: #ffffff
+}
+
+picture {
+    background: #ffffff url("../../../../assets/afiliacao/fundo-cadastrar.png");
+}
+
+.nacional-azul {
+    background-color: #0071e3 !important;
+}
+
+.nacional-amarelo {
+    background-color: #ffcc00;
+}
+
+.nacional-logo {
+    width: 75%;
+}
+
+.nacional-branco {
+    color: #ffffff;
+}
+
+.div-inscreva-se-nacional {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff url("../../../../assets/afiliacao/fundo-cadastrar-nacional.png");
+    margin-top: -5px;
+    padding: 1% 0 6% 0;
+}
+
+.fundo-nacional {
+    background: #ffffff url("../../../../assets/afiliacao/fundo-cadastrar-nacional.png");
+}
+
+.realizar-exercicios {
+    align-items: center;
+}
+
+.p-numeracao {
+    padding-right: 2%;
+    font-weight: 600;
+    color: #ff0000;
+}
+
+::ng-deep .mat-expansion-indicator {
+    visibility: hidden;
+}
+
+.asdfg {
+    margin: 2% !important;
+    background-color: #e5e5e5;
+    border-radius: 5px !important;
+
+    @include mobile {
+        margin: 4% !important;
+    }
+}
+
+.div-duvidas {
+    background: #ffffff url("../../../../assets/afiliacao/fundo-duvidas.png") top center/cover no-repeat;
+    
+}
+
+.div-duvidas-nacional {
+    background: #ffffff url("../../../../assets/afiliacao/fundo-duvidas-nacional.png") top center/cover no-repeat;
+}
+
+.p-duvidas {
+    color: #ffffff;
+    font-size: 45px;
+    margin: 7% 0 2% 4%;
+
+    @include mobile {
+        font-size: 30px;
+    }
+}
+
+.p-resposta {
+    margin-top: 0;
+    font-family: "Open Sans","Helvetica Neue",sans-serif;
+    font-size: 14px;
+}
+
+mat-divider {
+    width: 75px;
+    border-top-width: 15px;
+    margin: 0% 0 5% 4%;
+    background-color: #4d4d4d;
+}
+
+.div-tartartart {
+    padding-bottom: 8%;
+}
+
+.nacional-verde {
+    background-color: #66b5b8;
+}
+
+.amarelo {
+    color: #ffcc00;
+}
+
+.azul {
+    background-color: #4f81bf !important;
+}
+
+.p-pergunta {
+    font-family: "Open Sans","Helvetica Neue",sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.div-separacao-colunas {
+    display: flex;
+
+    @include mobile {
+        display: block;
+    }
+}
+
+.div-coluna1 {
+    width: 730px;
+
+    @include mobile {
+        width: 100%;
+    }
+}
+
+.div-coluna2 {
+    width: 730px;
+
+    @include mobile {
+        width: 100%;
+    }
+}
+
+::ng-deep .mat-expansion-panel-header {
+    height: max-content !important;
+}

@@ -1,0 +1,82 @@
+<div class="body">
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div class="content" *ngIf="!isLoadingResults">
+                <form [formGroup]="form">
+                    <div class="flex form-registro">
+                        <mat-form-field class="flex-fill">
+                            <mat-label>Descrição</mat-label>
+                            <input formControlName="descricao" matInput>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Tipo de anexo</mat-label>
+                            <mat-select formControlName="tipoAnexo">
+                                <mat-option value="0"> Outros </mat-option>
+                                <mat-option value="11"> Recibo de Pagamento </mat-option>
+                                <mat-option value="12"> Comprovante de Transação Bancária </mat-option>
+                                <mat-option value="17"> Comprovante Retorno Itaú </mat-option>
+                            </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <div class="flex align-center">
+                            <button mat-button type="button" (click)="fileUp.click()" color="primary">
+                                Documento  &nbsp;
+                                <mat-icon>cloud_upload</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-fill">
+                        <div class="table">
+                            <table mat-table [dataSource]="dataSource" [hidden]="isLoadingResults">
+                                <ng-container matColumnDef="descricao">
+                                    <th mat-header-cell *matHeaderCellDef> Descrição  </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.descricao ? element.descricao : '-'}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="tipo">
+                                    <th mat-header-cell *matHeaderCellDef> Tipo do Documento  </th>
+                                    <td mat-cell *matCellDef="let element"> {{labelAnexo(element.tipoAnexo)}} </td>
+                                </ng-container>
+        
+                                <ng-container matColumnDef="dataAnexo">
+                                    <th mat-header-cell *matHeaderCellDef> Data do Documento  </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.dataAnexo ? (element.dataAnexo | datePtBr) : '-'}} </td>
+                                </ng-container>
+                    
+                                <ng-container matColumnDef="options">
+                                    <th mat-header-cell *matHeaderCellDef class="sm-column"> </th>
+                                    <td mat-cell *matCellDef="let element; let i = index"> 
+                                       <div class="btn-options">
+                                            <button type="button" (click)="download(element.id, element.arquivoString, element.extensao)" color="primary" mat-icon-button matTooltip="Download" >
+                                                <mat-icon>arrow_downward</mat-icon>
+                                            </button>
+                                            <button type="button" (click)="removeAnexo(element.id, i)" color="warn" mat-icon-button matTooltip="Excluir" >
+                                                <mat-icon>delete</mat-icon>
+                                            </button>
+                                       </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                                    (click)="selection.toggle(row)" [ngClass]="{ 'selected': selection.isSelected(row) }"></tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<input #fileUp class="file-upload" type="file" (change)="loadFile($event)">

@@ -1,0 +1,218 @@
+@import "../../../../scss/functions.scss";
+
+mat-form-field {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.mat-header-cell {
+    min-width: 150px;
+}
+
+.mat-radio-button {
+    margin-left: 1rem;
+}
+
+table {
+    width: 100%;
+}
+
+.table {
+    overflow-x: auto;
+}
+
+.result {
+    margin-top: 3rem;
+}
+
+tr.mat-footer-row {
+    font-weight: bold;
+}
+
+form {
+    padding-bottom: 0;
+}
+
+.grid {
+    padding: 0;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 1.5rem;
+}
+
+.sm-column {
+    max-width: 5% !important;
+    min-width: 5% !important;
+    width: 5% !important;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+
+    mat-label {
+        margin-right: 0.5rem;
+    }
+
+    @include mobile {
+        padding: 0.5rem 0;
+    }
+}
+
+@include mobile {
+    form {
+        flex-direction: column !important;
+    }
+    
+    form, .mat-form-field, .checkbox {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form-registro {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    .grid--auto-fill, .grid--auto-fit {
+        grid-template-columns: none;
+    }
+
+    .mat-form-field {
+        min-width: 0 !important;
+    }
+    
+    .grid {
+        padding: 0;
+    }
+}
+
+tr.example-detail-row {
+    height: 0;
+}
+
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+}
+
+.grade-icones {
+    background-color: #f1f1f1;
+}
+
+.icone_grade {
+    width: 25%;
+    height: 75%;
+    padding-bottom: 2%;
+
+    @include mobile {
+        width: 50%;
+        height: 85%;
+    }
+
+    @include ipad {
+        width: 25%;
+        height: 75%;
+    }
+
+    @include bigscreen {
+        width: 20%;
+        height: 70%;
+    }
+}
+
+.nome-unidade-curso {
+    background-color: #ffffff;
+    padding-bottom: 1.5%;
+}
+
+.aluno_curso {
+    font-size: 2.5ex;
+    text-align: center;
+    display: block !important;
+    padding-top: 5px;
+    color: #767171;
+
+    @include mobile {
+        font-size: 13px;
+    }
+}
+
+.aluno_unidade {
+    font-size: 2ex;
+    text-align: center;
+    display: block !important;
+    margin: 0px;
+    color: #767171;
+    
+    @include mobile {
+        font-size: 12px;
+    }
+}
+
+.card-cabeça-portal {
+    background-color: transparent;
+    box-shadow: transparent;
+    padding: 0% !important;
+}
+
+.botao-icone {
+    flex-direction: column;
+}
+
+.p-icone {
+    margin: -5%;
+    padding: 0;
+    color: #534f4f;
+
+    @include mobile {
+        font-size: 12.5px;
+    }
+}
+
+.qwert {
+    max-height: 255px !important;
+    min-height: 195px !important;
+    height: 100%;
+    padding: 0;
+
+    @include mobile {
+        max-height: 165px !important;
+        min-height: 155px !important;
+    }
+
+    @include bigscreen {
+        max-height: 325px !important;
+        min-height: 255px !important;
+    }
+}
+
+.mat-grid-tile .mat-figure {
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    box-sizing: border-box;
+}
+
+.tab-icones-palavras {
+    flex-direction: column;
+}
+
+.example-tab-icon {
+    flex-direction: column;
+}
+
+.grid4 {
+    left: 17% !important;
+}
+
+.grid6 {
+    right: 17% !important;
+    left: 49% !important;
+}

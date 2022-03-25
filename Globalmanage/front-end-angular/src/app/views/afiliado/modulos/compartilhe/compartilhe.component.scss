@@ -1,0 +1,34 @@
+@import "../../../../../scss/functions.scss";
+@import "../../../../../scss/theme.scss";
+
+.body {
+    background-color: #d5d5d5;
+}
+
+.p-txtgrande {
+    font-size: 22px;
+    text-align: center;
+    text-shadow: #a5a5a5a5 0.1em 0.1em 0.1em;
+    font-weight: 500;
+}
+
+.div-img-compartilhe {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.img-compartilhe {
+    //width: 10%;
+    padding: 5px;
+    max-width: 95px;
+    min-width: 75px;
+}
+
+.centro {
+    text-align: center;
+}
+
+.margin-bot0 {
+    margin-bottom: 2px;
+}

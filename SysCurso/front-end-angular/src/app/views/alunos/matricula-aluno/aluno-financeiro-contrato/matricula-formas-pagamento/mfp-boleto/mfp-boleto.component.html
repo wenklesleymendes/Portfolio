@@ -1,0 +1,33 @@
+<div class="content mt-1">
+    <form [formGroup]="form">
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Quantidade de Parcelas</mat-label>
+                <mat-select formControlName="planoPagamentoId" [(ngModel)]="plano" (selectionChange)="selecionarPlano()">
+                    <mat-option *ngFor="let plano of planos" [value]="plano.id">
+                        {{ plano.quantidadeParcela }}x {{ plano.valorParcela | currency}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>1° Parcela</mat-label>
+                <input formControlName="primeiroPagamento" matInput [min]="today" [matDatepicker]="picker1">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="planos?.length > 1 || planos[0]?.quantidadeParcela > 1" [hidden]="exibirSegundoPagamento">
+                <mat-label>2° Parcela</mat-label>
+                <input formControlName="segundoPagamento" matInput [min]="today" [matDatepicker]="picker" >
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker ></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <!-- <button mat-raised-button (click)="openCompararDatas()">TESTE modal</button>
+    <button mat-raised-button (click)="compararDatas()">TESTE função</button> -->
+
+</div>

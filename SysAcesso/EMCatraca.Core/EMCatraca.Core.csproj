@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D4AE327-5FEF-4389-9A67-12D3FE234439}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EMCatraca.Core</RootNamespace>
+    <AssemblyName>EMCatraca.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Binarios\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Binarios\EMCatraca.Core.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Binarios\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dominio\AtributosAdicionais.cs" />
+    <Compile Include="Dominio\CatracaLoginControlID.cs" />
+    <Compile Include="Dominio\ConfiguracoesDto.cs" />
+    <Compile Include="Dominio\HostConfiguracao.cs" />
+    <Compile Include="Dominio\CustomizacaoTipoPessoa.cs" />
+    <Compile Include="Dominio\RegrasAcesso.cs" />
+    <Compile Include="Dominio\Auditoria.cs" />
+    <Compile Include="Dominio\AuditoriaAcesso.cs" />
+    <Compile Include="Dominio\Constantes.cs" />
+    <Compile Include="Dominio\Liberacao.cs" />
+    <Compile Include="Dominio\Operador.cs" />
+    <Compile Include="Dominio\RegistroAcesso.cs" />
+    <Compile Include="Dominio\RetornoDeValidacaoDeAcesso.cs" />
+    <Compile Include="Dominio\SerieTurma.cs" />
+    <Compile Include="Dominio\Servidor.cs" />
+    <Compile Include="Dominio\MetodosDeExtensao.cs" />
+    <Compile Include="Dominio\Ocorrencia.cs" />
+    <Compile Include="Dominio\Pessoas\AutorizadoBuscarAluno.cs" />
+    <Compile Include="Dominio\Pessoas\Aluno.cs" />
+    <Compile Include="Dominio\Dispositivo.cs" />
+    <Compile Include="Dominio\Enumeradores.cs" />
+    <Compile Include="Dominio\EventoCatraca.cs" />
+    <Compile Include="Dominio\Pessoas\Colaborador.cs" />
+    <Compile Include="Dominio\Pessoa.cs" />
+    <Compile Include="Dominio\Pessoas\Professor.cs" />
+    <Compile Include="Dominio\Pessoas\Responsavel.cs" />
+    <Compile Include="Dominio\Serie.cs" />
+    <Compile Include="Dominio\SessaoDoUsuario.cs" />
+    <Compile Include="Dominio\Turma.cs" />
+    <Compile Include="Dominio\TurmaMontada.cs" />
+    <Compile Include="Dtos\DtoHorario.cs" />
+    <Compile Include="Dtos\DtoIntervalo.cs" />
+    <Compile Include="Interfaces\Log.cs" />
+    <Compile Include="Logs\LogAuditoria.cs" />
+    <Compile Include="MapeadorArquivoJson.cs" />
+    <Compile Include="MetodosDeExtensao.cs" />
+    <Compile Include="Negocio\Enumeradores\EnumeradorSeguro.cs" />
+    <Compile Include="Negocio\Enumeradores\IEnumeradorSeguro.cs" />
+    <Compile Include="Negocio\Enumeradores\EnumeradorTipoCFG.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemoteServices\ContextConfig.cs" />
+    <Compile Include="RemoteServices\Instanciador.cs" />
+    <Compile Include="RemoteServices\IService.cs" />
+    <Compile Include="RemoteServices\IServiceFactory.cs" />
+    <Compile Include="RemoteServices\LocalServiceFactory.cs" />
+    <Compile Include="RemoteServices\RemoteServiceFactory.cs" />
+    <Compile Include="RemoteServices\ServiceFactory.cs" />
+    <Compile Include="RemoteServices\ServiceHostLoader.cs" />
+    <Compile Include="RemoteServices\SingletonServiceAttribute.cs" />
+    <Compile Include="Services\EventDeclarations.cs" />
+    <Compile Include="Services\EventProxy.cs" />
+    <Compile Include="Services\IReceptorDeEventoDeCatraca.cs" />
+    <Compile Include="Services\IServicoMonitorAcesso.cs" />
+    <Compile Include="Services\ServicoMonitorAcesso.cs" />
+    <Compile Include="TcpIpCliente.cs" />
+    <Compile Include="TcpIpServidor.cs" />
+    <Compile Include="Logs\AuditoriaLog.cs" />
+    <Compile Include="Utilidades\CriptografiaHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

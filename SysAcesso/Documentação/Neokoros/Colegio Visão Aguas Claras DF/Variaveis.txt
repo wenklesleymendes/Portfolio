@@ -1,0 +1,8 @@
+
+
+Águas Claras
+
+EM_INTEGRACAO_CATRACA
+900000529|192.168.15.2|C:\Terabyte\EscolarManager\Dados\VISAOBRASILIA.FDB|SERVER|5000
+
+

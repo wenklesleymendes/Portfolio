@@ -1,0 +1,127 @@
+<div class="body">
+    <header>Criação de Comissão</header>
+
+    <mat-card class="mat-elevation-z8">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="content">
+                <form [formGroup]="form" class="flex flex-row">
+                    <mat-form-field class="flex-column">
+                        <mat-label>Unidade</mat-label>
+                        <input matInput [matAutocomplete]="auto" formControlName="unidadeSelect">
+                        <mat-icon matSuffix>arrow_drop_down</mat-icon>
+                    <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let unidade of filterUnidades | async" [value]="unidade.nome">
+                              <span>{{unidade.nome}}</span>
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-error>Informação necessária</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="flex-column">
+                        <mat-label>Tipo de pagamento</mat-label>
+                        <mat-select formControlName="tipoPagamento">
+                            <mat-option [value]="null"> - </mat-option>
+                            <mat-option [value]="1"> Cartão de crédito </mat-option>
+                            <mat-option [value]="2"> Cartão de débito </mat-option>
+                            <mat-option [value]="3"> Boleto bancário </mat-option>
+                          </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="flex-column">
+                        <mat-label>Início do período</mat-label>
+                        <input matInput formControlName="dataInicio" [matDatepicker]="dataInicio">
+                        <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
+                        <mat-datepicker #dataInicio></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="flex-column">
+                        <mat-label>Fim do período</mat-label>
+                        <input matInput formControlName="dataFim" [matDatepicker]="dataFim">
+                        <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
+                        <mat-datepicker #dataFim></mat-datepicker>
+                    </mat-form-field>
+
+                    <div class="form-options">
+                        <div class="align-center">
+                            <button (click)="getAll()" mat-button color="primary">
+                                Pesquisar
+                                <mat-icon>search</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="mat-elevation-z8 mt-3">
+        <mat-card-title>
+            <button mat-icon-button color="primary" (click)="getAll()" matTooltip="Atualizar">
+                <mat-icon>autorenew</mat-icon>
+            </button>
+            <div class="flex-fill"></div>
+            <button mat-button (click)="goTelaIndividual()" color="primary">
+                Adicionar &nbsp;
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-card-title>
+        <mat-card-content>
+            <div *ngIf="!error;else errorTemplate">
+                <div class="loading-shade" *ngIf="isLoadingResults">
+                    <mat-spinner></mat-spinner>
+                </div>
+
+                <div class="table">
+                    <table mat-table [dataSource]="dataSource">
+                        <ng-container matColumnDef="unidadeId">
+                            <th mat-header-cell *matHeaderCellDef> Unidade </th>
+                            <td mat-cell *matCellDef="let element"> {{ ajustarUnidade(element.unidadeId) }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="dataInicioVirgencia">
+                            <th mat-header-cell *matHeaderCellDef>  Início da Vigência </th>
+                            <td mat-cell *matCellDef="let element"> {{ element?.dataInicioVirgencia ? (element.dataInicioVirgencia | datePtBr) : '-' }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="dataFimVirgencia">
+                            <th mat-header-cell *matHeaderCellDef> Término da Vigência </th>
+                            <td mat-cell *matCellDef="let element"> {{ element?.dataFimVirgencia ? (element.dataFimVirgencia | datePtBr) : '-' }} </td>
+                        </ng-container>
+        
+                        <ng-container matColumnDef="tipoPagamento">
+                            <th mat-header-cell *matHeaderCellDef> Tipo de Pagamento </th>
+                            <td mat-cell *matCellDef="let element"> {{ ajustarPagamento(element.tipoPagamento) }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="options">
+                            <th mat-header-cell *matHeaderCellDef> </th>
+                            <td mat-cell *matCellDef="let element"> 
+                                <div class="btn-options">
+                                    <button (click)="goTelaIndividual(element.id)" color="primary" mat-icon-button matTooltip="Editar">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button (click)="excluir(element.id)" color="warn" mat-icon-button matTooltip="Excluir" >
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </div>
+                            </td>
+                        </ng-container>
+        
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                            (click)="selection.toggle(row)" [ngClass]="{ 'selected': selection.isSelected(row) }"></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="w-100" [hidden]="error">
+                <mat-paginator [pageSizeOptions]="[50, 150, 100]" showFirstLastButtons></mat-paginator>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>

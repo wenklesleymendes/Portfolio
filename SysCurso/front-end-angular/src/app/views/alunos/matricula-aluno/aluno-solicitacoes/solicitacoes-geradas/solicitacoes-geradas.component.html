@@ -1,0 +1,17 @@
+<div mat-dialog-title> <!-- class="flex flex-row"-->
+    <div class="btn-options">
+        <button color="primary" (click)="dialogRef.close()" mat-icon-button matTooltip="Fechar">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+<div mat-dialog-content>
+    <div class="flex flex-column align-center">
+        <h2>Solicitação gerada com sucesso.</h2>
+        <h3>Por favor, realizar o pagamento no menu Financeiro.</h3>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="close(1)" color="primary">Menu Financeiro</button>
+    <button mat-raised-button (click)="close(2)" color="primary">OK</button>
+</div>

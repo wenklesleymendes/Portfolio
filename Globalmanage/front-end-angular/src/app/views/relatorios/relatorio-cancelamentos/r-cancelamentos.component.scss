@@ -1,0 +1,39 @@
+@import '../../../../scss/theme.scss';
+@import '../../../../scss/variable.scss';
+@import "../../../../scss/functions.scss";
+
+.div-main {
+    display: flex;
+}
+
+.div-botoes-superiores {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 85px;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: #3f3f3f;
+    margin: 15px;
+}
+
+.p-botoes-superiores {
+    font-size: 19px;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.div-frame {
+    margin: 15px;
+}
+
+.p-frame {
+    font-size: 19px;
+    align-items: left;
+    color: #000000;
+    font-weight: 500;
+    padding: 10px 0 0 25px;
+}

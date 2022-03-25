@@ -1,0 +1,40 @@
+<div mat-dialog-title class="flex flex-row">
+    Recibo do Pagamento
+    <div class="flex-fill"></div>
+    <div class="btn-options">
+        <button color="primary" (click)="dialogRef.close()" mat-icon-button matTooltip="Fechar">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+<div mat-dialog-content>
+    <div class="w-100 flex flex-column align-center">
+        <h2 class="text-center">
+            {{
+                isAluno
+                ? 'O recibo foi enviado para o e-mail'
+                : 'Informar o aluno que o recibo foi enviado para o e-mail '
+            }}
+            
+            {{ email ? email : ' - ' }}
+            {{ whatsapp ? ( ' e o WhatsApp ' + (whatsapp | mask: maskCelular)) : '' }}.
+        </h2>
+        <br><br>
+        <h2 *ngIf="!isAluno" class="red text-center">
+            Atenção: imprimir somente caso o aluno solicitar. 
+        </h2>
+    </div>
+
+    <div class="w-100 flex flex-row">
+        <div class="flex-fill"></div>
+        <div>
+            <button mat-button color="accent" (click)="imprimir()">Imprimir</button>
+            <button mat-button color="primary" (click)="dialogRef.close()">Fechar</button>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>

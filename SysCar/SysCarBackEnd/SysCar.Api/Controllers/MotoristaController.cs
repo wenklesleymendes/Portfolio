@@ -28,20 +28,20 @@ namespace SysCar.Api.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("Recuperar/{nome:string}")]
-        public IHttpActionResult RecuperarPorNome(string nome)
-        {
-            try
-            {
-                MotoristaModel Motorista = new MotoristaModel();
-                return Ok(Motorista.ObtenhaMotoristas(nome).FirstOrDefault());
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-        }
+        //[HttpGet]
+        //[Route("Recuperar/{nome:string}")]
+        //public IHttpActionResult RecuperarPorNome(string nome)
+        //{
+        //    try
+        //    {
+        //        MotoristaModel Motorista = new MotoristaModel();
+        //        return Ok(Motorista.ObtenhaMotoristas(nome).FirstOrDefault());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return InternalServerError(ex);
+        //    }
+        //}
 
         [HttpPost]
         public IHttpActionResult Post(MotoristaDTO Motorista)
@@ -63,22 +63,22 @@ namespace SysCar.Api.Controllers
             }
         }
 
-        [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody]MotoristaDTO Motorista)
-        {
-            try
-            {
-                MotoristaModel _Motorista = new MotoristaModel();
-                Motorista.Id = id;
-                _Motorista.Atualizar(Motorista);
+        //[HttpPut]
+        //public IHttpActionResult Put(int id, [FromBody]MotoristaDTO Motorista)
+        //{
+        //    try
+        //    {
+        //        MotoristaModel _Motorista = new MotoristaModel();
+        //        Motorista.Id = id;
+        //        _Motorista.Atualizar(Motorista);
 
-                return Ok(_Motorista.ObtenhaMotoristas(id).FirstOrDefault());
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-        }
+        //        return Ok(_Motorista.ObtenhaMotoristas(id).FirstOrDefault());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return InternalServerError(ex);
+        //    }
+        //}
 
         [HttpDelete]
         public IHttpActionResult Delete(int id)

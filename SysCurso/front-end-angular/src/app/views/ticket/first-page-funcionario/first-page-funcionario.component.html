@@ -1,0 +1,79 @@
+<div class="body">
+    <!-- CARDS -->
+    <div class="grid grid--auto-fit-md info-ticket" >
+        <mat-card class="info-card mat-elevation-z8 bg-blue">
+            <mat-card-content (click)="filtrarPorStatusTodos()">
+                <div class="flex flex-row" *ngIf="totalOcorrencias >= 0;else loading">
+                    <div class="flex-column">
+                        <mat-label class="info-valor"><strong>{{ totalOcorrencias }}</strong></mat-label>
+                        <mat-label>Total de Ocorrências</mat-label>
+                    </div>
+                    <div class="flex-column icon-ticket">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon">attach_file</mat-icon>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="info-card mat-elevation-z8 bg-green" (click)="filtrarPorStatusFinalisado()">
+            <mat-card-content>
+                <div class="flex flex-row" *ngIf="resolvidos >= 0;else loading">
+                    <div class="flex-column">
+                        <mat-label class="info-valor"><strong>{{ resolvidos }}</strong></mat-label>
+                        <mat-label>Finalizados</mat-label>
+                    </div>
+                    <div class="flex-column icon-ticket">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon">check_circle</mat-icon>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="info-card mat-elevation-z8 bg-yellow" (click)="filtrarPorStatusAberto()">
+            <mat-card-content>
+                <div class="flex flex-row" *ngIf="abertos >= 0;else loading">
+                    <div class="flex-column">
+                        <mat-label class="info-valor"><strong>{{ abertos }}</strong></mat-label>
+                        <mat-label>Abertos, Devolvidos ou Em Atendimento</mat-label>
+                    </div>
+                    <div class="flex-column icon-ticket">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon">thumb_up_alt</mat-icon>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="info-card mat-elevation-z8 bg-red">
+            <mat-card-content id="card-atrasados"  (click)="filtrarPorStatusAtrasado()">
+                <div class="flex flex-row" *ngIf="atrasados >= 0;else loading">
+                    <div class="flex-column">
+                        <mat-label class="info-valor"><strong>{{ atrasados }}</strong></mat-label>
+                        <mat-label>Atrasados</mat-label>
+                    </div>
+                    <div class="flex-column icon-ticket">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon">report</mat-icon>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="grid grid--auto-fit-lg mt-3">
+        <mat-card class="mat-elevation-z8">
+            <mat-card-title>Lista de Ocorrências</mat-card-title>
+            <mat-card-content>
+                <div class="content">
+                    <app-detalhe-ticket></app-detalhe-ticket>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #loading>
+    <mat-spinner [diameter]="50" color="accent"></mat-spinner>
+</ng-template>

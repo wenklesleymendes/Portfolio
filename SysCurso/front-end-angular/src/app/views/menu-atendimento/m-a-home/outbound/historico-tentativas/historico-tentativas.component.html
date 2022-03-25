@@ -1,0 +1,86 @@
+<div class="div-tentativas-contato" *ngIf="data.dadosTentativas != null && data.dadosTentativas != null && undefined">
+
+    <div class="div-tentativas-anteriores">
+        <p class="p-tentativas-anteriores">
+            <strong>Tentativas de Contato Anteriores:</strong>
+        </p>
+    </div>
+
+    <ng-container *ngFor="let historico of data.dadosTentativas">
+        <div class="div-tentativas">
+
+            <div class="div-dados-editaveis-tentativas">
+                <p class="p-dados-editaveis-tentativas">
+                    <strong>{{ historico.numeroTentativa }}ª Tentativa:</strong>
+                </p>
+            </div>
+
+            <div class="div-dados-editaveis-tentativas">
+                <p class="p-dados-editaveis-tentativas">
+                    <strong>Horário de Contato:</strong>
+                </p>
+                <p class="p-resposta">
+                    {{ historico.dataHoraContato | date:'dd/MM/yyyy'}}
+                </p>
+            </div>
+
+            <div class="div-dados-editaveis-tentativas">
+                <p class="p-dados-editaveis-tentativas">
+                    <strong>Motivo do Não Agendamento:</strong>
+                </p>
+                <p class="p-resposta">
+                    'X' resposta
+                </p>
+            </div>
+
+            <div class="div-dados-editaveis-tentativas">
+                <p class="p-dados-editaveis-tentativas">
+                    <strong>Agendamento na Época:</strong>
+                </p>
+                <p class="p-resposta">
+                    {{ historico.existeAgendamento }}
+                </p>
+            </div>
+
+            <div class="div-dados-editaveis-tentativas">
+                <p class="p-dados-editaveis-tentativas">
+                    <strong>Atendente:</strong>
+                </p>
+                <p class="p-resposta">
+                    {{ historico.usuarioLogado }}
+                </p>
+            </div>
+
+            <div class="div-dados-editaveis-tentativas">
+                <p class="p-dados-editaveis-tentativas">
+                    <strong>Observações:</strong>
+                </p>
+                <p class="p-resposta">
+                    {{ historico.observacao }}
+                </p>
+            </div>
+
+            <div class="div-espaco-final"></div>
+
+        </div>
+
+        <mat-divider></mat-divider>
+    </ng-container>
+
+</div>
+
+<div class="div-tentativas-contato" *ngIf="data.dadosTentativas == null && data.dadosTentativas == undefined">
+
+    <div class="div-texto">
+        <p class="p-nada">
+            Não Há Tentativas Anteriores!
+        </p>
+    </div>
+
+    <div class="div-botao">
+        <button mat-raised-button color="primary" class="b-nada" (click)="close()">
+            OK
+        </button>
+    </div>
+    
+</div>

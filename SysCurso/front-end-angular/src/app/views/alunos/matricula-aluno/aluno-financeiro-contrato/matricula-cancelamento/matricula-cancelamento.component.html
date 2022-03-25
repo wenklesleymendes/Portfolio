@@ -1,0 +1,271 @@
+<div mat-dialog-title class="flex flex-row">
+  Cancelamento
+  <div class="flex-fill"></div>
+  <div class="btn-options">
+    <button color="primary" (click)="closeModal()" mat-icon-button matTooltip="Fechar" [disabled]="disableBtnClose">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<div mat-dialog-content>
+  <div class="loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!error; else errorTemplate">
+    <title-line title=""></title-line>
+    <form [formGroup]="form">
+      <div class="flex form-registro">
+        <mat-form-field class="flex-fill">
+          <mat-label>Data do Cancelamento</mat-label>
+          <input matInput formControlName="dataCancelamento" [matDatepicker]="dataCancelamento"/>
+          <mat-datepicker-toggle matSuffix [for]="dataCancelamento"></mat-datepicker-toggle>
+          <mat-datepicker #dataCancelamento></mat-datepicker>
+          <mat-error>Informação necessária</mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-fill">
+          <mat-label>Motivo do Cancelamento</mat-label>
+          <mat-select formControlName="motivoCancelamento">
+            <mat-option [value]="null"> - </mat-option>
+            <mat-option [value]="1">Desempregado</mat-option>
+            <mat-option [value]="2">Dificuldade financeira</mat-option>
+            <mat-option [value]="3">Mudou de endereço</mat-option>
+            <mat-option [value]="4">Matriculou-se em outra escola</mat-option>
+            <mat-option [value]="5">Saúde</mat-option>
+            <mat-option [value]="6">Decidiu concluir em colégio publico</mat-option>
+            <mat-option [value]="7">Concluiu pelo Encceja</mat-option>
+            <mat-option [value]="8">Já concluiu o ensino médio</mat-option>
+            <mat-option [value]="9">Não gostou do curso</mat-option>
+            <mat-option [value]="10">Não se adaptou as aulas</mat-option>
+            <mat-option [value]="11">Motivo pessoal</mat-option>
+            <mat-option [value]="12">Outros</mat-option>
+          </mat-select>
+          <mat-error>Informação necessária</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex form-registro">
+        <mat-form-field class="flex-fill">
+          <mat-label >Comentários (informar aqui sobre o cancelamento)</mat-label>
+          <textarea formControlName="comentario" matInput></textarea>
+        </mat-form-field>
+      </div>
+      <div id="multa" *ngIf="!dentroPrazoCancelamento && !pagoTotal">
+        <div class="flex form-registro">
+          <div class="flex-fill"></div>
+          <div class="align-center">
+            <mat-chip-list>
+              <mat-chip color="warn" selected>
+                Valor Total das Parcelas Inadimplentes:
+                {{ valorEmAtraso | currency }}
+              </mat-chip>
+              <mat-chip color="accent" selected>
+                Valor da multa de cancelamento:
+                {{ valorMulta | currency }}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+        <div class="table">
+          <table mat-table [dataSource]="dataSource" style="width: 100%">
+            <ng-container matColumnDef="descricao">
+              <th mat-header-cell *matHeaderCellDef>Descrição</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element?.descricao ? element.descricao : " - " }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="valor">
+              <th mat-header-cell *matHeaderCellDef>Valor</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element?.valor ? (element.valor | currency) : " - " }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="data">
+              <th mat-header-cell *matHeaderCellDef>Data de Vencimento</th>
+              <td mat-cell *matCellDef="let element">
+                <div class="flex-column">
+                  {{element?.dataVencimento? (element.dataVencimento | datePtBr): " - "}}
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="numero">
+              <th mat-header-cell *matHeaderCellDef>Nosso número</th>
+              <td mat-cell *matCellDef="let element">{{ element?.nossoNumero ? element.nossoNumero : " - " }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef>E-mail Enviado</th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button [disabled]="!element?.existeEmail" color="primary">
+                  <mat-icon>email</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="situacao">
+              <th mat-header-cell *matHeaderCellDef>Situação</th>
+              <td mat-cell *matCellDef="let element">
+                <ng-container [ngSwitch]="element?.tipoSituacao">
+                  <button *ngSwitchCase="1" mat-button>
+                    <mat-icon class="green">monetization_on</mat-icon>
+                    <span class="green">&nbsp; Pago</span>
+                  </button>
+                  <button *ngSwitchCase="2" mat-button>
+                    <mat-icon class="yellow">report</mat-icon>
+                    <span class="yellow">&nbsp; Aberto</span>
+                  </button>
+                  <button *ngSwitchCase="3" mat-button>
+                    <mat-icon class="green">monetization_on</mat-icon>
+                    <span class="green">&nbsp; Isento</span>
+                  </button>
+                  <button *ngSwitchCase="4" mat-button>
+                    <mat-icon class="red">cancel</mat-icon>
+                    <span class="red">&nbsp; Inadimplente</span>
+                  </button>
+                  <button *ngSwitchCase="5" mat-button>
+                    <mat-icon class="red">cancel</mat-icon>
+                    <span class="red">&nbsp; Inadimplente bloqueado</span>
+                  </button>
+                  <button *ngSwitchCase="6" mat-button>
+                    <mat-icon class="orange">report</mat-icon>
+                    <span class="orange">&nbsp; Residual</span>
+                  </button>
+                  <p *ngSwitchDefault></p>
+                </ng-container>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="options">
+              <th mat-header-cell *matHeaderCellDef class="mds-column">
+                <button type="button" mat-icon-button>
+                  <mat-icon></mat-icon>
+                </button>
+                <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="{ row: 0 }" >
+                  <mat-icon color="primary">more_vert</mat-icon>
+                </button>
+                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()" color="primary">
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let element; index as index">
+                <button type="button" color="primary" mat-icon-button matTooltip="Histórico" *ngIf="element?.pagamento?.length > 0; else noBtn" (click)="expandedElement=expandedElement === element ? null : element">
+                  <mat-icon>add_circle</mat-icon>
+                </button>
+                <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="{ row: element }" (click)="$event.stopPropagation()">
+                  <mat-icon color="primary">more_vert</mat-icon>
+                </button>
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selectRow(element) : null" [checked]="selection.isSelected(element)" [aria-label]="checkboxLabel(element)" color="primary">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)" [ngClass]="{ selected: selection.isSelected(row) }"></tr>
+          </table>
+        </div>
+        <br />
+        <div class="flex form-registro" *ngIf="isento">
+          <mat-form-field class="flex-fill">
+            <mat-label>Conceder Isenções</mat-label>
+            <mat-select formControlName="isentarCancelamento">
+              <mat-option [value]="null"> - </mat-option>
+              <mat-option [value]="true">Sim</mat-option>
+              <mat-option [value]="false">Não</mat-option>
+            </mat-select>
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+          <mat-form-field class="flex-fill">
+            <mat-label>Motivo da isenção</mat-label>
+            <mat-select formControlName="motivoIsencao">
+              <mat-option [value]="null"> - </mat-option>
+              <mat-option [value]="1">Nova matrícula</mat-option>
+              <mat-option [value]="2">Apresentou atestado médico</mat-option>
+              <mat-option [value]="3">Acordo Juridico</mat-option>
+              <mat-option [value]="4">Acordo administrativo</mat-option>
+              <mat-option [value]="5">Outros</mat-option>
+            </mat-select>
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex form-registro" *ngIf="isento">
+          <mat-form-field class="flex-fill">
+            <mat-label>Justificativa</mat-label>
+            <input matInput formControlName="justificativa"/>
+          </mat-form-field>
+          <mat-form-field class="flex-fill">
+            <mat-label>Isenção autorizada por</mat-label>
+            <input matInput formControlName="autorizador"/>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-card-actions>
+        <div class="flex">
+          <div style="padding-right: 10px">
+            <button mat-raised-button color="primary" type="button" (click)="download(1)" *ngIf="cartaCancelamentoId > 0">
+              Carta Assinada
+            </button>
+          </div>
+          <div style="padding-right: 10px">
+            <button mat-raised-button color="primary" type="button"  (click)="download(2)"  *ngIf="atestadoId > 0">
+              Download Atestado &nbsp;
+              <mat-icon>cloud_download</mat-icon>
+            </button>
+          </div>
+          <div style="padding-right: 10px" *ngIf="atestadoId > 0">
+            <button mat-raised-button color="primary" type="button" (click)="fileUp.click()">
+              Upload Atestado &nbsp;
+              <mat-icon>cloud_upload</mat-icon>
+            </button>
+          </div>
+          <div class="flex-fill"></div>
+          <div *ngIf="!(cartaCancelamentoId > 0)">
+            <button mat-raised-button color="warn" [disabled]="disableButton" (click)="efetuarCancelamento()">
+              Salvar Cancelamento
+            </button>
+          </div>
+          <div *ngIf="cartaCancelamentoId > 0">
+            <button mat-raised-button color="warn" [disabled]="disableButton" (click)="closeModal()">
+              Salvar Cancelamento
+            </button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </form>
+  </div>
+  <mat-menu #menu="matMenu">
+    <ng-template matMenuContent let-row="row">
+      <button [disabled]="validateOptions(row, 1)" (click)="acoesFinanceiras(1, row)" mat-menu-item>
+        <span>Enviar por e-mail</span>
+      </button>
+      <button [disabled]="validateOptions(row, 2)" (click)="acoesFinanceiras(2, row, false)" mat-menu-item>
+        <span>Imprimir boleto / Enviar por e-mail</span>
+      </button>
+      <button [disabled]="validateOptions(row, 2)" (click)="acoesFinanceiras(2, row, true)" mat-menu-item>
+        <span>Download boleto / Enviar por e-mail</span>
+      </button>
+      <button [disabled]="validateOptions(row, 3)" (click)="acoesFinanceiras(3, row, true)" mat-menu-item>
+        <span>Recalcular / Enviar por e-mail</span>
+      </button>
+      <button [disabled]="validateOptions(row, 4)" (click)="acoesFinanceiras(4, row, false)" row mat-menu-item>
+        <span>{{row?.tipoSituacao === 5 || row?.tipoSituacao === 6? "Pagar via crédito": "Pagar via crédito / Excluir boleto"}}</span>
+      </button>
+      <button [disabled]="validateOptions(row, 4)" (click)="acoesFinanceiras(5, row, false)" row mat-menu-item>
+        <span>{{row?.tipoSituacao === 5 || row?.tipoSituacao === 6? "Pagar via débido": "Pagar via débido / Excluir boleto"}}</span>
+      </button>
+      <button [disabled]="validateOptions(row, 7)" (click)="acoesFinanceiras(7, row, true)" mat-menu-item>
+        <span>Gerar boleto residual</span>
+      </button>
+      <button [disabled]="validateOptions(row, 6)" (click)="autorizarIsencao(row)" mat-menu-item>
+        <span>Isentar Pagamento</span>
+      </button>
+    </ng-template>
+  </mat-menu>
+  <ng-template #noBtn>
+    <button mat-icon-button><mat-icon></mat-icon></button>
+  </ng-template>
+  <mat-progress-bar *ngIf="sending" mode="indeterminate" color="primary"></mat-progress-bar>
+</div>
+<ng-template #errorTemplate>
+  <app-server-error></app-server-error>
+</ng-template>
+<ng-template #loading>
+  <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>
+<input #fileUp class="file-upload" type="file" (change)="uploadAtestado($event)">

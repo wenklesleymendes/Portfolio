@@ -1,0 +1,43 @@
+@import '../../../../../scss/functions.scss';
+@import '../../../../../scss/theme.scss';
+
+.div-body {
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+
+// .div-title {
+
+// }
+
+.p-title {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.div-SimNao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p-SimNao {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.div-botoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 3%;
+}
+
+.b-botoes {
+    font-size: 17px;
+    line-height: 40px;
+    padding: 3px 30px;
+}

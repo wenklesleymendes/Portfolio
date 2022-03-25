@@ -1,0 +1,82 @@
+@import '../../../../scss/theme.scss';
+@import "../../../../scss/functions.scss";
+
+.content {
+    padding: 0 1rem;
+}
+
+.mat-card {
+    @include mobile {
+        padding: 1rem 0.5rem !important;
+    }
+}
+
+.grid {
+    padding: 0;
+}
+
+.grid--auto-fit-lg {
+    grid-row-gap: 1rem;
+    grid-column-gap: 1rem;
+}
+
+.info-ticket {
+    grid-row-gap: 0.5rem;
+    grid-column-gap: 1rem;
+}
+
+.info-valor {
+    font-size: 2.5rem;
+}
+
+.info-card {
+    .mat-card-content {
+        margin: 0;
+    }
+
+    .icon-ticket >  mat-icon {
+        transition: font-size 250ms;
+    }
+
+    &:hover{
+        .icon-ticket >  mat-icon {
+            font-size: 4.5rem;
+        }
+    }
+}
+
+.icon-ticket {
+    align-items: center;
+
+    mat-icon {
+        font-size: 4rem;
+        opacity: 0.3;
+    }
+}
+
+@include mobile {
+    .mat-card {
+        padding-left: 5 !important;
+        padding-right: 5 !important;
+    }
+
+    .grid--auto-fill {
+        grid-template-columns: none;
+    }
+
+    .grid--auto-fit-lg {
+        grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+    }
+
+    .mat-form-field {
+        min-width: 0 !important;
+    }
+    
+    .grid {
+        padding: 0;
+    }
+
+    .info-card {
+        padding: 16px !important;
+    }
+}

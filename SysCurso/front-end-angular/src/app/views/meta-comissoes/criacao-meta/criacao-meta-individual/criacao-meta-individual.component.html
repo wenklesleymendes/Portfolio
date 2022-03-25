@@ -1,0 +1,108 @@
+<div class="body">
+    <div class="flex">
+        <header>{{ (id === 0) ? 'Adicionar' : 'Alterar' }} Meta</header>
+        <div class="flex-fill"></div>
+        <div>
+            <button mat-button color="primary" (click)="voltar()">Voltar</button>
+        </div>
+    </div>
+
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div class="content" *ngIf="!isLoadingResults">
+                <form [formGroup]="form">
+                    <div class="grid grid--auto-fill mt-1">
+                        <mat-form-field>
+                            <mat-label>Descrição</mat-label>
+                            <input formControlName="descricao" matInput appTitlecase>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Início do período</mat-label>
+                            <input matInput formControlName="inicioMeta" [matDatepicker]="dataInicio">
+                            <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
+                            <mat-datepicker #dataInicio></mat-datepicker>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Fim do período</mat-label>
+                            <input matInput formControlName="terminoMeta" [matDatepicker]="dataFim">
+                            <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
+                            <mat-datepicker #dataFim></mat-datepicker>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="unidades; else loading">
+                            <mat-label>Unidade</mat-label>
+                            <mat-select formControlName="unidadeId">
+                                <mat-option *ngFor="let unidade of unidades" [value]="unidade.id">
+                                  {{unidade.nome}}
+                                </mat-option>
+                              </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Total de Matrículas Meta</mat-label>
+                            <input formControlName="quantidade" type="number" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Bônus Meta Período</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="bonusPeriodo" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <title-line title="Quantidade de matrículas"></title-line>
+                    <div formArrayName="detalhamentoMeta" class="flex flex-column w-100">
+                        <ng-container *ngFor="let parcela of detalhamentoMeta.controls; let i=index">
+                            <div [formGroupName]="i" class="grid grid--auto-fill-sm">
+                                <mat-label class="align-center"><strong>{{ ajustarDetalhamento(detalhamentoMeta.value, i) }}</strong></mat-label>
+                                <mat-form-field>
+                                    <mat-label>Quantidade de Matrículas</mat-label>
+                                    <input formControlName="quantidade" type="number" matInput>
+                                    <mat-error>Informação necessária</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
+                    </div>
+                </form>
+
+                <div class="flex">
+                    <div class="flex-fill"></div>
+                    <div class="filter-info">
+                        <mat-label>Total restante:</mat-label>
+                        <mat-chip-list>
+                            <mat-chip [color]="totalRestante === 0 ? 'primary' : 'warn'" selected> {{ totalRestante }}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isLoadingResults" class="flex">
+                <div class="flex-fill"></div>
+                <div>
+                    <button mat-raised-button color="primary" (click)="salvarData()" cdkFocusInitial>Salvar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #loading>
+    <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>

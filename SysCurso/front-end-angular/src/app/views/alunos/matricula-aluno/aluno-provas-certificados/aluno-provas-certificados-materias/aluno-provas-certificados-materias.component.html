@@ -1,0 +1,72 @@
+<div mat-dialog-title class="flex flex-row">
+  Relação de Matérias
+  <div class="flex-fill"></div>
+  <div class="btn-options">
+    <button color="primary" (click)="dialogRef.close()" mat-icon-button matTooltip="Fechar">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<div mat-dialog-content>
+  <div class="loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!error;else errorTemplate">
+    <div class="grid grid--auto-fit">
+      <ng-container>
+        <div class="info">
+          <mat-label>Data do resultado da prova:</mat-label>
+          <mat-chip-list>
+            <mat-chip color="primary" class="capitalize" selected *ngIf="dataResultado !== 'Novo'">{{dataResultado | date: 'dd/MM/yyyy'}}</mat-chip>
+            <mat-chip color="primary" class="capitalize" selected *ngIf="dataResultado === 'Novo'">{{dataResultado }}
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+      </ng-container>
+    </div>
+    <form [formGroup]="form">
+      <div class="table">
+        <table mat-table [dataSource]="provaMateriaAluno" class="table table-bordered table-hover"
+          *ngIf="provaMateriaAluno" style="width: 100%;">
+          <ng-container matColumnDef="tabNomeMateria">
+            <th mat-header-cell *matHeaderCellDef> Matéria </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.nomeMateria }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="tabStatus">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-select [(value)]="element.aprovado" [disabled]="desabilitarForm">
+                <mat-option [value]="true">Aprovado</mat-option>
+                <mat-option [value]="false">Reprovado</mat-option>
+              </mat-select>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="flex form-registro mt-1">
+          <mat-form-field class="flex-fill">
+            <textarea formControlName="observacao" matInput></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-card-actions>
+        <div *ngIf="!isLoadingResults" class="flex">
+          <div class="flex-fill"></div>
+          <div>
+            <button mat-raised-button color="primary" (click)="salvarData()" cdkFocusInitial
+              [disabled]="desabilitarForm">Salvar</button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </form>
+  </div>
+  <ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+  </ng-template>
+
+  <ng-template #loading>
+    <mat-spinner [diameter]="25"></mat-spinner>
+  </ng-template>

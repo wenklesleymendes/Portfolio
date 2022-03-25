@@ -1,0 +1,80 @@
+@import '../../../../../../scss/functions.scss';
+@import '../../../../../../scss/theme.scss';
+
+.div-tentativas-contato{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f9f9f9;
+}
+
+.div-dados-editaveis-tentativas {
+    display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    align-items: center;
+}
+
+.p-dados-editaveis-tentativas {
+    margin: 0 10px 0 0;
+    padding: 0;
+    font-size: 20px;
+    white-space: nowrap;
+    width: min-content;
+}
+
+.p-resposta {
+    margin: 0;
+    padding: 0;
+    font-size: 21px;
+}
+
+.div-tentativas-anteriores {
+    display: flex;
+    padding: 1.5% 0 1% 0;
+    justify-content: center;
+}
+
+.p-tentativas-anteriores {
+    margin: 0;
+    padding: 9px 0 5px 0;
+    font-size: 22px;
+    white-space: nowrap;
+    width: min-content;
+}
+
+strong {
+    margin-right: 2%;
+}
+
+mat-divider {
+    display: flex;
+    width: 85%;
+    margin-left: 7.5%;
+    z-index: 1;
+}
+
+.div-tentativas {
+    padding-bottom: 2%;
+}
+
+.div-texto {
+    display: flex;
+    justify-content: center;
+}
+
+.div-botao {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 5% 0 0;
+}
+
+.p-nada {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.b-nada {
+    width: max-content;
+}

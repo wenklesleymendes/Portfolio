@@ -1,0 +1,122 @@
+<div class="body">
+    <div class="flex">
+        <header>Informações do Usuário</header>
+        <div class="flex-fill"></div>
+        <div>
+            <button mat-button color="primary" (click)="voltar()">Voltar</button>
+        </div>
+    </div>
+
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div class="content" *ngIf="!isLoadingResults">
+                <form [formGroup]="form">
+                    <div class="grid grid--auto-fill mt-1">
+                        <mat-form-field>
+                            <mat-label>CPF</mat-label>
+                            <input formControlName="cpf" [mask]="cpfMask" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <div class="form-options">
+                            <div class="align-center">
+                                <button (click)="getFuncionario()" type="button" mat-button color="primary">
+                                    Pesquisar
+                                    <mat-icon>search</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row">
+                        <ng-container *ngFor="let info of infoFilter">
+                            <div class="filter-info">
+                                <mat-label>{{ info.label }}:</mat-label>
+                                <mat-chip-list aria-label="Fish selection">
+                                    <mat-chip color="primary" selected>{{ info.value }}</mat-chip>
+                                </mat-chip-list>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <title-line title="Perfil do Usuário"></title-line>
+                    <div class="grid grid--auto-fill">
+                        <div class="flex align-center prl-1-5">
+                            <mat-slide-toggle formControlName="isActive" color="primary">Ativado / Desativado</mat-slide-toggle>
+                        </div>
+                    </div>
+                    <div class="grid grid--auto-fill mt-1">
+                        <mat-form-field *ngIf="perfis; else loading">
+                            <mat-label>Perfil de Acesso</mat-label>
+                            <mat-select formControlName="perfilUsuarioId">
+                                <mat-option *ngFor="let perfil of perfis" [value]="perfil.perfilSistemaEnum">
+                                  {{labelDescricao(perfil?.perfilSistemaEnum)}}
+                                </mat-option>
+                              </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+            
+                        <mat-form-field *ngIf="unidades; else loading">
+                            <mat-label>Unidade</mat-label>
+                            <mat-select formControlName="unidadeId">
+                                <mat-option *ngFor="let unidade of unidades" [value]="unidade.id">
+                                  {{unidade.nome}}
+                                </mat-option>
+                              </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="unidades; else loading">
+                            <mat-label>Departamento</mat-label>
+                            <mat-select formControlName="departamentoId">
+                                <mat-option *ngFor="let departamento of departamentos" [value]="departamento.id">
+                                  {{departamento.nome}}
+                                </mat-option>
+                              </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Senha</mat-label>
+                            <input formControlName="password" matInput [type]="pwdhide ? 'password' : 'text'">
+                            <mat-icon class="pointer" matSuffix (click)="pwdhide = !pwdhide">{{pwdhide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+            
+                        <mat-form-field>
+                            <mat-label>Confirmar Senha</mat-label>
+                            <input formControlName="confirmPassword" matInput [type]="confirmPwdhide ? 'password' : 'text'">
+                            <mat-icon class="pointer" matSuffix (click)="confirmPwdhide = !confirmPwdhide">{{confirmPwdhide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isLoadingResults" class="flex">
+                <div>
+                    <button mat-button color="primary" (click)="voltar()">Voltar</button>
+                </div>
+                <div class="flex-fill"></div>
+                <div>
+                    <button mat-raised-button color="primary" (click)="salvarData()" cdkFocusInitial>Salvar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #loading>
+    <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>

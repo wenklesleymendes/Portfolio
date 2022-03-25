@@ -1,0 +1,60 @@
+@import '../../../../../../../../scss/functions.scss';
+@import '../../../../../../../../scss/theme.scss';
+
+.body {
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9;
+    // position: fixed;
+}
+
+.main-dados-editados {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 0;
+}
+
+.div-titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-titulo {
+    padding-left: 3%;
+    font-size: 21px;
+}
+
+.div-body-sucesso {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.p-body-sucesso {
+    font-size: 19px;
+}
+
+.div-body-erro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.p-body-erro {
+    margin: 0;
+    font-size: 19px;
+}
+
+.div-rodape {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2%;
+}

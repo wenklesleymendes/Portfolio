@@ -1,0 +1,207 @@
+<div class="body">
+
+    <div class="main-registro-completo">
+
+        <mat-toolbar class="mat-elevation-z2 noselect toolbar-titulo">
+            <div class="loading-shade" id="carregamento" style="visibility: hidden;">
+                <mat-spinner></mat-spinner>
+            </div>
+
+            <div class="div-botao-voltar" (click)="voltar()">
+                <button mat-button class="botao-voltar">
+                    <p class="p-botao-voltar">
+                        <mat-icon style="padding: 5%;"> navigate_before </mat-icon>
+                        Voltar
+                    </p>
+                </button>
+            </div>
+
+            <span class="barra-topo"></span>
+
+            <div class="div-registro-completo">
+                <p class="p-registro-completo">
+                    Registro Completo
+                </p>
+            </div>
+
+        </mat-toolbar>
+
+        <div class="div-body">
+
+            <div class="div-dados-cliente">
+
+                <div class="div-espaco-inicial"></div>
+
+                <div class="div-form">
+
+                    <div class="content" *ngIf="!isLoadingResults">
+
+                        <app-form-cliente></app-form-cliente>
+
+                    </div>
+
+                </div>
+
+                <div class="div-espaco-final"></div>
+
+            </div>
+
+            <div class="div-espaco-divs"></div>
+
+            <div class="div-confirmacao-agendamento">
+
+                <div class="div-txt-confirmacao">
+                    <p class="p-txt-confirmacao">
+                        <strong>Confirmação de Agendamento</strong>
+                    </p>
+                </div>
+
+                <div class="div-form">
+
+                    <div class="content" *ngIf="!isLoadingResults">
+
+                        <form [formGroup]="formConfirmacaoAgendamento">
+
+                            <div class="grid grid--auto-fill">
+
+                                <mat-form-field style="pointer-events: none;">
+                                    <mat-label>Hórario de Contato</mat-label>
+                                    <input formControlName="dataeHoradoUltimoContato" matInput type="datetime">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Atendente</mat-label>
+                                    <mat-select formControlName="usuarioCadastro">
+                                        <mat-option *ngFor="let usuario of usuariosUnidade" [value]="usuario.id">
+                                            {{ usuario.userName }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Agendamento Confirmado</mat-label>
+                                    <mat-select formControlName="AgendamentoConfirmado"
+                                        (selectionChange)="agendamentoSimNao()">
+                                        <mat-option [value]="1"> Sim </mat-option>
+                                        <mat-option [value]="2"> Não </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <!-- Agendamentos no caso de Sim-->
+                                <!-- <mat-form-field *ngIf="agendamentoSim == 1">
+                                        <mat-label>Dia do Agendamento</mat-label>
+                                        <input formControlName="DiadoAgendamento" matInput [matDatepicker]="picker1">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker touchUi #picker1></mat-datepicker>
+                                    </mat-form-field>
+        
+                                    <mat-form-field *ngIf="agendamentoSim == 1">
+                                        <mat-label>Hora do Agendamento</mat-label>
+                                        <input formControlName="HoradoAgendamento" type="time" matInput>
+                                    </mat-form-field>
+                               
+                                    <datalist id="horaagenda">
+                                        <mat-option value="Manha"></mat-option>
+                                        <mat-option value="Tarde"></mat-option>
+                                        <mat-option value="Noite"></mat-option>
+                                        <mat-option value="Qualquer Horário"></mat-option>
+                                    </datalist> -->
+
+                                <!-- Agendamentos no caso de Não-->
+                                <mat-form-field *ngIf="agendamentoSim === 2">
+                                    <mat-label>Motivo da Não Confirmação</mat-label>
+                                    <mat-select formControlName="MotivodaNaoConfirmacao"
+                                        (selectionChange)="reagendouSimNao()">
+                                        <mat-option [value]="2"> Cliente Está Indeciso </mat-option>
+                                        <mat-option [value]="3"> Desempregado </mat-option>
+                                        <mat-option [value]="4"> Sem condições financeiras </mat-option>
+                                        <mat-option [value]="5"> Para outra pessoa </mat-option>
+                                        <mat-option [value]="6"> Confirmar com terceiros </mat-option>
+                                        <mat-option [value]="7"> Reagendou </mat-option>
+                                        <mat-option [value]="8"> Telefone Incorreto ou Não Existe </mat-option>
+                                        <mat-option [value]="9"> Já matriculado em nossa escola </mat-option>
+                                        <mat-option [value]="10"> Realizou matricula em outra escola </mat-option>
+                                        <mat-option [value]="11"> Não tem mais interesse </mat-option>
+                                        <mat-option [value]="12"> Caixa postal </mat-option>
+                                        <mat-option [value]="13"> Não atende </mat-option>
+                                        <mat-option [value]="14"> Não tem idade para matricula </mat-option>
+                                        <mat-option [value]="15"> Ligação Caiu </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <mat-form-field *ngIf="reagendouSim == 1">
+                                    <mat-label> Dia do Reagendamento </mat-label>
+                                    <input formControlName="diadoReagendamento" matInput [min]="minDate"
+                                        [matDatepicker]="picker1" readonly=“true”>
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker touchUi #picker1></mat-datepicker>
+                                </mat-form-field>
+
+                                <mat-form-field *ngIf="reagendouSim == 1">
+                                    <mat-label> Hora do Reagendamento </mat-label>
+                                    <input formControlName="horadoReagendamento" matInput type="time">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label> Observações </mat-label>
+                                    <textarea formControlName="observacoes" matInput></textarea>
+                                </mat-form-field>
+
+                            </div>
+
+                            <div class="div-botoes-tentativa-contato">
+
+                                <button mat-raised-button class="b-enviar-tentativa-contato"
+                                    (click)="salvarDataConfirmacaoAgendamento()">
+                                    <p class="p-enviar-tentativa-contato">
+                                        Enviar
+                                        <!-- <mat-icon style="padding: 5%;">navigate_next</mat-icon> -->
+                                    </p>
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="div-rodape">
+
+            <div class="div-barra-navegacao">
+
+                <button class="b-home">
+                    <mat-icon class="mat-icon-button" (click)="goToHome()"> home </mat-icon>
+                </button>
+
+                <button class="b-novo-atendimento">
+                    <mat-icon class="mat-icon-button" (click)="goToNovoAtendimento()"> add </mat-icon>
+                </button>
+
+                <button class="b-pesquisar">
+                    <mat-icon class="mat-icon-button" (click)="goToPesquisar()"> search </mat-icon>
+                </button>
+
+                <button class="b-outbound">
+                    <mat-icon class="mat-icon-button" (click)="goToOutbound()"> call </mat-icon>
+                </button>
+
+                <button class="b-agendados">
+                    <mat-icon class="mat-icon-button" (click)="goToAgendados()"> calendar_today </mat-icon>
+                </button>
+
+                <button class="b-contatos-prioritarios" (click)="goToContatosPrioritarios()">
+                    <img src="../../../../assets/gif-telefone-branco-sem-fundo.gif" class="loop-gif-rodape" alt="gif">
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

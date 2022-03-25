@@ -1,0 +1,17 @@
+@import '../../../../../scss/theme.scss';
+@import "../../../../../scss/functions.scss";
+
+mat-panel-title {
+    color: mat-color($theme-primary) !important;
+}
+
+.mat-dialog-content {
+    max-height: none !important;
+}
+
+.mat-card {
+    min-height: 100px;
+    @include mobile {
+        padding: 1rem 0.5rem !important;
+    }
+}

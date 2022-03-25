@@ -1,0 +1,220 @@
+<div class="body">
+    <div class="flex">
+        <header>{{ (id === 0) ? 'Adicionar' : 'Alterar' }} plano de pagamento</header>
+        <div class="flex-fill"></div>
+        <div>
+            <button mat-button color="primary" (click)="voltar()">Voltar</button>
+        </div>
+    </div>
+
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div class="content" *ngIf="!isLoadingResults">
+
+                <form [formGroup]="form">
+                    <title-line title="Informações do plano"></title-line>
+
+                    <div class="grid">
+                        <div class="checkbox">
+                            <div class="flex flex-row">
+                                <p>Tipo de pagamento</p>
+                            </div>
+                            <div class="flex form-registro">
+                                <mat-radio-group formControlName="tipoPagamento" class="flex form-registro">
+                                    <mat-radio-button [value]="1" color="primary">Cartão de crédito</mat-radio-button>
+                                    <mat-radio-button [value]="2" color="primary">Cartão de débito</mat-radio-button>
+                                    <mat-radio-button [value]="3" color="primary">Boleto bancário</mat-radio-button>
+                                    <mat-radio-button [value]="7" color="primary">Cobrança recorrente</mat-radio-button>
+                                    <mat-error *ngIf="form.get('tipoPagamento').invalid">Informação necessária</mat-error>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+
+                        <div class="flex align-center prl-1-5">
+                            <mat-slide-toggle formControlName="isActive" color="primary">Ativado / Desativado</mat-slide-toggle>
+                        </div>
+                    </div>
+
+                    <div class="grid grid--auto-fill mt-1">
+                        <mat-form-field>
+                            <mat-label>Valor total do plano</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="valorTotalPlano" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Quantidade de parcelas</mat-label>
+                            <mat-select formControlName="quantidadeParcela">
+                                <mat-option *ngFor="let parcela of parcelas" [value]="parcela">
+                                    {{ parcela }} parcela{{ parcela == 1 ? '' : 's'  }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-chip-list class="align-center">
+                            <mat-chip color="primary" selected> {{ form.get('valorParcela').value ? (form.get('valorParcela').value | currency) : (0 | currency) }}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+
+                    <div class="grid grid--auto-fill" *ngIf="form.get('tipoPagamento').value === 3">
+                        <mat-form-field>
+                            <mat-label>Desconto pontualidade</mat-label>
+                            <span matPrefix><strong>%</strong> &nbsp;</span>
+                            <input formControlName="porcentagemDescontoPontualidade" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Inscrição provas valor total</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="valorTotalInscricaoProva" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-chip-list class="align-center">
+                            <mat-chip color="warn" selected>Valor de 2x de  {{ valorTotalInscricaoProva2x | currency }}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Material didático</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="valorMaterialDidatico" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                        <div class="flex align-center">
+                            <mat-checkbox formControlName="isentarMaterialDidatico" color="primary">Isentar material? </mat-checkbox>
+                        </div>
+                    </div>
+
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Taxa de matrícula</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="valorTaxaMatricula" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                        <div class="flex align-center">
+                            <mat-checkbox formControlName="isentarMatricula" color="primary">Isentar matrícula? </mat-checkbox>
+                        </div>
+                    </div>
+
+                    <div class="grid grid--auto-fit-lg">
+                        <!-- Curso -->
+                        <div class="mobile-w-95">
+                            <title-line title="Curso"></title-line>
+                            <div class="flex form-registro">
+                                <mat-form-field class="flex-fill">
+                                    <mat-label>Curso</mat-label>
+                                    <input matInput [matAutocomplete]="autoCurso" formControlName="cursoSelected">
+                                    <mat-autocomplete #autoCurso="matAutocomplete">
+                                        <mat-option *ngFor="let curso of filterCursos | async" [value]="curso.descricao">
+                                        <span>{{curso.descricao}}</span>
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                                <div class="flex align-center">
+                                    <button mat-button type="button" (click)="addCurso()" color="primary">
+                                        Adicionar &nbsp;
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-fill">
+                                <div class="table">
+                                    <table mat-table [dataSource]="dataCursoSource">
+                                        <ng-container matColumnDef="descricao">
+                                            <th mat-header-cell *matHeaderCellDef> Cursos adicionados </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.descricao ? element.descricao : '-'}} </td>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="options">
+                                            <th mat-header-cell *matHeaderCellDef class="sm-column"> </th>
+                                            <td mat-cell *matCellDef="let element; let i = index">
+                                                <div class="btn-options">
+                                                    <button type="button" (click)="removeCurso(i)" color="warn" mat-icon-button matTooltip="Excluir" >
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </ng-container>
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                                            (click)="selectionCursos.toggle(row)" [ngClass]="{ 'selected': selectionCursos.isSelected(row) }"></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Unidade -->
+                        <div class="mobile-w-95">
+                            <title-line title="Unidade"></title-line>
+                            <div class="flex form-registro">
+                                <mat-form-field class="flex-fill">
+                                    <mat-label>Unidade</mat-label>
+                                    <input matInput [matAutocomplete]="autoUnidade" formControlName="unidadeSelected">
+                                    <mat-autocomplete #autoUnidade="matAutocomplete">
+                                        <mat-option *ngFor="let unidade of filterUnidades | async" [value]="unidade.nome">
+                                        <span>{{unidade.nome}}</span>
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                                <div class="flex align-center">
+                                    <button mat-button type="button" (click)="addUnidade()" color="primary">
+                                        Adicionar &nbsp;
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-fill">
+                                <div class="table">
+                                    <table mat-table [dataSource]="dataUnidadeSource">
+                                        <ng-container matColumnDef="descricao">
+                                            <th mat-header-cell *matHeaderCellDef> Unidades adicionadas </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.nome ? element.nome : '-'}} </td>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="options">
+                                            <th mat-header-cell *matHeaderCellDef class="sm-column"> </th>
+                                            <td mat-cell *matCellDef="let element; let j = index">
+                                                <div class="btn-options">
+                                                    <button type="button" (click)="removeUnidade(j)" color="warn" mat-icon-button matTooltip="Excluir" >
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </ng-container>
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                                            (click)="selectionUnidades.toggle(row)" [ngClass]="{ 'selected': selectionUnidades.isSelected(row) }"></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isLoadingResults" class="flex">
+                <div>
+                    <button mat-button color="primary" (click)="voltar()">Voltar</button>
+                </div>
+                <div class="flex-fill"></div>
+                <div>
+                    <button mat-raised-button color="primary" (click)="salvarData()" cdkFocusInitial>Salvar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>

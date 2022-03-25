@@ -1,0 +1,50 @@
+<div class="body">
+    <div class="flex">
+        <header>Cadastro de funcionário</header>
+        <div class="flex-fill"></div>
+        <div>
+            <button mat-button color="primary" (click)="voltar()">Voltar</button>
+        </div>
+    </div>
+
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <mat-accordion #accordion multi class="mat-elevation-z8" [hidden]="isLoadingResults">
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Dados Pessoais</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-dados-pessoais *ngIf="!isLoadingResults" [dadosPessoaisInput]="dadosPessoaisInput"></app-dados-pessoais>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Dados da Contratação</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-dados-contratacao *ngIf="!isLoadingResults" [dadosContratacaoAllInput]="dadosContratacaoAllInput"></app-dados-contratacao>
+                </mat-expansion-panel>
+
+            </mat-accordion>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isLoadingResults" class="flex">
+                <div>
+                    <button mat-button color="primary" (click)="voltar()">Voltar</button>
+                </div>
+                <div class="flex-fill"></div>
+                <div>
+                    <button mat-raised-button color="primary" (click)="salvarData()" cdkFocusInitial>Salvar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>

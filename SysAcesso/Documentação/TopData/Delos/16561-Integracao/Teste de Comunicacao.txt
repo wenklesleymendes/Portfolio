@@ -1,0 +1,26 @@
+
+Quando o equipamento não comunica na rede é necessário verificar os itens abaixo:
+
+Refazer a configuração local do Inner, seguindo as orientações:
+
+Verificar se o IP do Servidor é o IP do computador onde está instalado o Gerenciador de Inners 5;
+Verificar se o número do Inner é o mesmo número atribuído a ele no Gerenciador;
+O código da empresa (Código ASP) deve ser sempre 0000 (quatro zeros);
+A Porta Padrão deve ser Confirmada, para que o Inner use sempre a porta 3570;
+Verificar se IP do Inner não está duplicado na Rede, e se as configurações de Máscara de Rede e Gateway batem com a rede local do cliente.
+Computador:
+
+Desabilitar firewall ou adicionar o Gerenciador de Inners 5 na lista de aplicações liberadas;
+Verificar se no Gerenciador de Inners o número do Inner bate com o configurado no equipamento;
+Conferir nas configurações de comunicação (na tela de enviar configurações) se o Gerenciador está configurado para usar a porta 3570
+Verificar se o cabo que sai do switch até o equipamento está dentro de 100m.
+Se ainda assim o equipamento não comunicar, deve ser feito um teste de comunicação ponto a ponto, ou seja, conectar o equipamento direto no computador usando um cabo crossover e as instruções a seguir:
+
+Conectar o equipamento diretamente ao PC usando um cabo crossover. Com esse cabo o led laranja fica fixo e o verde pisca lento.
+Configurar o IP do computador como 10.0.0.1, máscara de sub-rede 255.0.0.0;
+Os outros parâmetros (gateway, dns) deixar em branco;
+Na configuração local do equipamento o número do Inner deve ser 01, o IP do Servidor deve ser 10.0.0.1, o IP do Inner deve ser 10.0.0.2 com a máscara 255.0.0.0 e as opções “Sem Gateway” e “Porta Padrão” devem ser confirmadas.  O código ASP é sempre 0000 (quatro zeros);
+Escolher a opção “2 – PL” para o padrão de cartões ficar como Padrão Livre;
+Na placa Inner Net colocar os jumpers nas posições ANE, DPX e SPD (ficam ao lado do conector ethernet). Os jumpers servem para forçar o Inner Net a trabalhar em 10mbps, impedir a auto-negociação e trafegar em modo half duplex;
+Cadastrar o Inner Net novamente no Gerenciador de Inners 5 com o número 01 e como Padrão Livre.
+Caso os testes acima não resolvam o problema é necessário entrar em contato com a empresa que lhe vendeu o produto para que seja encaminhado para a Assistência Técnica.

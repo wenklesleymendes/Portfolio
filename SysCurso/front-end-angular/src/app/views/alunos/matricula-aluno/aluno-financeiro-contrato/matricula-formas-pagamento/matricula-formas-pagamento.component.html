@@ -1,0 +1,38 @@
+<mat-tab-group (selectedIndexChange)="onChangeTab($event)" [selectedIndex]="selectedIndex">
+    <mat-tab [disabled]="enableTab(1)">
+        <ng-template mat-tab-label>
+            <mat-icon class="green">credit_card</mat-icon>
+            <span>&nbsp; Cartão de Crédito</span>
+        </ng-template>
+        <ng-template matTabContent>
+            <app-mfp-credito></app-mfp-credito>
+        </ng-template>
+    </mat-tab>
+    <mat-tab [disabled]="enableTab(2)">
+        <ng-template mat-tab-label>
+            <mat-icon class="yellow">credit_card</mat-icon>
+            <span>&nbsp; Cartão de Débito</span>
+        </ng-template>
+        <ng-template matTabContent>
+            <app-mfp-debito></app-mfp-debito>
+        </ng-template>
+    </mat-tab>
+    <mat-tab [disabled]="enableTab(7)" *ngIf="1!=1">
+        <ng-template mat-tab-label>
+            <mat-icon color="primary">payments</mat-icon>
+            <span>&nbsp; Cobrança Recorrente</span>
+        </ng-template>
+        <ng-template matTabContent>
+            <app-mfp-despesa-recorrente></app-mfp-despesa-recorrente>
+        </ng-template>
+    </mat-tab>
+    <mat-tab [disabled]="enableTab(3)">
+        <ng-template mat-tab-label>
+            <mat-icon>view_week</mat-icon>
+            <span>&nbsp; Boleto Bancário</span>
+        </ng-template>
+        <ng-template matTabContent>
+            <app-mfp-boleto (onAviso)="onAviso($event)"></app-mfp-boleto>
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>

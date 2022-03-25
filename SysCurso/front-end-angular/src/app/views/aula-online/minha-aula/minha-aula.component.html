@@ -1,0 +1,113 @@
+<ng-container *ngIf="!semAula; else semAulaMsg">
+    <div class="body" *ngIf="!error; else errorTemplate">
+        <mat-card class="noshadow p-0 aula">
+            <!--<span class="title">{{nomeAulaOnline ? nomeAulaOnline : ''}}</span>-->
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            
+            <div class="div-botao-voltar">
+                <button class="botao-voltar" (click)="goToCursoTurma(matriculaId)">
+                    <img class="img-botao-voltar" src="../../../assets/voltar2.png" alt="voltar">
+                    <span style="text-align: center; margin-left: -16%;">Voltar</span>
+                </button>
+            </div>
+
+            <div class="div_titulo_aula">
+                <p class="titulo_aula_online">
+                    {{nomeAulaOnline ? nomeAulaOnline : ''}}
+                </p>
+            </div>
+
+            <!-- <div *ngIf="!isLoadingResults" class="card_video_aula">
+                <mat-card class="video">
+                    <div class="loading-shade" *ngIf="isLoadingVideo">
+                        <mat-spinner></mat-spinner>
+                    </div>
+                    <div *ngIf="!isLoadingVideo">
+                        <p class="aula-atual">
+                            Aula
+                        </p>
+                        <iframe [src]="vimeoUrl1" class="vimeo"
+                            webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        <video class="vimeo" controls> <source type="video/mp4" [src]="vimeoUrl1"> </video>
+                        <app-vimeo-aula-online [vimeoUrl]="vimeoUrl1" [vimeoProgress]="vimeoProgress" (onAssistido)="salvarSessao($event)"></app-vimeo-aula-online>
+                        <app-questionario-online [videoId]="videoId" (nextVideo)="nextVideo($event)"></app-questionario-online>
+                    </div>
+                </mat-card> 
+
+                <mat-card class="video">
+                    <div class="loading-shade" *ngIf="isLoadingVideo">
+                        <mat-spinner></mat-spinner>
+                    </div>
+                    <div *ngIf="!isLoadingVideo">
+                        <p class="aula-atual">
+                            Aula
+                        </p>
+                        <video class="vimeo" controls> <source type="video/mp4" [src]="vimeoUrl2"> </video>
+                        <app-vimeo-aula-online [vimeoUrl1]="vimeoUrl2" [vimeoProgress]="vimeoProgress" (onAssistido)="salvarSessao($event)"></app-vimeo-aula-online>
+                        <app-questionario-online [videoId]="videoId" (nextVideo)="nextVideo($event)"></app-questionario-online>
+                    </div>
+                </mat-card>  -->
+        
+                <!-- <div class="grid-lista-video">
+                    <mat-accordion *ngFor="let materia of materias" class="noselect">
+                        <mat-expansion-panel [expanded]="openPanel(materia)">
+                          <mat-expansion-panel-header><mat-panel-title color="primary">{{ materia.nomeMateria }}</mat-panel-title></mat-expansion-panel-header>
+                          <mat-selection-list #shoes [multiple]="false">
+                            <mat-list-option *ngFor="let aula of materia.videoAula" (click)="changeVideo(aula)">{{ aula.tituloAula }}</mat-list-option>
+                          </mat-selection-list>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>  -->
+            <!-- </div> -->
+
+            <div *ngFor="let videoAulaMateria of videoFiltradas; let i = index">
+                <div *ngIf="!isLoadingResults" class="card_video_aula">
+                    <mat-card class="video">
+                        <div class="loading-shade" *ngIf="isLoadingVideo">
+                            <mat-spinner></mat-spinner>
+                        </div>
+                        <div *ngIf="!isLoadingVideo">
+                            <div name="videoAulaMateriaTitulo" id="videoAulaMateria.id" hidden>
+                                {{ videoAulaMateria.id }}
+                            </div>
+                            <p class="aula-atual">
+                                {{ videoAulaMateria.tituloAula }}
+                            </p>
+                            <iframe src="" id="video{{i}}" class="frame-video" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            <!-- <video class="vimeo" controls> <source type="video/mp4" id="video{{i}}"> </video> -->
+                            <!-- <app-vimeo-aula-online [vimeoUrl]="videoAulaMateria.urlVideo" [vimeoProgress]="vimeoProgress" (onAssistido)="salvarSessao($event)"></app-vimeo-aula-online> -->
+                            <!-- <app-vimeo-aula-online [vimeoUrl1]="videoAulaMateria[1].urlVideo" [vimeoProgress]="vimeoProgress" (onAssistido)="salvarSessao($event)"></app-vimeo-aula-online> -->
+                            <!-- <div *ngIf="perguntas != null"> -->
+                            <div *ngIf="videoAulaMateria.pergunta != null">
+                                <app-questionario-online [videoId]="videoAulaMateria.id" (nextVideo)="nextVideo($event)"></app-questionario-online>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                    </mat-card>
+                </div>
+            </div> 
+                
+        </mat-card>
+    
+        <!-- <footer class="footer-minha-aula">
+            <a href="#inicio">
+                <button mat-fab disabled matTooltip="Voltar ao topo" aria-label="Button that displays a tooltip when focused or hovered over" class="botao-go-to-up">
+                    <mat-icon>arrow_upward</mat-icon>
+                </button>
+            </a>
+        </footer> -->
+
+    </div>
+</ng-container>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #semAulaMsg>
+    <div class="center">
+        <h1>Não há aula</h1>
+    </div>
+</ng-template>

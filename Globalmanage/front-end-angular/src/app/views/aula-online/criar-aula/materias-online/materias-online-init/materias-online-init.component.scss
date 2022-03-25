@@ -1,0 +1,106 @@
+@import '../../../../../../scss/theme.scss';
+@import "../../../../../../scss/functions.scss";
+
+.content {
+    padding: 0 1rem;
+}
+
+mat-panel-title {
+    color: mat-color($theme-primary) !important;
+}
+
+mat-checkbox {
+    margin: 0.5rem 1rem;
+}
+
+.checkbox {
+    padding: 0 1.5rem 1rem 1.5rem;
+}
+
+.mat-dialog-content {
+    max-height: none !important;
+}
+
+.mat-card {
+    min-height: 180px;
+    @include mobile {
+        padding: 1rem 0.5rem !important;
+    }
+}
+
+form {
+    padding-bottom: 0;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 1.5rem;
+}
+
+mat-form-field {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    min-width: 400px;
+}
+
+.mat-header-cell {
+    min-width: 150px;
+}
+
+.sm-column {
+    max-width: 100px !important;
+}
+
+mat-divider {
+    position: relative !important;
+    align-self: center;
+    margin: 0 2rem;
+}
+
+table {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.grid {
+    padding: 0;
+}
+
+.selected {
+    background-color: #dddddd;
+}
+
+@include mobile {
+    form, .mat-form-field, .checkbox {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form-registro {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    .mat-card {
+        padding-left: 5 !important;
+        padding-right: 5 !important;
+    }
+
+    .grid--auto-fill {
+        grid-template-columns: none;
+    }
+
+    .mat-form-field {
+        min-width: 0 !important;
+    }
+    
+    .grid {
+        padding: 0;
+    }
+}

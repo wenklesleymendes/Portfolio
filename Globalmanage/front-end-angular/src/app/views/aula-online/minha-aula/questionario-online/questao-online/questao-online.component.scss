@@ -1,0 +1,51 @@
+::ng-deep.mat-radio-label-content {
+    width: 100% !important;
+    white-space: normal !important;
+}
+
+.mat-radio-button {
+    border-radius: 0.5rem !important;
+}
+
+.bg-light-green {
+    background-color: #BBD0A6 !important;
+}
+
+.bg-light-red {
+    background-color: #F1C1C1 !important;
+}
+
+.bg-grey {
+    background-color: #EEEEEE;
+}
+
+.img {
+    overflow: auto;
+}
+
+p {
+    font-size: 12pt !important;
+}
+
+.body {
+    padding-bottom: 2rem;
+    background-color: #eeeeee;
+}
+
+.pd05 {
+    padding: 0.5rem;
+}
+
+.mat-divider {
+    width: 94%;
+    margin-left: 3%;
+    border-top-color: white;
+    border-top-width: 2px;
+}
+
+.opcao-resposta {
+    text-align: center;
+    margin-left: -8px;
+    margin-right: 12px;
+    padding: 0;
+}

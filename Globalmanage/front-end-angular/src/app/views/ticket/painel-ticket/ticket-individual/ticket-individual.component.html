@@ -1,0 +1,128 @@
+<div class="body">
+    <div class="flex">
+        <header>Abertura do Ticket</header>
+        <div class="flex-fill"></div>
+        <div>
+            <button mat-button color="primary" (click)="voltar()">Voltar</button>
+        </div>
+    </div>
+
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div class="content" *ngIf="!isLoadingResults">
+                <form [formGroup]="form">
+                    <div class="grid grid--auto-fit">
+                        <mat-form-field *ngIf="unidadesDefault; else loading">
+                            <mat-label>Enviar Para</mat-label>
+                            <input matInput [matAutocomplete]="auto" formControlName="unidadeSelect">
+                            <mat-icon matSuffix>arrow_drop_down</mat-icon>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let unidade of filterUnidades | async" [value]="unidade.nome">
+                                  <span>{{unidade.nome}}</span>
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="unidadesDefault; else loading">
+                            <mat-label>Departamento</mat-label>
+                            <mat-select formControlName="departamentoId">
+                                <mat-option [value]="null"> - </mat-option>
+                                <mat-option *ngFor="let departamento of departamentos" [value]="departamento.id">
+                                  {{departamento.nome}}
+                                </mat-option>
+                              </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="assuntosTicket; else loading">
+                            <mat-label>Assunto</mat-label>
+                            <mat-select formControlName="assuntoTicketId">
+                                <mat-option *ngFor="let item of assuntosTicket" [value]="item.id"> {{ item.descricao }} </mat-option>
+                            </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex flex-fill">
+                        <div class="table">
+                            <table mat-table [dataSource]="colaboradorSource" [hidden]="!showColaborador">
+                                <ng-container matColumnDef="select">
+                                  <th mat-header-cell *matHeaderCellDef class="sm-column">
+                                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                                  [checked]="selection.hasValue() && isAllSelected()"
+                                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                                  [aria-label]="checkboxLabel()"
+                                                  color="primary">
+                                    </mat-checkbox>
+                                  </th>
+                                  <td mat-cell *matCellDef="let row">
+                                    <mat-checkbox (click)="$event.stopPropagation()"
+                                                  (change)="$event ? selection.toggle(row) : null"
+                                                  [checked]="selection.isSelected(row)"
+                                                  [aria-label]="checkboxLabel(row)"
+                                                  color="primary">
+                                    </mat-checkbox>
+                                  </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="nome">
+                                  <th mat-header-cell *matHeaderCellDef> Nome </th>
+                                  <td mat-cell *matCellDef="let element"> {{ element?.funcionario?.nome ? element.funcionario.nome : ' - '}} </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="colaboradorColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: colaboradorColumns;"
+                                (click)="selection.toggle(row)" [ngClass]="{ 'selected': selection.isSelected(row) }">
+                                </tr>
+                              </table>
+                        </div>
+                    </div>
+
+                    <div class="flex form-registro mt-1">
+                        <mat-form-field class="flex-fill">
+                            <mat-label>Mensagem</mat-label>
+                            <textarea formControlName="mensagem" matInput></textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="grid grid--auto-fill">
+                        <div class="flex align-center prl-1-5">
+                            <button mat-button type="button" (click)="fileUp.click()" color="primary">
+                                Anexo Documento  &nbsp;
+                                <mat-icon>cloud_upload</mat-icon>
+                            </button>
+                            <mat-icon *ngIf="loadedFile" color="primary">check</mat-icon>
+                        </div>
+                    </div>
+                </form>
+                <mat-progress-bar *ngIf="sendingAnexo" mode="indeterminate"color="primary"></mat-progress-bar>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isLoadingResults" class="flex">
+                <div>
+                    <button mat-button color="primary" type="button" (click)="voltar()">Voltar</button>
+                </div>
+                <div class="flex-fill"></div>
+                <div>
+                    <button mat-raised-button color="primary" (click)="salvarData()" [disabled]="disableButton" cdkFocusInitial>Salvar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #loading>
+    <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>
+
+<input #fileUp class="file-upload" type="file" (change)="loadFile($event)">

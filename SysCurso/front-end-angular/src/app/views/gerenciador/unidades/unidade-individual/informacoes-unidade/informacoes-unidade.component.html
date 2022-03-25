@@ -1,0 +1,250 @@
+<div class="body">
+    <form [formGroup]="form">
+        <!-- Dados Gerais -->
+        <title-line title="Dados Gerais"></title-line>
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Unidade</mat-label>
+                <input formControlName="nome" matInput appTitlecase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>CNPJ</mat-label>
+                <input formControlName="cnpj" [mask]="cnpjkMask" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Razão Social</mat-label>
+                <input formControlName="razaoSocial" matInput appTitlecase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nome Fantasia</mat-label>
+                <input formControlName="nomeFantasia" matInput appTitlecase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Sigla</mat-label>
+                <input formControlName="sigla" [mask]="maskSigla" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- Endereço -->
+        <title-line title="Endereço"></title-line>
+        <div formGroupName="endereco" class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>CEP</mat-label>
+                <input formControlName="cep" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Rua</mat-label>
+                <input formControlName="rua" matInput appTitlecase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Número</mat-label>
+                <input formControlName="numero" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Complemento</mat-label>
+                <input formControlName="complemento" matInput appTitlecase>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Bairro</mat-label>
+                <input formControlName="bairro" matInput appTitlecase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Cidade</mat-label>
+                <input formControlName="cidade" matInput appTitlecase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="estado">
+                    <mat-option *ngFor="let estado of estados" [value]="estado">
+                        {{ estado }}
+                    </mat-option>
+                </mat-select>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- Contato -->
+        <title-line title="Contato"></title-line>
+        <div formGroupName="contato" class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Telefone Fixo Principal</mat-label>
+                <input formControlName="telefoneFixoPrincipal" [mask]="maskTelefoneFixoPrincipal" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Telefone Fixo 2</mat-label>
+                <input formControlName="telefoneFixo2" [mask]="maskTelefoneFixo2" matInput>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Telefone Fixo 3</mat-label>
+                <input formControlName="telefoneFixo3" [mask]="maskTelefoneFixo3" matInput>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Telefone Fixo 4</mat-label>
+                <input formControlName="telefoneFixo4" [mask]="maskTelefoneFixo4" matInput>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Telefone Fixo 5</mat-label>
+                <input formControlName="telefoneFixo5" [mask]="maskTelefoneFixo5" matInput>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Celular</mat-label>
+                <input formControlName="celular" [mask]="maskCelular" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>E-mail</mat-label>
+                <input formControlName="email" matInput appLowwercase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Website</mat-label>
+                <input formControlName="site" matInput appLowwercase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>WhatsApp</mat-label>
+                <input formControlName="whatsApp" [mask]="maskWhatsApp" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Instagram</mat-label>
+                <input formControlName="instagram" matInput appLowwercase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Facebook</mat-label>
+                <input formControlName="faceBook" matInput appLowwercase>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- Horário de funcionamento sem aulas -->
+        <div formGroupName="horarioFuncionamento">
+            <title-line title="Horário de funcionamento sem aulas"></title-line>
+            <div class="grid grid--auto-fill">
+                <mat-form-field>
+                    <mat-label>Segunda a Sexta</mat-label>
+                    <input formControlName="semAulaSemanaInicio" [mask]="hourMinute" matInput>
+                    <mat-error>Informação necessária</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Até</mat-label>
+                    <input formControlName="semAulaSemanaTermino" [mask]="hourMinute" matInput>
+                    <mat-error>Informação necessária</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="grid grid--auto-fill">
+                <mat-form-field>
+                    <mat-label>Sábado</mat-label>
+                    <input formControlName="semAulaSabadoInicio" [mask]="hourMinute" matInput>
+                    <mat-error>Informação necessária</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Até</mat-label>
+                    <input formControlName="semAulaSabadoTermino" [mask]="hourMinute" matInput>
+                    <mat-error>Informação necessária</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Horário de funcionamento com aulas -->
+            <title-line title="Horário de funcionamento com aulas"></title-line>
+            <div class="grid grid--auto-fill">
+                <mat-form-field>
+                    <mat-label>Segunda a Sexta</mat-label>
+                    <input formControlName="comAulaSemanaInicio" [mask]="hourMinute" matInput>
+                    <mat-error>Informação necessária</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Até</mat-label>
+                    <input formControlName="comAulaSemanaTermino" [mask]="hourMinute" matInput>
+                    <mat-error>Informação necessária</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="grid grid--auto-fill">
+                <mat-form-field>
+                    <mat-label>Sábado</mat-label>
+                    <input formControlName="comAulaSabadoInicio" [mask]="hourMinute" matInput>
+                    <mat-error>Informação necessária</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Até</mat-label>
+                    <input formControlName="comAulaSabadoTermino" [mask]="hourMinute" matInput>
+                    <mat-error>Informação necessária</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Vigência AVCB -->
+        <title-line title="Vigência AVCB"></title-line>
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Início</mat-label>
+                <input formControlName="vigenciaInicioAVCB" matInput [matDatepicker]="avcbInicio">
+                <mat-datepicker-toggle matSuffix [for]="avcbInicio"></mat-datepicker-toggle>
+                <mat-datepicker #avcbInicio></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fim</mat-label>
+                <input formControlName="vigenciaTerminoAVCB" matInput [matDatepicker]="avcbFim">
+                <mat-error>Data final inválida</mat-error>
+                <mat-datepicker-toggle matSuffix [for]="avcbFim"></mat-datepicker-toggle>
+                <mat-datepicker #avcbFim></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <!-- Vigência Alvará -->
+        <title-line title="Vigência Alvará"></title-line>
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Início</mat-label>
+                <input formControlName="vigenciaInicioAlvara" matInput [matDatepicker]="alvaraInicio">
+                <mat-datepicker-toggle matSuffix [for]="alvaraInicio"></mat-datepicker-toggle>
+                <mat-datepicker #alvaraInicio></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fim</mat-label>
+                <input formControlName="vigenciaTerminoAlvara" matInput [matDatepicker]="alvaraFim">
+                <mat-error>Data final inválida</mat-error>
+                <mat-datepicker-toggle matSuffix [for]="alvaraFim"></mat-datepicker-toggle>
+                <mat-datepicker #alvaraFim></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </form>
+</div>

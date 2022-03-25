@@ -1,0 +1,111 @@
+@import '../../../../../scss/theme.scss';
+@import "../../../../../scss/functions.scss";
+@import "../../../../../scss/variable.scss";
+
+mat-panel-title {
+    color: mat-color($theme-primary) !important;
+}
+
+.mat-dialog-content {
+    max-height: none !important;
+}
+
+form {
+    padding-bottom: 0;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 1.5rem;
+}
+
+mat-form-field {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    min-width: 400px;
+}
+
+
+.sm-column {
+    max-width: 15% !important;
+}
+
+.btn-options {
+    display: flex;
+    justify-content: flex-end;
+}
+
+mat-divider {
+    align-self: center;
+    margin: 0 2rem;
+}
+
+table {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.btn-add {
+    max-width: 300px;
+}
+
+::ng-deep.mat-dialog-container {
+    max-height: 90vh !important;
+    overflow-y: auto;
+}
+
+.filter-info {
+    display: flex;
+    align-items: center;
+
+    mat-label {
+        margin-right: 0.5rem;
+    }
+
+    @include mobile {
+        padding: 0.5rem 0;
+    }
+}
+
+.selected {
+    background-color: #dddddd;
+}
+
+@include mobile {
+    form, .mat-form-field {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form-registro {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    .mat-card {
+        padding-left: 5 !important;
+        padding-right: 5 !important;
+    }
+
+    .grid--auto-fill {
+        grid-template-columns: none;
+    }
+
+    .grid--auto-fill-lg {
+        grid-template-columns: none;
+    }
+
+    .mat-form-field {
+        min-width: 0 !important;
+    }
+    
+    .grid {
+        padding: 0;
+    }
+}

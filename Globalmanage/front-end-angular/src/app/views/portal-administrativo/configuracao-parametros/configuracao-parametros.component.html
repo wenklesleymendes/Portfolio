@@ -1,0 +1,41 @@
+<div class="body">
+    <div class="flex">
+        <header>Configuração do Sistema</header>
+        <div class="flex-fill"></div>
+    </div>
+
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div class="content" *ngIf="!isLoadingResults">
+                <form [formGroup]="form">
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Operadora de cartão</mat-label>
+                            <mat-select formControlName="cartao">
+                                <mat-option *ngFor="let cartao of cartoes" [value]="cartao.value">
+                                    {{ cartao.label }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isLoadingResults" class="flex">
+                <div class="flex-fill"></div>
+                <div>
+                    <button mat-raised-button color="primary" (click)="salvarData()" cdkFocusInitial>Salvar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>

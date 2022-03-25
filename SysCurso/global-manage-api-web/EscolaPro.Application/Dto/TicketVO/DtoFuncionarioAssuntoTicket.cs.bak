@@ -1,0 +1,15 @@
+﻿using EscolaPro.Service.Dto.FuncionarioVO;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace EscolaPro.Service.Dto.TicketVO
+{
+    public class DtoFuncionarioAssuntoTicket
+    {
+        public int Id { get; set; }
+        public DtoFuncionario Funcionario { get; set; }
+        public int FuncionarioId { get; set; }
+        public int AssuntoTicketId { get; set; }
+    }
+}

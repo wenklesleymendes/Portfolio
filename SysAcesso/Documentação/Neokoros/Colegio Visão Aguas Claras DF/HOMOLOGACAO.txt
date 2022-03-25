@@ -1,0 +1,82 @@
+=================
+   HOMOLOGAÇÃO
+=================
+
+1 - Realize a cópia dos arquivos.
+
+2 - Execute (como Administrador) o arquivo "ValidacaoExterna.UI.exe"
+
+a) Clique no botão "Atualizar Variável de Ambiente"
+b) Altere o caminho, para apontar para seu banco de dados local
+
+EM_INTEGRACAO_CATRACA
+900000529|localhost|D:\work\BD\VISAOBRASILIA.FDB
+
+Formação do Código:
+	Botão Consultar, não realiza nenhuma validação é usado apenas para verificar se a Matrícula ou Código estão em nossa base.
+	Botão Validar, valida o acesso, é o mesmo quando a pessoa solicita acesso (se identifica) (passa o cartão, realiza a biometria, aproxima RFID etc.)
+		Os identificadores de Tipo de Pessoa, são:
+			1 - Aluno
+			2 - Professor
+			3 - Colaborador (Outros profissionais)
+			5 - Responsável
+			6 - Autorizado a Buscar Aluno
+		Os identificadores de Tipo de Acesso, são:
+			#P identificação pelo teclado
+			#C identificação foi com cartão
+			#S é porque a identificação foi feita pelo número de série do cartão
+			#T é porque a identificação foi feita pelo TAG (Longa distância).
+		Utilize os identificadores da seguinte forma:
+			O Aluno 583 está passando o cartão, então no campo código informe:
+				1   - Identificador de Aluno
+				583 - Código do Aluno
+				#C  - Acesso por cartão
+				Sendo: 1583#C
+			O mesmo aluno acessando por RFID
+				x   		- Identificador de Aluno (não utilizado)
+				235252549 	- Número do RFID
+				#T  		- Acesso por TAG - RFID (Lembre-se o campo "RFID", deverá ser informado no cadastro do aluno!!!)
+				Sendo 235252549#T
+	Os botões "Registrar Entrada" e "Registrar Saída" realizam o registro de acesso no banco de dados (O mesmo que girar a catraca)
+	
+	Nota:
+		Os botões "Registrar Entrada" e "Registrar Saída" realizam o registro de acesso sem realizar a validação é apenas para verificar
+		se está gravando no BD e exibindo nos relatórios do EM.
+	
+4 - Realizando os testes
+	No campo "Código", informe a Matrícula ou Código conforme descrito em 'Formação do Código'
+	Realize a validação para o acesso e verifique se está liberando ou restringindo o acesso conforme esperado.
+	
+
+5 - Regras
+	Para o Colégio Visão de Águas Claras, foi criado um processo onde:
+		O Responsável ou o Autorizado, é registrado no momento da validação.
+		O registro de validação terá no campo "REGACGIRO" a letra "A", identificando que está Autorizando a saída do Aluno.
+		Caso o Responsável ou Autorizado girar a catraca, ele terá um novo registro de acesso com a letra "E" - entrada e ou "S" saída.
+		Atualmente Todos alunos tem permissão de acesso.
+		Somente os alunos com o Atributo Adicional "ALUNO PODE SAIR SOZINHO?" igual a "NÃO", precisarão de Autorização para realizar a Saída.
+		O Aluno com o Atributo Adicional "ALUNO PODE SAIR SOZINHO?" igual a "NÃO", não será liberado a Sair por nenhuma forma de acesso isto é Cartão, RFID, Teclado, Digital, etc.
+		Após autorizado o(s) aluno(s) terão o prazo de 5 minutos para realizar a Saída.
+		O aluno poderá Entrar sozinho, porém só realizará a Saída se for autorizado.
+		Os alunos somente terão acesso pelos seus Responsáveis e ou Autorizados vinculados.
+	
+	
+Obs.
+	No sistema Escolar Manager -> Acessos e Frequências -> Configurações de Acesso -> Geral
+	No item "Desprezar o registro de acesso caso efetuado em até XXX minutos após o último"
+	Aconselho deixar em branco para evitar falso positivo em testes e garantir que o aluno não saia após entrar.
+	
+
+--------------------
+Atributos Adicionais
+--------------------
+Nome: ALUNO PODE SAIR SOZINHO?
+Tipo atributo: Lista
+Conceito: Aluno
+Adicionar a Lista:
+	SIM
+	NÃO
+	
+
+
+	

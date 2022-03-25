@@ -1,0 +1,94 @@
+@import "../../../../scss/functions.scss";
+
+.mat-card {
+    @include mobile {
+        padding: 1rem 0.5rem !important;
+    }
+}
+
+.mat-header-cell {
+    min-width: 150px;
+}
+
+.mat-radio-button {
+    margin-left: 1rem;
+}
+
+table {
+    width: 100%;
+}
+
+.table {
+    overflow-x: auto;
+}
+
+.result {
+    margin-top: 3rem;
+}
+
+tr.mat-footer-row {
+    font-weight: bold;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 1.5rem;
+}
+
+.grid {
+    padding: 0;
+}
+
+.grid {
+    padding: 0;
+}
+
+form {
+    padding-bottom: 0;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 1.5rem;
+}
+
+mat-form-field {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.bg-column {
+    min-width: 12.5rem !important;
+}
+
+.selected {
+    background-color: #dddddd;
+}
+
+@include mobile {
+    form {
+        flex-direction: column !important;
+    }
+
+    form, .mat-form-field, .checkbox {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .mat-card {
+        padding-left: 5 !important;
+        padding-right: 5 !important;
+    }
+
+    .grid--auto-fill {
+        grid-template-columns: none;
+    }
+
+    .mat-form-field {
+        min-width: 0 !important;
+    }
+}

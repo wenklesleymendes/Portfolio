@@ -1,0 +1,273 @@
+<div class="body">
+  <header>Tickets</header>
+
+  <mat-accordion class="mat-elevation-z8">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title color="primary">Busca Avançada</mat-panel-title>
+      </mat-expansion-panel-header>
+      <form [formGroup]="form">
+        <div class="grid grid--auto-fill">
+          <mat-form-field *ngIf="unidadesDefault; else loading">
+            <mat-label>Unidade</mat-label>
+            <input
+              matInput
+              [matAutocomplete]="auto"
+              formControlName="unidadeSelect"
+            />
+            <mat-icon matSuffix>arrow_drop_down</mat-icon>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option [value]="null"> - </mat-option>
+              <mat-option
+                *ngFor="let unidade of filterUnidades | async"
+                [value]="unidade.nome"
+              >
+                <span>{{ unidade.nome }}</span>
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Status Ticket</mat-label>
+            <mat-select formControlName="statusTickets">
+              <mat-option [value]="0"> Todos </mat-option>
+              <mat-option [value]="1"> Aberto </mat-option>
+              <mat-option [value]="2"> Devolvido </mat-option>
+              <mat-option [value]="3"> Em Atendimento </mat-option>
+              <mat-option [value]="4"> Finalizado </mat-option>
+              <mat-option [value]="5"> Atrasados </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Nome do aluno</mat-label>
+            <input matInput formControlName="nomeAluno" appTitlecase />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Nº Matrícula</mat-label>
+            <input matInput formControlName="numeroMatricula" />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Início do período</mat-label>
+            <input
+              matInput
+              formControlName="periodoAberturaInicio"
+              [matDatepicker]="dataInicio"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dataInicio"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dataInicio></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Fim do período</mat-label>
+            <input
+              matInput
+              formControlName="periodoAberturaFim"
+              [matDatepicker]="dataFim"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dataFim"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dataFim></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Protocolo</mat-label>
+            <input formControlName="numeroProtocolo" matInput />
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Usuário</mat-label>
+            <input formControlName="nomeResponsavel" matInput appTitlecase />
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="assuntosTicket; else loading">
+            <mat-label>Assunto</mat-label>
+            <mat-select formControlName="assuntoTicketId">
+              <mat-option [value]="null"> - </mat-option>
+              <mat-option *ngFor="let item of assuntosTicket" [value]="item.id">
+                {{ item.descricao }}
+              </mat-option>
+            </mat-select>
+            <mat-error>Informação necessária</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-options">
+          <div>
+            <button (click)="getAll()" type="submit" mat-button color="primary">
+              Pesquisar
+              <mat-icon>search</mat-icon>
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-card class="mat-elevation-z8 mt-3">
+    <mat-card-title>
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="getAll()"
+        matTooltip="Atualizar"
+      >
+        <mat-icon>autorenew</mat-icon>
+      </button>
+      <div class="flex-fill"></div>
+      <button mat-button (click)="goTelaIndividual()" color="primary">
+        Adicionar &nbsp;
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-card-title>
+    <mat-card-content>
+      <div *ngIf="!error; else errorTemplate">
+        <div class="loading-shade" *ngIf="isLoadingResults">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <div class="table">
+          <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="protocolo">
+              <th mat-header-cell *matHeaderCellDef>Protocolo</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element?.numeroProtocolo ? element.numeroProtocolo : "-" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="assunto">
+              <th mat-header-cell *matHeaderCellDef>Assunto</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element?.assunto ? element.assunto : "-" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dataAbertura">
+              <th mat-header-cell *matHeaderCellDef>Data da Abertura</th>
+              <td mat-cell *matCellDef="let element">
+                {{element?.dataAbertura ? (element.dataAbertura | date: "dd/MM/yyyy") : "-" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dataAtendimento">
+              <th mat-header-cell *matHeaderCellDef>Data do Atendimento</th>
+              <td mat-cell *matCellDef="let element">
+                {{element?.dataAtendimento ? (element.dataAtendimento | date: "dd/MM/yyyy") : "-"}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sla">
+              <th mat-header-cell *matHeaderCellDef>SLA</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element?.sla ? element.sla : "-" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>Status</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-chip-list>
+                  <mat-chip [ngClass]="ajustarStatus(element.status).style">
+                    {{ ajustarStatus(element.status).label }}
+                  </mat-chip>
+                </mat-chip-list>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="responsavel">
+              <th mat-header-cell *matHeaderCellDef>Aberto Por</th>
+              <td mat-cell *matCellDef="let element">
+                {{
+                  element?.usuarioResponsavel ? element.usuarioResponsavel : "-"
+                }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="atendente">
+              <th mat-header-cell *matHeaderCellDef>Destinado Para</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element?.atendente ? element.atendente : "-" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="unidade">
+              <th mat-header-cell *matHeaderCellDef>Unidade</th>
+              <td mat-cell *matCellDef="let element">
+                {{
+                  element?.aluno?.unidadeAluno
+                    ? element.aluno.unidadeAluno
+                    : "-"
+                }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="rm">
+              <th mat-header-cell *matHeaderCellDef>RM</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element?.aluno?.matricula ? element.aluno.matricula : "-" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="aluno">
+              <th mat-header-cell *matHeaderCellDef>Aluno</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element?.aluno?.nome ? element.aluno.nome : "-" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="options">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <div class="btn-options">
+                  <button
+                    (click)="openDetalhe(element.ticketId, element.assunto)"
+                    color="primary"
+                    mat-icon-button
+                    matTooltip="Ticket"
+                  >
+                    <mat-icon>search</mat-icon>
+                  </button>
+                  <!-- <button (click)="excluir(element.ticketId)" color="warn" mat-icon-button matTooltip="Excluir" >
+                                        <mat-icon>delete</mat-icon>
+                                    </button> -->
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumns"
+              (click)="selection.toggle(row)"
+              [ngClass]="{ selected: selection.isSelected(row) }"
+            ></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="w-100" [hidden]="error">
+        <mat-paginator
+          [pageSizeOptions]="[50, 150, 100]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+  <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #loading>
+  <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>

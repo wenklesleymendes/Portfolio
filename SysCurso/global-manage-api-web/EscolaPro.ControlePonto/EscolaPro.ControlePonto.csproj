@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EscolaPro.Core\EscolaPro.Core.csproj" />
+    <ProjectReference Include="..\EscolaPro.Repository\EscolaPro.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

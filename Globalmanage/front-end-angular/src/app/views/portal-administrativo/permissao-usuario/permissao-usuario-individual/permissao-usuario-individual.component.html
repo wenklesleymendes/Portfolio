@@ -1,0 +1,162 @@
+<div class="body">
+    <div class="flex">
+        <header>{{ (id === 0) ? 'Adicionar' : 'Alterar' }} perfil</header>
+        <div class="flex-fill"></div>
+        <div>
+            <button mat-button color="primary" (click)="voltar()">Voltar</button>
+        </div>
+    </div>
+
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div class="content" *ngIf="!isLoadingResults">
+                <form [formGroup]="form">
+                    <title-line title="Dados do Perfil"></title-line>
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Nome do perfil</mat-label>
+                            <mat-select formControlName="perfilSistemaEnum">
+                                <mat-option *ngFor="let item of perfis" [value]="item.value"> {{ item.label }} </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <div class="flex align-center">
+                            <mat-slide-toggle formControlName="isActive" color="primary">Ativado / Desativado</mat-slide-toggle>
+                        </div>
+
+                        <div class="flex align-center">
+                            <mat-slide-toggle formControlName="verTodasUnidades" color="primary">Visualizar todas unidades</mat-slide-toggle>
+                        </div>
+                    </div>
+
+                    <title-line title="Permissões de páginas"></title-line>
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Aluno</mat-label>
+                            <mat-select formControlName="aluno" multiple>
+                                <mat-option value="consultarAluno"> Consultar alunos </mat-option>
+                                <mat-option value="isentarMultaCancelamento"> Isentar Cancelamento</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Comunicação</mat-label >
+                            <mat-select formControlName="comunicacao" multiple>
+                                <mat-option value="comunicacao"> Comunicação </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Relatórios</mat-label>
+                            <mat-select formControlName="relatorio" multiple>
+                                <mat-option value="relatorios"> Relatórios </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Portal do Administrador</mat-label>
+                            <mat-select formControlName="portalAdm" multiple>
+                                <mat-option value="criacaoUsuario"> Cadastro usuário </mat-option>
+                                <mat-option value="criacaoPerfil"> Permissões de usuários </mat-option>
+                                <mat-option value="configuradorParametros"> Configurador de parâmetros </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Ticket</mat-label>
+                            <mat-select formControlName="ticket" multiple>
+                                <mat-option value="ticketPainel"> Painel de Ticket </mat-option>
+                                <mat-option value="ticketAdministracao"> Administração de Ticket </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Recursos humanos</mat-label>
+                            <mat-select formControlName="rh" multiple>
+                                <mat-option value="cadastroFuncionario"> Cadastro de funcionário </mat-option>
+                                <mat-option value="controlePonto"> Controle Ponto </mat-option>
+                                <mat-option value="escalaServico"> Escala Serviço </mat-option>
+                                <mat-option value="uploadPonto"> Upload Ponto </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Financeiro</mat-label>
+                            <mat-select formControlName="financeiro" multiple>
+                                <mat-option value="cadastroFornecedorCliente"> Cadastro de fornecedor ou cliente </mat-option>
+                                <mat-option value="contasAPagar"> Contas a pagar </mat-option>
+                                <mat-option value="estoque"> Estoque </mat-option>
+                                <mat-option value="folhaPagamento"> Folha de pagamento </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Provas</mat-label>
+                            <mat-select formControlName="provas" multiple>
+                                <mat-option value="criarAgendaProva"> Criar agenda de provas </mat-option>
+                                <mat-option value="listaPassageiros"> Lista de passageiros </mat-option>
+                                <mat-option value="historicoViagem"> Histórico de viagem </mat-option>
+                                <mat-option value="criarColegioAutorizado"> Criar colégio autorizado </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Gerenciador</mat-label>
+                            <mat-select formControlName="gerenciador" multiple multiple>
+                                <mat-option value="cursoTurma"> Curso e turmas </mat-option>
+                                <mat-option value="unidade"> Unidades </mat-option>
+                                <mat-option value="planoPagamento"> Planos de pagamento </mat-option>
+                                <mat-option value="promocoesBolsaConvenio"> Promoções, bolsas e convênio </mat-option>
+                                <mat-option value="solicitacao"> Solicitação </mat-option>
+                                <mat-option value="conteudoDigital"> Conteúdo Digital </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Metas e comissões</mat-label>
+                            <mat-select formControlName="metasComissoes" multiple>
+                                <mat-option value="criarMeta"> Criação de metas </mat-option>
+                                <mat-option value="criarComissoes"> Criação de comissões </mat-option>
+                                <mat-option value="metaPainel"> Painel de metas e comissões </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Aulas on-line</mat-label>
+                            <mat-select formControlName="aulaOnline" multiple>
+                                <mat-option value="criarAulaOnline"> Criação de aula on-line </mat-option>
+                                <mat-option value="minhasAulas"> Minhas aulas </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Menu Atendimento</mat-label>
+                            <mat-select formControlName="menuAtendimento" multiple>
+                                <mat-option value="acessoMenuAtendimento"> Acesso ao Menu Atendimento </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isLoadingResults" class="flex">
+                <div>
+                    <button mat-button color="primary" (click)="voltar()">Voltar</button>
+                </div>
+                <div class="flex-fill"></div>
+                <div>
+                    <button mat-raised-button color="primary" (click)="salvarData()" cdkFocusInitial>Salvar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>

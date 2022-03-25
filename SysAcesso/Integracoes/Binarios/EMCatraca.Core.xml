@@ -1,0 +1,419 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EMCatraca.Core</name>
+    </assembly>
+    <members>
+        <member name="T:EMCatraca.Core.Dominio.RegrasDeAcesso">
+            <summary>
+            Regras do acesso para customizar no projeto.
+            </summary>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.BloquearAcessoAlunoSemMatricula">
+            <remarks>
+            <para>Aluno sem matrícula bloqueia o acesso.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.BloquearAcessoProfessorInativo">
+            <remarks>
+            <para>Professor inativo bloqueia o acesso.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.BloquearAcessoColaboradorInativo">
+            <remarks>
+            <para>Colaborador inativo bloqueia o acesso.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.BloquearAcessoResponsavelSemMatricula">
+            <remarks>
+            <para>Responsável de alunos sem matrícula bloqueia o acesso.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.BloquearAcessoAutorizadoSemMatricula">
+            <remarks>
+            <para>Autorizado a busca aluno sem matrícula bloqueia o acesso.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.BloquearAcessoAlunoComOcorrencias">
+            <remarks>
+            <para>luno com ocorrências bloqueia o acesso.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.BloquearAcessoProfessorComOcorrencias">
+            <remarks>
+            <para>Professor com ocorrências bloqueia o acesso</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.BloquearAcessoColaboradorComOcorrencias">
+            <remarks>
+            <para>Colaborador com ocorrências bloqueia o acesso.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.BloquearAcessoAlunoInadimplente">
+            <remarks>
+            <para>Aluno inadimplentes bloqueia o acesso.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.BloquearAcessoAlunoComPendenciaDocumentos">
+            <remarks>
+            <para>Aluno com pendencias de documentos bloqueia o acesso.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.BloquearAcessoAlunoComPendenciaMaterial">
+            <remarks>
+            <para>Aluno com pendencias de material bloqueia o acesso.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.AtributoPodeSairSozinho">
+            <remarks>
+            <para>Aluno pode sair sozinho bloqueia o acesso .</para>
+            <para>Codigo =<see langword="Codigo Atributo"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.AtributoBloqueado">
+            <remarks>
+            <para>Atributo  de bloqueio.</para>
+            <para>Codigo =<see langword="Codigo do atributo"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.MensagemAlunoComOcorrencias">
+            <remarks>
+            <para>Aluno mensagem para o bloqueio de acesso.</para>
+            <para>Mensagem=<see langword="Texto"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.MensagemProfessorComOcorrencias">
+            <remarks>
+            <para>Professor mensagem para o bloqueio de acesso.</para>
+            <para>Mensagem=<see langword="Texto"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.MensagemColaboradorComOcorrencias">
+            <remarks>
+            <para>Colaborador messangens do bloqueio de acesso com ocorrências.</para>
+            <para>Mensagem=<see langword="Texto"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.MensagemAlunoComInadimplenciaDeDuplicatas">
+            <remarks>
+            <para>Aluno messangens do bloqueio de acesso com inadiplencias.</para>
+            <para>Mensagem=<see langword="Texto"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.MensagemAlunoComInadimplenciaDeCheques">
+            <remarks>
+            <para>Aluno messangens do bloqueio de acesso com inadiplencias forma de pagamento cheques.</para>
+            <para>Mensagem=<see langword="Texto"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.MensagemAlunoComPendenciaDeDocumentos">
+            <remarks>
+            <para>Aluno messangens do bloqueio de acesso com pendencias de documentos.</para>
+            <para>Mensagem=<see langword="Texto"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.MensagemAlunoComPendenciaDeMateriais">
+            <remarks>
+            <para>Aluno messangens do bloqueio de acesso com pendencias de materiais.</para>
+            <para>Mensagem=<see langword="Texto"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.TempoMinimoParaNovoAcessoSegundos">
+            <remarks>
+            <para>Aluno tempo minimo para novo acesso bloqueio de acesso.</para>
+            <para>Segundos=<see langword="10"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.TempoParaAcessoLiberadoSegundos">
+            <remarks>
+            <para>Aluno tempo que será liberado acesso fora do periodo configurado.</para>
+            <para>Segundos=<see langword="30"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.ProfessoresPodemLiberarAcessoAluno">
+            <remarks>
+            <para>Professor podera libera o aluno.</para>
+            <para>Valor padrão =<see langword="NAO"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.ColaboradoresPodeLiberarAcessoAluno">
+            <remarks>
+            <para>Calaborador pode liberar acesso do aluno.</para>
+            <para>Valor padrão =<see langword="NAO"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.FormularioLiberaAcessoAluno">
+            <remarks>
+            <para>Existe formulário de pessoa que podem liberar Aluno.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.ResponsaveisPodemLiberarAcessoAluno">
+            <remarks>
+            <para>Responsaveis podem liberar Aluno.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.AutorizadosPodemLiberamAcessoAluno">
+            <remarks>
+            <para>Autorizado a busca podem liberar Aluno.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.AlunosPodemDigitar">
+            <remarks>
+            <para>Aluno esta liberado a digitar no teclado da catraca.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.ProfessoresPodemDigitar">
+            <remarks>
+            <para>Professor esta liberado a digitar no teclado da catraca.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.ColaboradoresPodemDigitar">
+            <remarks>
+            <para>Colaborador esta liberado a digitar no teclado da catraca.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.ResponsaveisPodemDigitar">
+            <remarks>
+            <para>Responsavel esta liberado a digitar no teclado da catraca.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.AutorizadosPodemDigitar">
+            <remarks>
+            <para>Autorizado busca esta liberado a digitar no teclado da catraca.</para>
+            <para>Valor padrão =<see langword="Nao"/> </para>
+            </remarks>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.RegrasDeAcesso.IntervalosParaAcessoUnico">
+            <remarks>
+            <para>Intervalos para acesso unico por giro e turno.</para>
+            </remarks>
+        </member>
+        <member name="T:EMCatraca.Core.Dominio.Dispositivo">
+            <summary>
+            Dispositivo = Catraca
+            </summary>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.Dispositivo.Codigo">
+            <value>Código=<see langword="1"/> E o número devidamente cadastrado no Firmware da catraca.</value>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.Dispositivo.IpCatraca">
+            <value>IP=<see langword="192.168.12.001"/> Ip da rede do cliente devidamente cadastrado no Firmware da catraca.</value>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.Dispositivo.PortaCatraca">
+            <value>Porta=<see langword="3570"/> Porta padrão projeto TopData e no demais são livres sendo obrigatório informa uma porta.</value>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.Dispositivo.Descricao">
+            <value>Descrição=<see langword="Catraca 1"/> Descrição do nome e livre sem referência com Firmware.</value>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.Dispositivo.Login">
+            <value>Login=<see langword="Admin"/> Login padrão referencia exclusiva para o projeto Control iD cadastro feito no Firmware.</value>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.Dispositivo.Senha">
+            <value>Login=<see langword="Admin"/> Senha padrão referencia exclusiva para o projeto Control iD cadastro feito no Firmware.</value>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.Dispositivo.EhGiroInvertido">
+            <value>EhGiroInvertido=<see langword="false"/> Padrão e falso defini o giro do braço da catraca cadastro feito no Firmware.</value>
+        </member>
+        <member name="P:EMCatraca.Core.Dominio.Dispositivo.EhControliD">
+            <value>EhControliD=<see langword="false"/> padrão <see langword="false"/></value>
+        </member>
+        <member name="T:EMCatraca.Core.Dominio.AcessoEsperado">
+            <summary>
+            Enumerador Acesso Esperado.
+            <list type="bullet">
+            
+            <item>
+            <term>EsperadoEntrada</term>
+            <description>Acionar somente Entrada</description>
+            </item>
+            
+            <item>
+            <term>EsperadoSaida</term>
+            <description>Acionar somente Saida</description>
+            </item>
+            
+            <item>
+            <term>EsperadoNenhum</term>
+            <description>Acionar nada (mas led verde etc.)</description>
+            </item>
+            
+            <item>
+            <term>EsperadoAguardarEntrada</term>
+            <description>Acionar somente Entrada e aguardar giro</description>
+            </item>
+            
+            <item>
+            <term>EsperadoAguardarSaida</term>
+            <description>Acionar somente Saída e aguardar giro</description>
+            </item>
+            
+            <item>
+            <term>EsperadoAguardarAmbas</term>
+            <description>Acionar Entrada e Saída e aguardar giro</description>
+            </item>
+            
+            <item>
+            <term>EsperadoProibido</term>
+            <description>Acionar Entrada e Saída e aguardar giro</description>
+            </item>
+            
+            <item>
+            <term>EsperadoAguardarAmbas</term>
+            <description>Acionar Entrada e Saída e aguardar giro</description>
+            </item>
+            
+            <item>
+            <term>Esperado Qualquer</term>
+            <description>Acionar Entrada e Saída (mas não agu.giro)</description>
+            </item>
+            
+            </list>
+            </summary>
+        </member>
+        <member name="T:EMCatraca.Core.Dominio.SentidoGiro">
+            <summary>
+            Enumerador Sentido do Giro.
+            <list type="bullet">
+            
+            <item>
+            <term>Indefinido</term>
+            <description>Giro Indefinido</description>
+            </item>
+            
+            <item>
+            <term>Entrada</term>
+            <description>Giro Entrada</description>
+            </item>
+            
+            <item>
+            <term>Saida</term>
+            <description>Giro Saída</description>
+            </item>
+            
+            </list>
+            </summary>
+        </member>
+        <member name="T:EMCatraca.Core.Dominio.TipoAcesso">
+            <summary>
+            Enumerador Tipo de Acesso.
+            <list type="bullet">
+            
+            <item>
+            <term>Indefinido</term>
+            <description>Acesso Indefinido</description>
+            </item>
+            
+            <item>
+            <term>Entrada</term>
+            <description>Acesso pelo Teclado</description>
+            </item>
+            
+            <item>
+            <term>Cartao</term>
+            <description>Acesso pelo Cartão</description>
+            </item>
+            
+            <item>
+            <term>Biometria</term>
+            <description>Acesso pelo Biometria da pessoa</description>
+            </item>
+            
+            <item>
+            <term>RFID</term>
+            <description>Acesso pelo Cartão RFID</description>
+            </item>
+            
+            <item>
+            <term>PID</term>
+            <description>Acesso pelo dispositivo PID</description>
+            </item>
+            
+            </list>
+            </summary>
+        </member>
+        <member name="T:EMCatraca.Core.Dominio.StatusLiberacaoCatraca">
+            <summary>
+            Enumerador Status Liberacao Catraca.
+            <list type="bullet">
+            
+            <item>
+            <term>Negado</term>
+            <description>Status Acesso Negado</description>
+            </item>
+            
+            <item>
+            <term>Liberado</term>
+            <description>Status Acesso Liberado</description>
+            </item>
+            
+            <item>
+            <term>LiberadoComRestricoes</term>
+            <description>Status Liberado com Restricões</description>
+            </item>
+            
+            <item>
+            <term>MudancaEstado</term>
+            <description>Status Mundado o Estado da Catraca</description>
+            </item>
+            
+            </list>
+            </summary>
+        </member>
+        <member name="T:EMCatraca.Core.Dominio.TipoPessoa">
+            <summary>
+            Enumerador Tipo Pessoa.
+            <list type="bullet">
+            
+            <item>
+            <term>Aluno</term>
+            <description>Pessoa Aluno</description>
+            </item>
+            
+            <item>
+            <term>Professor</term>
+            <description>Pessoa Profesor</description>
+            </item>
+            
+            <item>
+            <term>Colaborador</term>
+            <description>Pessoa Colaborador</description>
+            </item>
+            
+            <item>
+            <term>Responsavel</term>
+            <description>Pessoa Responsavel</description>
+            </item>
+            
+            <item>
+            <term>AutorizadoBuscarAluno</term>
+            <description>Pessoa Autorizado Buscar Aluno</description>
+            </item>
+            
+            <item>
+            <term>Nao Encontrada</term>
+            <description>Pessoa Nao Encontrada</description>
+            </item>
+            
+            </list>
+            </summary>
+        </member>
+    </members>
+</doc>

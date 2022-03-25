@@ -1,0 +1,297 @@
+
+<mat-card>
+    <div mat-dialog-title class="flex flex-row">
+        Filtrar Histórico de Provas
+        <div class="flex-fill"></div>
+        <div class="btn-options">
+
+        </div>
+    </div>
+
+    <div mat-dialog-content>
+        <div class="loading-shade" *ngIf="isLoadingResults">
+            <mat-spinner></mat-spinner>
+        </div>
+        <div *ngIf="!error;else errorTemplate">
+            <form [formGroup]="form">
+                <div class="">
+                        
+                    <!-- <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12"> -->
+                                
+                                <mat-form-field class="inputsAngular"> <!--*ngIf="unidade; else loading" -->
+                                    <mat-label>Unidade</mat-label>
+                                    <mat-select formControlName="unidadeSelect" multiple [(ngModel)]="unidadeModel" 
+                                                (selectionChange)="getNumeroOnibus()" id="unidadeID">
+                                    <mat-option *ngFor="let unidade of unidades" [value]="unidade.id">
+                                        {{unidade.nome}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+
+                                    <mat-form-field class="inputsAngular"> <!-- *ngIf="unidadesDefault;" -->
+                                        <mat-label>Local da Prova</mat-label>
+                                        <input matInput [matAutocomplete]="auto" formControlName="colegioSelect">
+                                        <mat-icon matSuffix>arrow_drop_down</mat-icon>
+                                        <mat-autocomplete #auto="matAutocomplete">
+                                            <mat-option *ngFor="let unidade of colegiosDefault" [value]="unidade.nomeColegioAutorizado">
+                                                <span>{{unidade.nomeColegioAutorizado}}</span>
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                        <mat-error>Informação necessária</mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="inputsAngular">
+                                        <mat-label>Tipo de Prova</mat-label>
+                                        <mat-select formControlName="tipoProva" [(ngModel)]="tipoProvaModel">
+                                            <mat-option [value]=null>-</mat-option>
+                                            <mat-option [value]="1">Presencial</mat-option>
+                                            <mat-option [value]="2">On-line</mat-option>
+                                        </mat-select>
+                                        <mat-error>Informação necessária</mat-error>
+                                    </mat-form-field>
+
+                            <!-- </div>
+                        </div>
+                    </div> -->
+
+                        <mat-form-field class="inputsAngular">
+                            <mat-label *ngIf="tipoProvaModel == 0">Data De</mat-label>
+                            <mat-label *ngIf="tipoProvaModel == 1">Data da Prova De</mat-label>
+                            <mat-label *ngIf="tipoProvaModel == 2">Data de Inscrição Prova De</mat-label>                        
+                            <input matInput formControlName="dataInicioMatricula" [matDatepicker]="dataInicioMatricula"
+                                                   (dateChange)="getNumeroOnibus()">
+                            <mat-datepicker-toggle matSuffix [for]="dataInicioMatricula"></mat-datepicker-toggle>
+                            <mat-datepicker #dataInicioMatricula></mat-datepicker>
+                        </mat-form-field>
+        
+                        <mat-form-field class="inputsAngular">
+                            <mat-label *ngIf="tipoProvaModel == 0">Data Até</mat-label>
+                            <mat-label *ngIf="tipoProvaModel == 1">Data da Prova Até</mat-label>
+                            <mat-label *ngIf="tipoProvaModel == 2">Data de Inscrição Prova Até</mat-label>                        
+                            <input matInput  formControlName="dataFimMatricula"  [matDatepicker]="dataFimMatricula"
+                                                    (dateChange)="getNumeroOnibus()">
+                            <mat-datepicker-toggle matSuffix [for]="dataFimMatricula"></mat-datepicker-toggle>
+                            <mat-datepicker #dataFimMatricula></mat-datepicker>
+                        </mat-form-field>
+                
+                    <mat-form-field class="inputsAngular">
+                        <mat-label>Status Prova</mat-label>
+                        <mat-select formControlName="statusProva">
+                            <mat-option [value]="null"> - </mat-option>
+                            <mat-option [value]="1"> Não Inscrito </mat-option>
+                            <mat-option [value]="2"> Inscrito para prova </mat-option>
+                            <mat-option [value]="3"> Aprovado </mat-option>
+                            <mat-option [value]="4"> Reprovado </mat-option>
+                            <mat-option [value]="5"> Faltou/Reprovado </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="tipoProvaModel == 1 && unidadeModel.length == 1 && numeroOnibus != null">
+                        <mat-label>Ônibus</mat-label>
+                        <mat-select formControlName="onibus" id="onibusID">
+                            <mat-option *ngFor="let num of numeroOnibus.result" [value]="num.id">
+                                {{num.numeroOnibus}}
+                                <!-- {{num.key}}:{{num.value}} -->
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button mat-button (click)="ListaDeChamadaOnibusExcel()" color="primary">
+        Lista de chamada ônibus Excel &nbsp;
+    </button>
+    <a style="cursor: pointer" (click)="exportexcel('excel-table3', 'ListaDeChamadaOnibusExcel.xlsx')"> 
+        <mat-icon style="vertical-align: middle;"> cloud_download </mat-icon> Excel
+    </a>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" *ngIf="listaDeChamadaOnibusCabecalho != null">
+                <table class="table table-bordered" id="excel-table3">
+                    
+                    <thead>
+                        <tr>
+                            <th colspan="5" style="text-align: left;">Lista de chamada, número do ônibus: {{listaDeChamadaOnibusCabecalho.numeroonibus}}</th>
+                        </tr>
+                        <tr>
+                            <th colspan="5" style="text-align: left;">MONITOR: </th>
+                        </tr>
+                        <tr>
+                            <th colspan="5" style="text-align: left;">LOCAL DE SAÍDA: {{listaDeChamadaOnibusCabecalho.localsaida}}</th>
+                        </tr>
+                        <tr>
+                            <th colspan="5" style="text-align: left;">DESTINO: {{listaDeChamadaOnibusCabecalho.destino}}</th>
+                        </tr>
+                        <tr>
+                            <th colspan="5" style="text-align: left;">DATA PROVA: {{listaDeChamadaOnibusCabecalho.dataprova}}</th>
+                        </tr>
+                        <tr>
+                            <th colspan="5" style="text-align: left;">HORÁRIO DE SAÍDA ÔNIBUS: {{ listaDeChamadaOnibusCabecalho.horariosaidaonibus.substr(0,2)+":"+listaDeChamadaOnibusCabecalho.horariosaidaonibus.substr(2,2) }}</th>
+                        </tr>
+                        <tr>
+                            <th colspan="5" style="text-align: right;">CHAMADA</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col" sortable="nomecompleto">NOME</th>
+                            <th scope="col" sortable="rg">R.G.</th>
+                            <th scope="col" sortable="curso">CURSO</th>
+                            <th scope="col" sortable="ida">IDA</th>
+                            <th scope="col" sortable="volta">VOLTA</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let lista of listaDeChamadaOnibus">
+                            <td>{{ lista.nomecompleto }}</td>
+                            <td>{{ lista.rg }}</td>
+                            <td>{{ lista.curso }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <button mat-button (click)="ListaColegioAutorizadoExcel()" color="primary">
+        Lista Colégio Autorizado &nbsp;
+    </button>
+    <a style="cursor: pointer" (click)="exportexcel('excel-table', 'ListaColegioAutorizadoExcel.xlsx')"> 
+        <mat-icon style="vertical-align: middle;"> cloud_download </mat-icon> Excel
+    </a>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" style="overflow-x: scroll;" *ngIf="historicoProvas != null">
+                <table class="table table-bordered" id="excel-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" sortable="parceiro">PARCEIRO</th>
+                            <th scope="col" sortable="nomecompleto">NOMECOMPLETO</th>
+                            <th scope="col" sortable="datadenascimento">DATADENASCIMENTO</th>
+                            <th scope="col" sortable="sexo">SEXO</th>
+                            <th scope="col" sortable="estadocivil">ESTADOCIVIL</th>
+                            <th scope="col" sortable="naturalidade">NATURALIDADE</th>
+                            <th scope="col" sortable="nacionalidade">NACIONALIDADE</th>
+                            <th scope="col" sortable="nomedamae">NOMEDAMAE</th>
+                            <th scope="col" sortable="nomedopai">NOMEDOPAI</th>
+                            <th scope="col" sortable="email">EMAIL</th>
+                            <th scope="col" sortable="rg">RG</th>
+                            <th scope="col" sortable="orgaoexpedidor">ORGAOEXPEDIDOR</th>
+                            <th scope="col" sortable="ufrg">UFRG</th>
+                            <th scope="col" sortable="cpf">CPF</th>
+                            <th scope="col" sortable="titulodeeleitor">TITULODEELEITOR</th>
+                            <th scope="col" sortable="zonaeleitoral">ZONAELEITORAL</th>
+                            <th scope="col" sortable="secaoeleitoral">SECAOELEITORAL</th>
+                            <th scope="col" sortable="enderecoresidencial">ENDERECORESIDENCIAL</th>
+                            <th scope="col" sortable="numeroresidencial">NUMERORESIDENCIAL</th>
+                            <th scope="col" sortable="complementoresidencial">COMPLEMENTORESIDENCIAL</th>
+                            <th scope="col" sortable="bairrooresidencial">BAIRRORESIDENCIAL</th>
+                            <th scope="col" sortable="cidaderesidencial">CIDADERESIDENCIAL</th>
+                            <th scope="col" sortable="ufresidencial">UFRESIDENCIAL</th>
+                            <th scope="col" sortable="cepresidencial">CEPRESIDENCIAL</th>
+                            <th scope="col" sortable="dddfixoresidencial">DDDFIXORESIDENCIAL</th>
+                            <th scope="col" sortable="telefonefixoresidencial">TELEFONEFIXORESIDENCIAL</th>
+                            <th scope="col" sortable="dddcelularresidencial">DDDCELULARRESIDENCIAL</th>
+                            <th scope="col" sortable="celularresidencial">CELULARRESIDENCIAL</th>
+                            <th scope="col" sortable="curso">CURSO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hp of historicoProvas">
+                            <td>{{ hp.parceiro }}</td>
+                            <td>{{ hp.nomecompleto }}</td>
+                            <td>{{ hp.datadenascimento }}</td>
+                            <td>{{ hp.sexo }}</td>
+                            <td>{{ hp.estadocivil }}</td>
+                            <td>{{ hp.naturalidade }}</td>
+                            <td>{{ hp.nacionalidade }}</td>
+                            <td>{{ hp.nomedamae }}</td>
+                            <td>{{ hp.nomedopai }}</td>
+                            <td>{{ hp.email }}</td>
+                            <td>{{ hp.rg }}</td>
+                            <td>{{ hp.orgaoexpedidor }}</td>
+                            <td>{{ hp.ufrg }}</td>
+                            <td>{{ hp.cpf }}</td>
+                            <td>{{ hp.titulodeeleitor }}</td>
+                            <td>{{ hp.zonaeleitoral }}</td>
+                            <td>{{ hp.secaoeleitoral }}</td>
+                            <td>{{ hp.enderecoresidencial }}</td>
+                            <td>{{ hp.numeroresidencial }}</td>
+                            <td>{{ hp.complementoresidencial }}</td>
+                            <td>{{ hp.bairroresidencial }}</td>
+                            <td>{{ hp.cidaderesidencial }}</td>
+                            <td>{{ hp.ufresidencial }}</td>
+                            <td>{{ hp.cepresidencial }}</td>
+                            <td>{{ hp.dddfixoresidencial }}</td>
+                            <td>{{ hp.telefonefixoresidencial }}</td>
+                            <td>{{ hp.dddcelularresidencial }}</td>
+                            <td>{{ hp.celularresidencial }}</td>
+                            <td>{{ hp.curso }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <button mat-button (click)="ListaGeralDeInscritosParaProvaExcel()" color="primary">
+        Lista Geral de Inscritos para Prova Excel &nbsp;
+    </button>
+    <a style="cursor: pointer" (click)="exportexcel('excel-table2', 'ListaGeralDeInscritosParaProvaExcel.xlsx')"> 
+        <mat-icon style="vertical-align: middle;"> cloud_download </mat-icon> Excel
+    </a>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" *ngIf="listaGeralDeInscritosParaProva != null">
+                <table class="table table-bordered" id="excel-table2">
+                    <thead>
+                        <tr>
+                            <th colspan="9" style="text-align: center;">LISTAGEM GERAL DE PROVA</th>
+                        </tr>
+                        <tr>
+                            <th scope="col" sortable="numeracao"></th>
+                            <th scope="col" sortable="nomecompleto">NOME</th>
+                            <th scope="col" sortable="tg">R.G.</th>
+                            <th scope="col" sortable="curso">CURSO</th>
+                            <th scope="col" sortable="statusprova">STATUS PROVAS</th>
+                            <th scope="col" sortable="unidade">UNIDADE</th>
+                            <th scope="col" sortable="docconferidopor">DOC. CONFERIDO POR</th>
+                            <th scope="col" sortable="dataconferenciadoc">DATA CONFERENCIA DOC.</th>
+                            <th scope="col" sortable="emailporcpf">E-MAIL POR CPF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let lista of listaGeralDeInscritosParaProva; let index = index">
+                            <td>{{ index+1 }}</td>
+                            <td>{{ lista.nomecompleto }}</td>
+                            <td>{{ lista.rg }}</td>
+                            <td>{{ lista.curso }}</td>
+                            <td>{{ lista.statusprova }}</td>
+                            <td>{{ lista.unidade }}</td>
+                            <td>{{ lista.docconferidopor }}</td>
+                            <td>{{ lista.dataconferenciadoc }}</td>
+                            <td>{{ lista.emailporcpf }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</mat-card>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #loading>
+    <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>

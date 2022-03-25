@@ -1,0 +1,244 @@
+<div class="body">
+
+    <div class="main-novo-atendimento">
+
+        <mat-toolbar class="mat-elevation-z2 noselect toolbar-titulo">
+
+            <div class="loading-shade" id="carregamento" style="visibility: hidden;">
+                <mat-spinner></mat-spinner>
+            </div>
+
+            <div class="div-botao-voltar" (click)="goToHome()">
+                <button mat-button class="botao-voltar">
+                    <p class="p-botao-voltar">
+                        <mat-icon style="padding: 5%;"> navigate_before </mat-icon>
+                        Voltar
+                    </p>
+                </button>
+            </div>
+
+            <span class="barra-topo"></span>
+
+            <div class="div-novo-atendimento">
+                <p class="p-novo-atendimento">
+                    Novo Atendimento da unidade {{nomeUnidade}}
+                </p>
+            </div>
+
+        </mat-toolbar>
+
+        <div class="div-body">
+
+            <div class="content" *ngIf="!isLoadingResults">
+
+                <form [formGroup]="form">
+
+                    <div class="grid grid--auto-fill">
+
+                        <mat-form-field style="pointer-events: none;">
+                            <mat-label>Data e Hora do Atendimento</mat-label>
+                            <input formControlName="dataeHoradoAtendimento" matInput type="datetime">
+                        </mat-form-field>
+
+                        <mat-form-field style="pointer-events: none;">
+                            <mat-label>Usuario Logado</mat-label>
+                            <input formControlName="usuarioLogado" matInput>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Canal de Atendimento</mat-label>
+                            <mat-select formControlName="canaldeAtendimento">
+                                <mat-option [value]="1"> Telefone </mat-option>
+                                <mat-option [value]="2"> Balcão </mat-option>
+                                <mat-option [value]="3"> Facebook </mat-option>
+                                <mat-option [value]="4"> WhatsApp </mat-option>
+                                <mat-option [value]="5"> Instagram </mat-option>
+                                <mat-option [value]="6"> E-mail </mat-option>
+                                <mat-option [value]="7"> Formulário Google </mat-option>
+                                <mat-option [value]="8"> Dashboard Site </mat-option>
+                                <mat-option [value]="9"> Formulário Site </mat-option>
+                                <mat-option [value]="10"> Outros </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Nome do Cliente</mat-label>
+                            <input appTitlecase formControlName="nomedoCliente" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Celular</mat-label>
+                            <input formControlName="celular" id="idCelular" [mask]="maskCelular" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Curso de Interesse</mat-label>
+                            <mat-select formControlName="cursodeInteresse">
+                                <mat-option [value]="1"> Fundamental </mat-option>
+                                <mat-option [value]="2"> Médio </mat-option>
+                                <mat-option [value]="3"> Fundamental e Médio </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Telefone Fixo</mat-label>
+                            <input formControlName="telefoneFixo" [mask]="maskTelefoneFixoPrincipal" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Periodo</mat-label>
+                            <mat-select formControlName="periodo">
+                                <mat-option [value]="1"> A Distância </mat-option>
+                                <mat-option [value]="2"> Noite </mat-option>
+                                <mat-option [value]="3"> Manhã </mat-option>
+                                <mat-option [value]="4"> Tarde </mat-option>
+                                <mat-option [value]="5"> Indeciso </mat-option>
+                                <mat-option [value]="6"> Revesado </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Motivo de Interesse no Curso</mat-label>
+                            <mat-select formControlName="motivodeInteressenoCurso">
+                                <mat-option [value]="1"> Emprego </mat-option>
+                                <mat-option [value]="2"> Faculdade/Curso </mat-option>
+                                <mat-option [value]="3"> Concurso </mat-option>
+                                <mat-option [value]="4"> Realização Pessoal </mat-option>
+                                <mat-option [value]="5"> Outros </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Como nos Conheceu</mat-label>
+                            <mat-select formControlName="comonosConheceu">
+                                <mat-option [value]="1"> Indicação </mat-option>
+                                <mat-option [value]="2"> Google </mat-option>
+                                <mat-option [value]="3"> Facebook </mat-option>
+                                <mat-option [value]="4"> Instagram </mat-option>
+                                <mat-option [value]="5"> WhatsApp </mat-option>
+                                <mat-option [value]="6"> Passou em frente </mat-option>
+                                <mat-option [value]="7"> Panfleto </mat-option>
+                                <mat-option [value]="8"> Cartaz </mat-option>
+                                <mat-option [value]="9"> Faixa na rua </mat-option>
+                                <mat-option [value]="10"> Ônibus </mat-option>
+                                <mat-option [value]="11"> Jornal </mat-option>
+                                <mat-option [value]="12"> Televisão </mat-option>
+                                <mat-option [value]="13"> Rádio </mat-option>
+                                <mat-option [value]="14"> Chat On-Line </mat-option>
+                                <mat-option [value]="15"> Lista Telefônica </mat-option>
+                                <mat-option [value]="16"> Tele-Responde </mat-option>
+                                <mat-option [value]="17"> Pesquisa </mat-option>
+                                <mat-option [value]="18"> Outdoor </mat-option>
+                                <mat-option [value]="19"> Muro </mat-option>
+                                <mat-option [value]="20"> Outros </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Agendamento da Matrícula</mat-label>
+                            <mat-select formControlName="agendamentodaMatricula"
+                                (selectionChange)="agendamentoSimNao()">
+                                <mat-option [value]="1"> Secretaria </mat-option>
+                                <mat-option [value]="2"> Delivery </mat-option>
+                                <mat-option [value]="3"> Não </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="agendamentoSim == 1 || agendamentoSim == 2">
+                            <mat-label>Dia do Agendamento</mat-label>
+                            <input formControlName="diadoAgendamento" matInput [matDatepicker]="picker1">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker touchUi #picker1></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="agendamentoSim == 1 || agendamentoSim == 2">
+                            <mat-label>Hora do Agendamento</mat-label>
+                            <input formControlName="horadoAgendamento" type="time" matInput>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="agendamentoSim == 3">
+                            <mat-label>Motivo do Não Agendamento</mat-label>
+                            <mat-select formControlName="motivodoNaoAgendamento">
+                                <mat-option [value]="1"> Cliente Está Indeciso </mat-option>
+                                <mat-option [value]="2"> Desempregado </mat-option>
+                                <mat-option [value]="3"> Sem Condições Financeiras </mat-option>
+                                <mat-option [value]="4"> Para outra pessoa </mat-option>
+                                <mat-option [value]="5"> Confirmar com terceiros </mat-option>
+                                <mat-option [value]="6"> Não Tem Idade Para Matrícula </mat-option>
+                                <mat-option [value]="7"> Outros </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input appTitlecase formControlName="email" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label> Observações </mat-label>
+                            <textarea formControlName="observacoes" matInput></textarea>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="div-botoes">
+
+                        <button mat-raised-button class="b-resetar-campos" type="reset" value="Reset">
+                            <p class="p-resetar-campos">
+                                Resetar Campos
+                            </p>
+                        </button>
+
+                        <button mat-raised-button class="b-concluido" (click)="abrirQuaseLa()">
+                            <p class="p-concluido">
+                                Concluido
+                                <mat-icon style="padding: 5%;">navigate_next</mat-icon>
+                            </p>
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="div-rodape">
+
+            <div class="div-barra-navegacao">
+
+                <button class="b-home">
+                    <mat-icon class="mat-icon-button" (click)="goToHome()"> home </mat-icon>
+                </button>
+
+                <button class="b-novo-atendimento">
+                    <mat-icon class="mat-icon-button" (click)="goToNovoAtendimento()"> add </mat-icon>
+                </button>
+
+                <button class="b-pesquisar">
+                    <mat-icon class="mat-icon-button" (click)="goToPesquisar()"> search </mat-icon>
+                </button>
+
+                <button class="b-outbound">
+                    <mat-icon class="mat-icon-button" (click)="goToOutbound()"> call </mat-icon>
+                </button>
+
+                <button class="b-agendados">
+                    <mat-icon class="mat-icon-button" (click)="goToAgendados()"> calendar_today </mat-icon>
+                </button>
+
+                <button class="b-contatos-prioritarios" (click)="goToContatosPrioritarios()">
+                    <img src="../../../../assets/gif-telefone-branco-sem-fundo.gif" class="loop-gif-rodape" alt="gif">
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

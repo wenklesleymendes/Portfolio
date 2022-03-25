@@ -1,0 +1,93 @@
+<div class="body">
+    <header>Promoções, Bolsas e Convênios</header>
+
+    <mat-card class="mat-elevation-z8">
+        <mat-card-title>
+            <button mat-icon-button color="primary" (click)="getAll()" matTooltip="Atualizar">
+                <mat-icon>autorenew</mat-icon>
+            </button>
+            <div class="flex-fill"></div>
+            <button mat-button (click)="goTelaIndividual()" color="primary">
+                Adicionar &nbsp;
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-card-title>
+        <mat-card-content>
+            <div *ngIf="!error;else errorTemplate">
+                <div class="loading-shade" *ngIf="isLoadingResults">
+                    <mat-spinner></mat-spinner>
+                </div>
+
+                <div class="table">
+                    <table mat-table [dataSource]="dataSource">
+                        <ng-container matColumnDef="nome">
+                            <th mat-header-cell *matHeaderCellDef> Nome da campanha </th>
+                            <td mat-cell *matCellDef="let element"> {{ element.nomeCampanha ? element.nomeCampanha : '-' }} </td>
+                        </ng-container>
+        
+                        <ng-container matColumnDef="descontoAplicado">
+                            <th mat-header-cell *matHeaderCellDef> Desconto aplicado</th>
+                            <td mat-cell *matCellDef="let element">{{ element.parcela ? ((element.parcela | number) + ' x') : '-' }}</td>
+                        </ng-container>
+        
+                        <ng-container matColumnDef="plano">
+                            <th mat-header-cell *matHeaderCellDef> Plano </th>
+                            <td mat-cell *matCellDef="let element"> {{ element.descontoPlanoPagamento ? ((element.descontoPlanoPagamento | number) + ' %') : '-' }} </td>
+                        </ng-container>
+        
+                        <ng-container matColumnDef="matricula">
+                            <th mat-header-cell *matHeaderCellDef> Matrícula </th>
+                            <td mat-cell *matCellDef="let element"> {{ element.descontoTaxaMatricula ? ((element.descontoTaxaMatricula | number) + ' %') : '-' }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="materialDidatico">
+                            <th mat-header-cell *matHeaderCellDef> Material didático </th>
+                            <td mat-cell *matCellDef="let element"> {{ element.descontoTaxaMateriaDidatico ? ((element.descontoTaxaMateriaDidatico | number) + ' %') : '-' }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="validadeDesconto">
+                            <th mat-header-cell *matHeaderCellDef> Validade de desconto </th>
+                            <td mat-cell *matCellDef="let element"> {{ element.terminoCampanha ? (element.terminoCampanha | datePtBr) : '-' }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="curso">
+                            <th mat-header-cell *matHeaderCellDef> Curso </th>
+                            <td mat-cell *matCellDef="let element"> {{ element.descricaoCurso ? element.descricaoCurso : '-' }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="unidades">
+                            <th mat-header-cell *matHeaderCellDef> Unidades</th>
+                            <td mat-cell *matCellDef="let element"> {{ ajustarUnidade(element.campanhaUnidade) }} </td>
+                        </ng-container>
+        
+                        <ng-container matColumnDef="options">
+                            <th mat-header-cell *matHeaderCellDef> </th>
+                            <td mat-cell *matCellDef="let element"> 
+                                <div class="btn-options">
+                                    <button (click)="goTelaIndividual(element.id)" color="primary" mat-icon-button matTooltip="Editar">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button (click)="excluir(element.id)" color="warn" mat-icon-button matTooltip="Excluir" >
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </div>
+                            </td>
+                        </ng-container>
+        
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                            (click)="selection.toggle(row)" [ngClass]="{ 'selected': selection.isSelected(row) }"></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="w-100" [hidden]="error">
+                <mat-paginator [pageSizeOptions]="[50, 150, 100]" showFirstLastButtons></mat-paginator>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>

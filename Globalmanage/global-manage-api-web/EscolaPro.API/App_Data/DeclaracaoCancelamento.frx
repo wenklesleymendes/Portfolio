@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/03/2020 11:01:26" ReportInfo.Modified="11/09/2020 11:57:51" ReportInfo.CreatorVersion="2020.3.0.0">
+  <Dictionary>
+    <Parameter Name="Titulo1" DataType="System.String"/>
+    <Parameter Name="Linha1" DataType="System.String"/>
+    <Parameter Name="Linha2" DataType="System.String"/>
+    <Parameter Name="Linha3" DataType="System.String"/>
+    <Parameter Name="Linha4" DataType="System.String"/>
+    <Parameter Name="NomeFantasia" DataType="System.String"/>
+    <Parameter Name="Matricula" DataType="System.String"/>
+    <Parameter Name="RG" DataType="System.String"/>
+    <Parameter Name="CPF" DataType="System.String"/>
+    <Parameter Name="Data_Endereco" DataType="System.String"/>
+    <Parameter Name="UsuarioLogado" DataType="System.String"/>
+    <Parameter Name="NomeAluno" DataType="System.String"/>
+    <Parameter Name="MotivoCancelamento" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="141.75">
+      <TextObject Name="Text10" Left="179.55" Top="37.8" Width="529.2" Height="18.9" Text="[Titulo1]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text11" Left="179.55" Top="56.7" Width="529.2" Height="85.05" Text="[Linha1]&#13;&#10;[Linha2]&#13;&#10;[Linha3]&#13;&#10;[Linha4]" Font="Arial, 10pt, style=Bold"/>
+      <PictureObject Name="Picture1" Width="75.6" Height="75.6"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="144.95" Width="718.2" Height="746.55">
+      <TextObject Name="Text12" Left="245.7" Top="9.45" Width="289" Height="28.35" Text="Carta de Cancelamento" Font="Arial, 18pt, style=Bold, Underline"/>
+      <TextObject Name="Text44" Left="28.35" Top="94.5" Width="652.05" Height="529.2" Text="Eu &lt;u&gt;[NomeAluno]&lt;/u&gt;, portador (a) do &lt;b&gt; RG: &lt;u&gt;[RG]&lt;/u&gt;, e CPF: &lt;u&gt;[CPF]&lt;/u&gt; &lt;/b&gt;venho solicitar junto a secretaria do [NomeFantasia] o cancelamento de minha matrícula de número [Matricula].&#13;&#10;&#13;&#10;&#13;&#10; &lt;b&gt;MOTIVO DO CANCELAMENTO: &lt;/u&gt; &lt;/b&gt; [MotivoCancelamento].&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#09;    Nome por extenso: ______________________________________ &#13;&#10;&#13;&#10;&#13;&#10;&#09;&#09;&#09;&#09;  ______________________________________ &#13;&#09;&#09;&#09;&#09;&#09;&#09;&#09;&#09;&#09;Assinatura do aluno&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#09;&#09;&#09;&#09;&#09; [Data_Endereco].&#13;&#10;&#13;&#10;&#13;&#10;&#09;&#09;&#09;&#09;  ______________________________________&#13;&#10;&#09;&#09;&#09;&#09;&#09;&#09;&#09;       Carimbo  e Assinatura&#13;&#10;&#09;&#09;&#09;&#09;&#09;&#09;&#09;  [UsuarioLogado]&#13;&#10;&#13;&#10;" HorzAlign="Justify" Font="Arial, 14pt" TextRenderType="HtmlTags"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="894.7" Width="718.2" Height="75.6"/>
+    <PageFooterBand Name="PageFooter1" Top="973.5" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>

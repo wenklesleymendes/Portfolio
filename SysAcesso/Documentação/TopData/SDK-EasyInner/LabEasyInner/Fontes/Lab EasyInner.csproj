@@ -1,0 +1,232 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{516A14BB-B22B-45FC-A064-BDE9384A33B1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EasyInnerSDK</RootNamespace>
+    <AssemblyName>EasyInnerSDK</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.NBioBSPCOMLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>COM\Interop.NBioBSPCOMLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NITGEN.SDK.NBioBSP, Version=4.8.8.4, Culture=neutral, PublicKeyToken=96eee45103d523d1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\SysWOW64\NITGEN.SDK.NBioBSP.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="COM\EasyInner.cs" />
+    <Compile Include="COM\Nitgen.cs" />
+    <Compile Include="Controle\LCControle.cs" />
+    <Compile Include="DAO\DAOConexao.cs" />
+    <Compile Include="DAO\DAOUsuarios.cs" />
+    <Compile Include="DAO\DAOUsuariosBio.cs" />
+    <Compile Include="Entity\ASO15_DEF.cs" />
+    <Compile Include="Entity\Bilhete.cs" />
+    <Compile Include="Entity\Enumeradores.cs" />
+    <Compile Include="Entity\Horarios.cs" />
+    <Compile Include="Entity\Inner.cs" />
+    <Compile Include="Controle\NitgenController.cs" />
+    <Compile Include="Entity\OnUpdateDisplay.cs" />
+    <Compile Include="Entity\UpdatePropriedadeTelaBio.cs" />
+    <Compile Include="Entity\UsuarioBio.cs" />
+    <Compile Include="Entity\Usuarios.cs" />
+    <Compile Include="Entity\UsuarioSemDigital.cs" />
+    <Compile Include="Entity\Utils.cs" />
+    <Compile Include="UI\FrmBIO\FrmBIO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmBIO\FrmBIO.Designer.cs">
+      <DependentUpon>FrmBIO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmBIO\frmBio6xx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmBIO\frmBio6xx.Designer.cs">
+      <DependentUpon>frmBio6xx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmBIO\FrmBioController6xx.cs" />
+    <Compile Include="UI\FrmMain\FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmMain\FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UI\FrmBIO\FrmBIO.resx">
+      <DependentUpon>FrmBIO.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmBIO\frmBio6xx.resx">
+      <DependentUpon>frmBio6xx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmMain\FrmMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmOffLine\FrmOffLine.resx">
+      <DependentUpon>FrmOffLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmOnline\FrmOnline.resx">
+      <DependentUpon>FrmOnline.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmSobre\FrmSobre.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmSobre.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UI\FrmBIO\FrmBIOController.cs" />
+    <Compile Include="UI\FrmOffLine\FrmOffLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmOffLine\FrmOffLine.Designer.cs">
+      <DependentUpon>FrmOffLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmOffLine\FrmOffLineController.cs" />
+    <Compile Include="UI\FrmOnline\FrmOnline.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmOnline\FrmOnline.Designer.cs">
+      <DependentUpon>FrmOnline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmOnline\FrmOnlineController.cs" />
+    <Compile Include="UI\FrmSobre\FrmSobre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmSobre\FrmSobre.Designer.cs">
+      <DependentUpon>FrmSobre.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Codigo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Inner.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Inner1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Codigo1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\InnerPlus.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="COM\Interop.NBioBSPCOMLib.dll" />
+    <Content Include="COM\NBioBSPCOM.dll" />
+    <Content Include="COM\NITGEN.SDK.NBioBSP.dll" />
+    <None Include="Resources\pro_bio_losango.gif" />
+    <None Include="Resources\nenhum.PNG" />
+    <None Include="Resources\Esquerda-invertidaa.JPG" />
+    <None Include="Resources\Direita-normall.JPG" />
+    <None Include="Resources\TopDataLogo.bmp" />
+    <None Include="Resources\InnerBio.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

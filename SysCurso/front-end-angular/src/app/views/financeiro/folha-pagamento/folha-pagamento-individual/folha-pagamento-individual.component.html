@@ -1,0 +1,331 @@
+<div class="body">
+    <div class="flex">
+        <header>Folha de Pagamento</header>
+        <div class="flex-fill"></div>
+        <div>
+            <button mat-button color="primary" (click)="voltar()">Voltar</button>
+        </div>
+    </div>
+
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div class="content" *ngIf="!isLoadingResults">
+                <form [formGroup]="form">
+                    <title-line title="Dados Colaborador"></title-line>
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>CPF</mat-label>
+                            <input formControlName="cpf" [mask]="cpfMask" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <div class="form-options">
+                            <div class="align-center">
+                                <button (click)="getFuncionario()" type="button" mat-button color="primary">
+                                    Pesquisar
+                                    <mat-icon>search</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Unidade</mat-label>
+                            <mat-select formControlName="unidadeId">
+                                <mat-option *ngFor="let unidade of unidades" [value]="unidade.unidadeId"> {{ unidade.nomeUnidade }}</mat-option>
+                            </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="grid grid--auto-fill prl-1-5">
+                        <ng-container *ngFor="let info of infoFilter">
+                            <div class="filter-info">
+                                <p><strong class="primary">{{ info.label }}: &nbsp;</strong>{{ info.value }}</p>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <title-line title="Dados do Pagamento"></title-line>
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Competência</mat-label>
+                            <input class="hidden" matInput formControlName="competencia" [matDatepicker]="competencia">
+                            <input matInput [ngModel]="form.get('competencia').value | date : 'MM/yyyy'" [ngModelOptions]="{standalone: true}" (click)="competencia.open()" [readonly]="true">
+                            <mat-datepicker-toggle matSuffix [for]="competencia"></mat-datepicker-toggle>
+                            <mat-datepicker #competencia startView="multi-year" (monthSelected)="closeDatePicker($event, competencia, 'competencia')"></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="tipoRegimeContratacao !== 2 && tipoRegimeContratacao !== 7">
+                            <mat-label>{{ ajustarLabelSalarioBruto() }}</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="salarioBruto" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="tipoRegimeContratacao === 3 || tipoRegimeContratacao === 5">
+                            <mat-label>{{  (tipoRegimeContratacao === 5) ? 'Quantidade de Dias' : 'Quantidade de Aulas'}}</mat-label>
+                            <input formControlName="quantidadeDias" type="number" matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>{{ labelSalario() }}</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="salarioLiquido" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Alimentação</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="alimentacao" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+            
+                        <mat-form-field>
+                            <mat-label>Transporte</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="transporte" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Comissão 1° Parcela Paga</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="comissaoPrimeiraParcelaPaga" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Bônus Meta Período</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="bonusMetaPeriodo" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Monitoria de Prova</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="monitoriaProva" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <title-line title="Horas Extras"></title-line>
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Início Hora Extra</mat-label>
+                            <input matInput formControlName="inicioHoraExtraPaga" [matDatepicker]="dataInicio">
+                            <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
+                            <mat-datepicker #dataInicio></mat-datepicker>
+                        </mat-form-field>
+    
+                        <mat-form-field >
+                            <mat-label>Fim Hora Extra</mat-label>
+                            <input matInput formControlName="terminoHoraExtraPaga" [matDatepicker]="dataFim">
+                            <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
+                            <mat-datepicker #dataFim></mat-datepicker>
+                        </mat-form-field>
+
+                        <div class="flex align-center">
+                            <button (click)="getSaldoHorasExtra()" mat-button type="button" color="primary">
+                                Buscar saldo horas extras &nbsp;
+                                <mat-icon>search</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div *ngIf="saldoHoraExtras" class="filter-info prl-1-5">
+                        <mat-label>Saldo de horas extras:</mat-label>
+                        <mat-chip-list>
+                            <mat-chip color="primary" selected>{{ saldoHoraExtras ? saldoHoraExtras : ' - ' }}</mat-chip>
+                        </mat-chip-list>
+                    </div>
+
+                    <div class="grid grid--auto-fill mt-1">
+                        <mat-form-field>
+                            <mat-label>Porcentagem</mat-label>
+                            <mat-select formControlName="horaExtraPorcentagem">
+                                <mat-option [value]="50"> 50 %</mat-option>
+                                <mat-option [value]="75"> 75 %</mat-option>
+                                <mat-option [value]="100"> 100 %</mat-option>
+                                <mat-option [value]="150"> 150 %</mat-option>
+                                <mat-option [value]="200"> 200 %</mat-option>
+                              </mat-select>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Quantidade de horas</mat-label>
+                            <input formControlName="horaExtraQuantidade" [mask]="weekMask" matInput>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Valor</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="horaExtraValor" currencyMask matInput>
+                        </mat-form-field>
+            
+                        <div class="flex align-center">
+                            <button (click)="addHoraExtra()" mat-button type="button" color="primary" [disabled]="!saldoHoraExtras">
+                                Adicionar &nbsp;
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-fill">
+                        <div class="table">
+                            <table mat-table [dataSource]="horasExtrasDataSource">
+                                <ng-container matColumnDef="porcentagem">
+                                    <th mat-header-cell *matHeaderCellDef> Porcentagem </th>
+                                    <td mat-cell *matCellDef="let element"> {{element?.porcentagem ? element.porcentagem : '-'}} % </td>
+                                </ng-container>
+            
+                                <ng-container matColumnDef="horas">
+                                    <th mat-header-cell *matHeaderCellDef> Quantidade de horas </th>
+                                    <td mat-cell *matCellDef="let element"> {{element?.quantidadeHoras ? (element.quantidadeHoras | mask: weekMask) : '0'}} Horas</td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="valor">
+                                    <th mat-header-cell *matHeaderCellDef> Valor </th>
+                                    <td mat-cell *matCellDef="let element"> {{element?.valor ? (element.valor | currency) : ('0' | currency)}}</td>
+                                </ng-container>
+                    
+                                <ng-container matColumnDef="options">
+                                    <th mat-header-cell *matHeaderCellDef class="sm-column"> </th>
+                                    <td mat-cell *matCellDef="let element; let i = index"> 
+                                       <div class="btn-options">
+                                            <button type="button" (click)="remove(i)" color="warn" mat-icon-button matTooltip="Excluir" >
+                                                <mat-icon>delete</mat-icon>
+                                            </button>
+                                       </div>
+                                    </td>
+                                </ng-container>
+                    
+                                <tr mat-header-row *matHeaderRowDef="horasExtrasDisplayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: horasExtrasDisplayedColumns;"
+                                    (click)="selection.toggle(row)" [ngClass]="{ 'selected': selection.isSelected(row) }"></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <title-line title="Adicionais"></title-line>
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Valor Adicional</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="valorAdicional" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex form-registro">
+                        <mat-form-field class="flex-fill">
+                            <mat-label>Adicional (Justificativa)</mat-label>
+                            <textarea formControlName="justificativaValorAdicional" matInput></textarea>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+                        <title-line title="Descanso Semanal Remunerado"></title-line>
+                        <div class="grid grid--auto-fill mt-1">
+                            <mat-form-field>
+                                <mat-label>DSR (Descanso Semanal Remunerado)</mat-label>
+                                <span matPrefix><strong>R$</strong> &nbsp;</span>
+                                <input formControlName="valorDiasDSR" currencyMask matInput>
+                                <mat-error>Informação necessária</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex form-registro">
+                            <mat-form-field class="flex-fill">
+                                <mat-label>DSR (Justificativa)</mat-label>
+                                <textarea formControlName="justificativaDSR" matInput></textarea>
+                                <mat-error>Informação necessária</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    <title-line title="Férias e Décimo Terceiro"></title-line>
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Férias</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="valorFerias" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex form-registro">
+                        <mat-form-field class="flex-fill">
+                            <mat-label>Férias (Justificativa)</mat-label>
+                            <textarea formControlName="justificativaFerias" matInput></textarea>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Valor Décimo Terceiro</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="valorDecimoTerceiro" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex form-registro">
+                        <mat-form-field class="flex-fill">
+                            <mat-label>Décimo Terceiro (Justificativa)</mat-label>
+                            <textarea formControlName="justificativaDecimoTerceiro" matInput></textarea>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+                    
+                    <title-line title="Descontos"></title-line>
+                    <div class="grid grid--auto-fill">
+                        <mat-form-field>
+                            <mat-label>Valor Total de Descontos</mat-label>
+                            <span matPrefix><strong>R$</strong> &nbsp;</span>
+                            <input formControlName="valorTotalDesconto" currencyMask matInput>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex form-registro">
+                        <mat-form-field class="flex-fill">
+                            <mat-label>Descontos (Justificativa)</mat-label>
+                            <textarea formControlName="justificativaDesconto" matInput></textarea>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+                </form>
+
+                <div *ngIf="valorTotalPagamento" class="filter-info">
+                    <mat-label>Valor a ser pago:</mat-label>
+                    <mat-chip-list>
+                        <mat-chip color="primary" selected>{{(valorTotalPagamento | currency)}}</mat-chip>
+                    </mat-chip-list>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isLoadingResults" class="flex">
+                <div>
+                    <button mat-button color="primary" (click)="voltar()">Voltar</button>
+                </div>
+                <div class="flex-fill"></div>
+                <div>
+                    <button mat-raised-button color="primary" type="submit" (click)="salvarData()" cdkFocusInitial>Salvar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #loading>
+    <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>

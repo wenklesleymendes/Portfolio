@@ -1,0 +1,70 @@
+<div mat-dialog-title class="flex flex-row">
+  Timeline da Ocorrência {{ assunto ? (' - ' + assunto) : '' }}
+  <div class="flex-fill"></div>
+  <div class="btn-options">
+      <button color="primary" (click)="dialogRef.close(updated)" mat-icon-button matTooltip="Fechar">
+          <mat-icon>close</mat-icon>
+      </button>
+  </div>
+</div>
+<div mat-dialog-content>
+  <div class="loading-shade" *ngIf="isLoadingResults">
+      <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="!error;else errorTemplate">
+      <ng-container *ngIf="!isLoadingResults">
+          <mat-chip-list>
+              <mat-chip [ngClass]="false ? 'bg-green' : 'bg-red'">
+                  Abertura do Chamado {{ aberturaChamado | date: 'dd/MM/yyyy' }}
+              </mat-chip>
+          </mat-chip-list>
+          <ng-container>
+            <ng-container *ngFor="let item of mensagens; index as index">
+                <div class="flex flex-column container-time-line">
+                    <div class="flex">
+                        <div class="time-line">
+                            <mat-icon [ngClass]="index === 0 ? 'yellow' : 'primary'">
+                                {{ index === 0 ? 'report' : 'account_circle' }}</mat-icon>
+                            <div class="flex-fill line"></div>
+                        </div>
+                        <div class="flex-column flex-fill">
+                            <div class="flex-row">
+                                <p class="flex-fill">
+                                    <strong>Unidade de {{ item?.unidade ? item.unidade : '' }}</strong>
+                                    {{ item?.atendente ? item.atendente : '' }}
+                                </p>
+                                <span class="time-line-hour">
+                                    <mat-icon>alarm</mat-icon>
+                                    {{ item?.data ? (item.data | date: 'dd/MM/yy HH:mm') : ' - ' }}
+                                </span>
+                            </div>
+                            <mat-divider class="w-100"></mat-divider>
+                            <div class="flex-column">
+                                <p class="flex-fill">{{ item?.mensagem ? item.mensagem : '' }}</p>
+                                <div class="flex-row" *ngIf="item?.anexoId">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <div class="flex flex-column container-time-line">
+            <div class="flex">
+                <div class="time-line">
+                    <mat-icon [ngClass]="statusTicket !== 4 ? 'accent' : 'green'">
+                        {{ statusTicket !== 4 ? 'alarm' : 'check_circle' }}</mat-icon>
+                </div>
+                <div class="flex-column flex-fill"></div>
+            </div>
+        </div>
+      </ng-container>
+  </div>
+</div>
+<ng-template #errorTemplate>
+  <app-server-error></app-server-error>
+</ng-template>
+<ng-template #loading>
+  <mat-spinner [diameter]="25"></mat-spinner>
+</ng-template>

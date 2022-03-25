@@ -1,0 +1,736 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="EscolaPro.Web.SiteMaster" %>
+
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EscolaPro</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <%--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">--%>
+    <script src="https://kit.fontawesome.com/e5f771b658.js" crossorigin="anonymous"></script>
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+
+    <link rel="stylesheet" href="dist/css/setupEscola.css" />
+
+    <link rel="stylesheet" href="plugins/select2/select2.min.css">
+
+
+
+
+    <style>
+        /*the container must be positioned relative:*/
+        .autocomplete {
+            position: relative;
+            display: inline-block;
+        }
+
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            /*position the autocomplete items to be the same width as the container:*/
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+
+            .autocomplete-items div {
+                padding: 10px;
+                cursor: pointer;
+                background-color: #fff;
+                border-bottom: 1px solid #d4d4d4;
+            }
+
+                /*when hovering an item:*/
+                .autocomplete-items div:hover {
+                    background-color: #e9e9e9;
+                }
+
+        /*when navigating through the items using the arrow keys:*/
+        .autocomplete-active {
+            background-color: DodgerBlue !important;
+            color: #ffffff;
+        }
+    </style>
+
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+
+    <style>
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+
+        svg {
+            height: 16px;
+            margin-right: 5px;
+        }
+
+        .icone-menu {
+            font-size: large;
+        }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+<body class="skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Main Header -->
+        <header class="main-header">
+
+            <!-- Logo -->
+            <a href="PaginaPrincipal.aspx" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>P</b>ro</span>
+                <!-- logo for regular state and mobile devices -->
+             
+                  <span class="logo-lg"><b>Escola</b>Pro</span>
+              <%--  <span class="logo-lg"><b>Escola</b>Pro</span>--%>
+            </a>
+
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown tasks-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="far fa-bell" style="font-size: medium"></i>
+                                <span class="label label-warning">2</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">Suporte em informática</li>
+                                <li class="header">Solicitação de documentos</li>
+                                <li class="footer">
+                                    <a href="#">Ver todos</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <!-- Tasks Menu -->
+                        <li class="dropdown tasks-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fas fa-clipboard-list" style="font-size: medium"></i>
+                                <span class="label label-danger">2</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">Suporte em informática</li>
+                                <li class="header">Solicitação de documentos</li>
+                                <li class="footer">
+                                    <a href="#">Ver todos</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account Menu -->
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">André Coutinho</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header">
+                                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    <p>
+                                        André Coutinho - Admin
+                      <small>Campinas</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-default btn-flat">Sair</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                        <li></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>André Coutinho</p>
+                        <!-- Status -->
+                        <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                    </div>
+                </div>
+
+                <!-- search form (Optional) -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Pesquisar...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+
+                <!-- Sidebar Menu -->
+                <ul class="sidebar-menu">
+                    <li class="header">Menu</li>
+                    <!-- Optionally, you can add icons to the links -->
+                    <li class="treeview">
+                        <a href="#"><i class="fas fa-user icone-menu"></i>
+                            <span style="font-size: medium; margin-left: 5px">Alunos</span>
+                            <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a runat="server" href="~/ConsultarAluno">Consultar alunos</a></li>
+                            <li><a runat="server" href="~/CadastrarAluno">Cadastrar novo aluno</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#"><i class="fas fa-file-alt icone-menu"></i>
+                        <span style="font-size: medium; margin-left: 5px">Relatórios</span></a></li>
+
+                    <li><a href="#"><i class="fas fa-lock icone-menu"></i>
+                        <span style="font-size: medium; margin-left: 1px">Portal do Administrador</span>
+                        <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a runat="server" href="CadastroUsuario.aspx">Cadastro de Usuários</a></li>
+                            <li><a runat="server" href="PerfilUsuario.aspx">Permissões de Usuários</a></li>
+                             <li><a runat="server" href="Configurador.aspx">Configurador de Parâmetros</a></li>
+                        </ul>
+
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#"><i class="fas fa-clipboard-list icone-menu"></i>
+                            <span style="font-size: medium; margin-left: 5px">Ticket</span>
+                            <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a runat="server" href="Ticket.aspx">Painel de Ticket</a></li>
+                            <li><a runat="server" href="AdministracaoTicket.aspx">Administração de Ticket</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="Comunicacao.aspx"><i class="fas fa-paper-plane icone-menu"></i>
+                        <span style="font-size: medium; margin-left: 5px">Comunicação</span></a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#"><i class="fas fa-user-tag icone-menu"></i>
+                            <span style="font-size: medium; margin-left: 5px">Recursos Humanos</span>
+                            <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a runat="server" href="CadastroFuncionario.aspx">Cadastro de Funcionário</a></li>
+                            <li><a runat="server" href="RHControlePonto.aspx">Controle de Ponto</a></li>
+                            <li><a runat="server" href="EscalaDeServicos.aspx">Escala de Serviços</a></li>
+                        </ul>
+                    </li>
+                   
+                    <li class="treeview"><a href="#"><i class="fas fa-search-dollar icone-menu"></i>
+                        <span style="font-size: medium; margin-left: 5px">Financeiro</span>
+                        <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a runat="server" href="Fornecedor.aspx">Cadastro Fornecedor ou Cliente</a></li>
+                            <li><a runat="server" href="ContaAPagar.aspx">Contas a Pagar</a></li>
+                            <li><a runat="server" href="Estoque.aspx">Estoque</a></li>
+                            <li><a runat="server" href="FolhaPagamento.aspx">Folha de Pagamento</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#"><i class="fas fa-file-signature icone-menu"></i>
+                            <span style="font-size: medium; margin-left: 5px">Provas</span>
+                            <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a runat="server" href="~/CriarAgenda">Criar Agenda de Provas</a></li>
+                            <li><a runat="server" href="~/AgendaProva">Lista de Passageiros</a></li>
+                            <li><a runat="server" href="~/HistoricoViagem">Histórico de Viagem</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#"><i class="fas fa-chalkboard-teacher icone-menu"></i>
+                            <span style="font-size: medium; margin-left: 5px">Gerenciador</span>
+                            <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a runat="server" href="CursoTurma.aspx">Cursos e Turmas</a></li>
+                            <li><a runat="server" href="Unidades.aspx">Unidades</a></li>
+                            <li><a runat="server" href="PlanosPagamento.aspx">Planos de Pagamentos</a></li>
+                            <li><a runat="server" href="PromocoesConvenio.aspx">Promoções, Bolsa e Convênio</a></li>
+                        </ul>
+                    </li>
+           
+
+                     <li class="treeview">
+                        <a href="#"><i class="fas fa-bullseye icone-menu"></i>
+                            <span style="font-size: medium; margin-left: 5px">Metas e Comissões</span>
+                            <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a runat="server" href="CriarMetas.aspx">Criação de Metas</a></li>
+                            <li><a runat="server" href="MetasComissoes.aspx">Painel de Metas e Comissões</a></li>
+                            <li><a runat="server" href="CriarComissao.aspx">Criação de Comissões</a></li>
+                        </ul>
+                    </li>
+
+                   <%-- <li><a href="#"><i class="fas fa-user-graduate icone-menu"></i>
+                        <span style="font-size: medium; margin-left: 5px">Portal do Aluno</span>
+                    </a>
+                    </li>--%>
+
+                    
+                       <li class="treeview active">
+                        <a href="#">
+                        <i class="fas fa-user-graduate icone-menu"></i>
+                        <span style="font-size: medium; margin-left: 5px">Aulas On-line</span>
+                    <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a runat="server" href="CriarAulasOnline.aspx">Criar Aulas On-line</a></li>
+                            <li><a runat="server" href="MinhasAulas.aspx">Minhas Aulas</a></li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+                <!-- /.sidebar-menu -->
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <%--          <h1>
+            Page Header
+            <small>Optional description</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+            <li class="active">Here</li>
+          </ol>--%>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div id="conteudo">
+
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+
+                </div>
+
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                Kaspper Innovation
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2020 <a href="#">Kaspper</a>.</strong>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane active" id="control-sidebar-home-tab">
+                    <h3 class="control-sidebar-heading">Recent Activity</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript::;">
+                                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                                    <p>Will be 23 on April 24th</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+
+                    <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript::;">
+                                <h4 class="control-sidebar-subheading">Custom Template Design
+                    <span class="label label-danger pull-right">70%</span>
+                                </h4>
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+
+                </div>
+                <!-- /.tab-pane -->
+                <!-- Stats tab content -->
+                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+                <!-- /.tab-pane -->
+                <!-- Settings tab content -->
+                <div class="tab-pane" id="control-sidebar-settings-tab">
+                    <form method="post">
+                        <h3 class="control-sidebar-heading">General Settings</h3>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Report panel usage
+                  <input type="checkbox" class="pull-right" checked>
+                            </label>
+                            <p>
+                                Some information about this general settings option
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.4 -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/app.min.js"></script>
+
+    <script src="dist/js/cartaoCredito.js"></script>
+
+
+    <!-- jQuery 2.1.4 -->
+    <%--    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>--%>
+    <!-- Bootstrap 3.3.4 -->
+    <%--    <script src="bootstrap/js/bootstrap.min.js"></script>--%>
+    <!-- DataTables -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="plugins/fullcalendar/fullcalendar.min.js"></script>
+
+    <!-- SlimScroll -->
+    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <%--    <script src="dist/js/app.min.js"></script>--%>
+    <!-- AdminLTE for demo purposes -->
+    <%--    <script src="dist/js/demo.js"></script>--%>
+    <!-- page script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-submenu a.test').on("click", function (e) {
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+            });
+        });
+    </script>
+
+    <script>
+        var start = "2000";
+
+        var end = new Date().getFullYear() + 1;
+        var options = "";
+        for (var year = start; year <= end; year++) {
+            options += "<option>" + year + "</option>";
+        }
+
+        document.getElementById("year").innerHTML = options;
+    </script>
+
+    <script src="plugins/select2/select2.full.min.js"></script>
+
+
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $(".select2").select2();
+
+            //Datemask dd/mm/yyyy
+            $("#datemask").inputmask("dd/mm/yyyy", { "placeholder": "dd/mm/yyyy" });
+            //Datemask2 mm/dd/yyyy
+            $("#datemask2").inputmask("mm/dd/yyyy", { "placeholder": "mm/dd/yyyy" });
+            //Money Euro
+            $("[data-mask]").inputmask();
+
+            //Date range picker
+            $('#reservation').daterangepicker();
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' });
+            //Date range as a button
+            $('#daterange-btn').daterangepicker(
+                {
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment()
+                },
+                function (start, end) {
+                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                }
+            );
+
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            });
+            //Red color scheme for iCheck
+            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                checkboxClass: 'icheckbox_minimal-red',
+                radioClass: 'iradio_minimal-red'
+            });
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+
+            //Colorpicker
+            $(".my-colorpicker1").colorpicker();
+            //color picker with addon
+            $(".my-colorpicker2").colorpicker();
+
+            //Timepicker
+            $(".timepicker").timepicker({
+                showInputs: false
+            });
+        });
+    </script>
+
+
+    
+
+    <script>
+        function autocomplete(inp, arr) {
+            /*the autocomplete function takes two arguments,
+            the text field element and an array of possible autocompleted values:*/
+            var currentFocus;
+            /*execute a function when someone writes in the text field:*/
+            inp.addEventListener("input", function (e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                if (!val) { return false; }
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-list");
+                a.setAttribute("class", "autocomplete-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        /*create a DIV element for each matching element:*/
+                        b = document.createElement("DIV");
+                        /*make the matching letters bold:*/
+                        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                        b.innerHTML += arr[i].substr(val.length);
+                        /*insert a input field that will hold the current array item's value:*/
+                        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                        /*execute a function when someone clicks on the item value (DIV element):*/
+                        b.addEventListener("click", function (e) {
+                            /*insert the value for the autocomplete text field:*/
+                            inp.value = this.getElementsByTagName("input")[0].value;
+                            /*close the list of autocompleted values,
+                            (or any other open lists of autocompleted values:*/
+                            closeAllLists();
+                        });
+                        a.appendChild(b);
+                    }
+                }
+            });
+            /*execute a function presses a key on the keyboard:*/
+            inp.addEventListener("keydown", function (e) {
+                var x = document.getElementById(this.id + "autocomplete-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                    /*If the arrow DOWN key is pressed,
+                    increase the currentFocus variable:*/
+                    currentFocus++;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 38) { //up
+                    /*If the arrow UP key is pressed,
+                    decrease the currentFocus variable:*/
+                    currentFocus--;
+                    /*and and make the current item more visible:*/
+                    addActive(x);
+                } else if (e.keyCode == 13) {
+                    /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                    e.preventDefault();
+                    if (currentFocus > -1) {
+                        /*and simulate a click on the "active" item:*/
+                        if (x) x[currentFocus].click();
+                    }
+                }
+            });
+            function addActive(x) {
+                /*a function to classify an item as "active":*/
+                if (!x) return false;
+                /*start by removing the "active" class on all items:*/
+                removeActive(x);
+                if (currentFocus >= x.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = (x.length - 1);
+                /*add class "autocomplete-active":*/
+                x[currentFocus].classList.add("autocomplete-active");
+            }
+            function removeActive(x) {
+                /*a function to remove the "active" class from all autocomplete items:*/
+                for (var i = 0; i < x.length; i++) {
+                    x[i].classList.remove("autocomplete-active");
+                }
+            }
+            function closeAllLists(elmnt) {
+                /*close all autocomplete lists in the document,
+                except the one passed as an argument:*/
+                var x = document.getElementsByClassName("autocomplete-items");
+                for (var i = 0; i < x.length; i++) {
+                    if (elmnt != x[i] && elmnt != inp) {
+                        x[i].parentNode.removeChild(x[i]);
+                    }
+                }
+            }
+            /*execute a function when someone clicks in the document:*/
+            document.addEventListener("click", function (e) {
+                closeAllLists(e.target);
+            });
+        }
+
+        /*An array containing all the country names in the world:*/
+        var countries = ["Tecnologia", "Aluguel", "Consumo", "Mad Tech", "Limpeza Ltda", "Vivo Celulares Ltda"];
+
+        /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+        autocomplete(document.getElementById("myInput"), countries);
+    </script>
+
+</body>
+</html>
+
+
+

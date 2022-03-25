@@ -1,0 +1,25 @@
+<mat-accordion class="noselect">
+    <mat-expansion-panel class="asdfg">
+      <mat-expansion-panel-header class="header cinza">
+          <mat-panel-title class="realizar-exercicios">Realizar Exercícios</mat-panel-title>
+          <!-- <mat-panel-description class="questao">
+            <span></span>
+            Realizar Exercícios
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+      <ng-container *ngIf="perguntas">
+          <ng-container *ngFor="let pergunta of perguntas; let index = index" >
+              <app-questao-online [pergunta]="pergunta" [index]="index"></app-questao-online>
+          </ng-container>
+      </ng-container>
+      <div class="flex mt-1">
+        <!-- <div class="flex-fill"></div> -->
+        <div>
+          <!-- <input id="idModalMsgResposta" value="{{modalMsgResposta}}" hidden> -->
+          <button mat-raised-button color="primary" (click)="responder(videoId)" name="btnNameResponder" cdkFocusInitial>Responder</button>
+          <button mat-button id="r" color="primary" (click)="refazer()">Refazer</button>
+          <!-- <button *ngIf="!preview" mat-button color="primary" (click)="proximoVideo()" style="z-index: 1;">Próximo Video</button> -->
+        </div>
+      </div>
+    </mat-expansion-panel>
+</mat-accordion>

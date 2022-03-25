@@ -1,0 +1,38 @@
+<div class="body">
+    <ng-container *ngFor="let item of historicoDespesa">
+        <div class="flex flex-column container-time-line">
+            <div class="flex">
+                <div class="time-line">
+                    <ng-container [ngSwitch]="item?.status">
+                        <mat-icon *ngSwitchCase="1" class="yellow"> monetization_on </mat-icon>
+                        <mat-icon *ngSwitchCase="2" class="green" > check_circle    </mat-icon>
+                        <mat-icon *ngSwitchCase="3" class="red"   > cancel          </mat-icon>
+                        <p *ngSwitchDefault></p>
+                    </ng-container>
+                    <div class="flex-fill line"></div>
+                </div>
+                <div class="flex-column flex-fill">
+                    <div class="flex-row">
+                        <ng-container [ngSwitch]="item?.status">
+                            <p *ngSwitchCase="1" class="flex-fill yellow"> <strong>{{ item?.descricao ? item.descricao : ' - ' }}</strong></p>
+                            <p *ngSwitchCase="2" class="flex-fill green" > <strong>{{ item?.descricao ? item.descricao : ' - ' }}</strong></p>
+                            <p *ngSwitchCase="3" class="flex-fill red"   > <strong>{{ item?.descricao ? item.descricao : ' - ' }}</strong></p>
+                            <p *ngSwitchDefault></p>
+                        </ng-container>
+                        <span class="time-line-hour"><mat-icon>alarm</mat-icon>&nbsp; {{ item?.data ? (item.data | datePtBr) : ' - ' }}</span>
+                    </div>
+                    <mat-divider class="w-100"></mat-divider>
+                    <div class="flex-column">
+                        <p *ngIf="item?.status != 3" class="flex-fill">
+                            <strong>Valor: &nbsp;</strong> {{ item?.valor ? item.valor : ' - ' }}
+                        </p>
+
+                        <span [ngClass]="item?.status == 3 ? 'mt-1' : ''" class="flex-fill">
+                            <strong>Usuário: &nbsp;</strong> {{ item?.usuario ? item.usuario : ' - ' }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

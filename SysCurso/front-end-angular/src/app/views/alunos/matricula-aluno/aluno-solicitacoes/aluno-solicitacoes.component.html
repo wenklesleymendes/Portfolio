@@ -1,0 +1,302 @@
+
+<div>
+    <app-aluno-portal></app-aluno-portal>
+</div>
+
+<div class="body" *ngIf="!isAluno">
+    <mat-card class="mat-elevation-z8 noshadow card-principal" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div class="content" *ngIf="!isLoadingResults">
+                <title-line title="Realizar Solicitação"></title-line>
+                <div class="flex flex-fill">
+                    <mat-card class="noshadow w-100 p-0">
+                        <div class="table">
+                            <table mat-table [dataSource]="realizarSource" [hidden]="!true">    
+                                <ng-container matColumnDef="descricao">
+                                    <th mat-header-cell *matHeaderCellDef> Descrição </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <ng-container [ngSwitch]="(!!element?.extensao && !!element?.imagem)">
+                                            <img *ngSwitchCase="true" [src]="'data:'+element?.extensao+';base64,'+element?.imagem" alt="Imagem solicitação">
+                                            <span *ngSwitchCase="false">{{element?.descricao ? element.descricao : '-'}} </span>
+                                            <p *ngSwitchDefault></p>
+                                        </ng-container>
+                                    </td>
+                                </ng-container>
+    
+                                <ng-container matColumnDef="valor">
+                                    <th mat-header-cell *matHeaderCellDef> Valor </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <ng-container *ngIf="element?.valor; else gratis">
+                                            {{ element.valor | currency }}
+                                        </ng-container>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="options">
+                                    <th mat-header-cell *matHeaderCellDef class="sm-column"> </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="btn-options">
+                                            <button mat-raised-button type="button" (click)="pagar(element)" class="bg-green">Solicitar</button>
+                                        </div>
+                                    </td>
+                                </ng-container>
+    
+                                <tr mat-header-row *matHeaderRowDef="realizarColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: realizarColumns;"
+                                    (click)="selectionSolicitacao.toggle(row)" [ngClass]="{ 'selected': selectionSolicitacao.isSelected(row) }"></tr>
+                            </table>
+                        </div>
+                    </mat-card>
+                </div>
+
+                <title-line title="Histórico Solicitação"></title-line>
+                <mat-card class="noshadow w-100 p-0">
+                    <div class="table">
+                        <table mat-table [dataSource]="historicoSource" [hidden]="!true">
+                            <ng-container matColumnDef="data">
+                                <th mat-header-cell *matHeaderCellDef class="md"> Data Solicitação </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{ element?.dataSolicitacao ? (element.dataSolicitacao | datePtBr) : ' - '}} 
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="descricao">
+                                <th mat-header-cell *matHeaderCellDef> Descrição </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <ng-container [ngSwitch]="(!!element?.solicitacao?.extensao && !!element?.solicitacao?.imagem)">
+                                        <img *ngSwitchCase="true" [src]="'data:'+element?.solicitacao?.extensao+';base64,'+element?.solicitacao?.imagem" alt="Imagem solicitação">
+                                        <span *ngSwitchCase="false">{{element?.solicitacao?.descricao ? element?.solicitacao.descricao : '-'}} </span>
+                                        <p *ngSwitchDefault></p>
+                                    </ng-container>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="pagamento">
+                                <th mat-header-cell *matHeaderCellDef> Pagamento </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <ng-container [ngSwitch]="element?.statusPagamento">
+                                        <span *ngSwitchCase="1" class="yellow">&nbsp; A receber</span>
+                                        <span *ngSwitchCase="2" class="green">&nbsp; Pago</span>
+                                        <span *ngSwitchCase="3" class="red">&nbsp; Cancelado</span>
+                                        <span *ngSwitchCase="4" class="green">&nbsp; Grátis</span>
+                                        <p *ngSwitchDefault></p>
+                                    </ng-container>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="valor">
+                                <th mat-header-cell *matHeaderCellDef> Valor </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <ng-container *ngIf="element?.valor; else gratis">
+                                        {{ element.valor | currency }}
+                                    </ng-container>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="options">
+                                <th mat-header-cell *matHeaderCellDef class="sm"></th>
+                                <td mat-cell *matCellDef="let element"> 
+                                    <div class="btn-options">
+                                        <button *ngIf="element?.solicitacao?.isAnexo && !element?.anexoId" type="button" class="yellow" mat-icon-button matTooltip="Necessita anexo" >
+                                            <mat-icon>report_problem</mat-icon>
+                                        </button>
+                                        <button (click)="download(element?.anexoId, element?.descricao)" [disabled]="!(element?.anexoId > 0)" color="primary" mat-icon-button matTooltip="Download">
+                                            <mat-icon>arrow_downward</mat-icon>
+                                        </button>
+                                        <button (click)="fileUp.click(); uploadSolicitacaoId = element?.id" [disabled]="!element?.solicitacao?.isAnexo" color="primary" mat-icon-button matTooltip="Upload">
+                                            <mat-icon>arrow_upward</mat-icon>
+                                        </button>
+                                        <button (click)="visualizar(element)" color="primary" mat-icon-button matTooltip="Visualizar"
+                                            [disabled]="desabilitarBtnVisualizar(element)">
+                                            <mat-icon>search</mat-icon>
+                                        </button>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="historicoColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: historicoColumns;"
+                                (click)="selectionHistorico.toggle(row)" [ngClass]="{ 'selected': selectionHistorico.isSelected(row) }"></tr>
+                        </table>
+                    </div>
+                </mat-card>
+
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div class="flex align-center">
+                <div class="flex-fill"></div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<div *ngIf="isAluno">
+    
+    <div> <!-- bloco verde solicitacoes -->
+        <mat-card class="div-bloco-solicitacoes" (click)="mudarPainelSolicitacoes(0)">
+            <p class="titulo-bloco-solicitacoes">
+                Solicitações
+            </p>
+        </mat-card>
+    </div>
+
+    <div class="div-solicitacoes" *ngIf="telaSolicitacoes == 0"> <!-- Primeira tela: Opções do solicitacoes -->
+        <mat-card class="card-solicitacoes">
+            <div class="grid-lista-video">
+                <mat-list>
+                    <mat-list-item class="lista-materias" (click)="mudarPainelSolicitacoes(1)"> Realizar Solicitação
+                        <mat-icon class="icone-materias">arrow_forward_ios</mat-icon>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item class="lista-materias" (click)="mudarPainelSolicitacoes(2)"> Histórico Solicitação
+                        <mat-icon class="icone-materias">arrow_forward_ios</mat-icon>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+        </mat-card>
+    </div>
+
+    <div *ngIf="telaSolicitacoes == 1"> <!-- Segunda Tela: Pagamentos -->
+        <mat-card class="card-solicitacoes">
+            <ng-container *ngFor="let soli of solicitacoesRealizarPortalAluno" style="margin: 0.5%;"> <!--  -->
+                <mat-card class="card-opcoes-solicitacoes" fxLayout="row">
+                    
+                    <div fxFlex="3">
+                        
+                    </div>
+                    
+                    <div fxFlex="32" class="lado-esquerdo">
+                        <ng-container [ngSwitch]="(!!soli?.extensao && !!soli?.imagem)">
+                            <img *ngSwitchCase="true" class="imagem-solicitacoes" [src]="'data:'+soli?.extensao+';base64,'+soli?.imagem" alt="Imagem solicitação">
+                            <span *ngSwitchCase="false">{{soli.descricao ? soli.descricao : '-'}} </span>
+                            <p *ngSwitchDefault></p>
+                        </ng-container>
+                    </div>
+                    
+                    <div fxFlex="62" class="lado-direito">
+                        <p class="p-descricao">
+                            {{ soli.descricao }}
+                        </p>
+
+                        <p class="p-valor">
+                            {{ soli.valor | currency}}
+                        </p>
+
+                        <div>
+
+                            <!-- <button mat-raised-button class="botao-pagar" (click)="pagarViaCartao(soli, true)">
+                                <p class="p-botao-pagar1">Pagar com</p>
+                                <p class="p-botao-pagar2">Cartão</p>
+                            </button> -->
+
+                            <button mat-raised-button class="botao-pagar" (click)="pagarComBoleto(soli)">
+                                <p class="p-botao-solicitar">Solicitar</p>
+                            </button>
+                          
+                        </div>
+                    </div>
+
+                    <div fxFlex="3">
+                        
+                    </div>
+
+                </mat-card>
+            </ng-container>            
+        </mat-card>
+    </div>
+
+    <div *ngIf="telaSolicitacoes == 2"> <!-- Terceira Tela: Pagamentos -->
+        <mat-card class="card-solicitacoes">
+            <!-- <title-line title="Histórico Solicitação"></title-line> -->
+                <mat-card class="noshadow w-100 p-0">
+                    <div class="table">
+                        <table mat-table [dataSource]="historicoSource" [hidden]="!true">
+                            <ng-container matColumnDef="data">
+                                <th mat-header-cell *matHeaderCellDef class="md"> Data Solicitação </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{ element?.dataSolicitacao ? (element.dataSolicitacao | datePtBr) : ' - '}} 
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="descricao">
+                                <th mat-header-cell *matHeaderCellDef> Descrição </th>
+                                <!-- <td mat-cell *matCellDef="let element">
+                                    <ng-container [ngSwitch]="(!!element?.solicitacao?.extensao && !!element?.solicitacao?.imagem)">
+                                        <img *ngSwitchCase="true" [src]="'data:'+element?.solicitacao?.extensao+';base64,'+element?.solicitacao?.imagem" alt="Imagem solicitação">
+                                        <span *ngSwitchCase="false">{{element?.solicitacao?.descricao ? element?.solicitacao.descricao : '-'}} </span>
+                                        <p *ngSwitchDefault></p>
+                                    </ng-container>
+                                </td> -->
+                                <td mat-cell *matCellDef="let element">
+                                    {{element?.descricao ? element.descricao : '-'}} 
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="pagamento">
+                                <th mat-header-cell *matHeaderCellDef> Pagamento </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <ng-container [ngSwitch]="element?.statusPagamento">
+                                        <span *ngSwitchCase="1" class="yellow">&nbsp; A receber</span>
+                                        <span *ngSwitchCase="2" class="green">&nbsp; Pago</span>
+                                        <span *ngSwitchCase="3" class="red">&nbsp; Cancelado</span>
+                                        <span *ngSwitchCase="4" class="green">&nbsp; Grátis</span>
+                                        <p *ngSwitchDefault></p>
+                                    </ng-container>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="valor">
+                                <th mat-header-cell *matHeaderCellDef> Valor </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <ng-container *ngIf="element?.valor; else gratis">
+                                        {{ element.valor | currency }}
+                                    </ng-container>
+                                </td>
+                            </ng-container>
+
+                            <!-- <ng-container matColumnDef="options">
+                                <th mat-header-cell *matHeaderCellDef class="sm"></th>
+                                <td mat-cell *matCellDef="let element"> 
+                                    <div class="btn-options">
+                                        <button *ngIf="element?.solicitacao?.isAnexo && !element?.anexoId" type="button" class="yellow" mat-icon-button matTooltip="Necessita anexo" >
+                                            <mat-icon>report_problem</mat-icon>
+                                        </button>
+                                        <button  [disabled]="!(element?.anexoId > 0)" color="primary" mat-icon-button matTooltip="Download">
+                                            <mat-icon>arrow_downward</mat-icon>
+                                        </button>
+                                        <button (click)="fileUp.click(); uploadSolicitacaoId = element?.id" [disabled]="!element?.solicitacao?.isAnexo" color="primary" mat-icon-button matTooltip="Upload">
+                                            <mat-icon>arrow_upward</mat-icon>
+                                        </button>
+                                        <button  color="primary" mat-icon-button matTooltip="Visualizar"
+                                            [disabled]="desabilitarBtnVisualizar(element)">
+                                            <mat-icon>search</mat-icon>
+                                        </button> 
+                                    </div>
+                                </td>
+                            </ng-container> -->
+
+                            <tr mat-header-row *matHeaderRowDef="historicoColumnsalunos"></tr>
+                            <tr mat-row *matRowDef="let row; columns: historicoColumnsalunos;"
+                                (click)="selectionHistorico.toggle(row)" [ngClass]="{ 'selected': selectionHistorico.isSelected(row) }"></tr>
+                        </table>
+                    </div>
+                </mat-card>
+        </mat-card>
+    </div>
+
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<ng-template #gratis>
+    <span class="green">Grátis</span>
+</ng-template>
+
+<input #fileUp class="file-upload" type="file" (change)="loadFile($event)">

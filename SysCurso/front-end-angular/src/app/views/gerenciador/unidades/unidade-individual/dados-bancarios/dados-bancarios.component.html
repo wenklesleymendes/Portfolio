@@ -1,0 +1,37 @@
+<div class="body">
+    <form [formGroup]="form">
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Banco</mat-label>
+                <mat-select formControlName="codigoBanco">
+                    <mat-option *ngFor="let banco of bancos" [value]="banco.codigoBanco">
+                        {{ banco.nomeBanco }}
+                    </mat-option>
+                </mat-select>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Tipo de conta</mat-label>
+                <mat-select formControlName="tipoContaBancaria">
+                    <mat-option value="1"> Conta corrente </mat-option>
+                    <mat-option value="2"> Poupança </mat-option>
+                    <mat-option value="3"> Conta salário </mat-option>
+                </mat-select>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Agência Bancária</mat-label>
+                <input formControlName="numeroAgencia" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Conta Bancária</mat-label>
+                <input formControlName="numeroConta" matInput>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</div>

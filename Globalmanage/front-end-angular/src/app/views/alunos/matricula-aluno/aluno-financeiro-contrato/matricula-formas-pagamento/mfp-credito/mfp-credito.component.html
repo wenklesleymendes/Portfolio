@@ -1,0 +1,15 @@
+<div class="content mt-1">
+    <form [formGroup]="form">
+        <div class="grid grid--auto-fill">
+            <mat-form-field>
+                <mat-label>Quantidade de Parcelas</mat-label>
+                <mat-select formControlName="planoPagamentoId">
+                    <mat-option *ngFor="let plano of planos" [value]="plano.id">
+                        {{ plano.quantidadeParcela }}x {{ plano.valorParcela | currency}}
+                    </mat-option>
+                </mat-select>
+                <mat-error>Informação necessária</mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</div>

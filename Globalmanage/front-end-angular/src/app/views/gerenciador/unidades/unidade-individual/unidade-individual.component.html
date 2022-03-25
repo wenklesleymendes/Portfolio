@@ -1,0 +1,80 @@
+<div class="body">
+    <div class="flex">
+        <header>Adicionar unidades</header>
+        <div class="flex-fill"></div>
+        <div>
+            <button mat-button color="primary" (click)="voltar()">Voltar</button>
+        </div>
+    </div>
+
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+
+            <div *ngIf="!isLoadingResults" (click)="imgProfile.click()" class="img-aluno">
+                <img [src]="imgProfileSrc || '../../../assets/house.png'" alt="unidade">
+                <div class="btn-mudar-img-aluno noselect">
+                    <span> Alterar </span>
+                </div>
+            </div>
+
+            <mat-accordion #accordion multi class="mat-elevation-z8" [hidden]="isLoadingResults">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Informações da unidade</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-informacoes-unidade *ngIf="!isLoadingResults" [infomacoesInput]="infomacoesInput"></app-informacoes-unidade>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Dados bancários da unidade</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-dados-bancarios *ngIf="!isLoadingResults" [dadosBancariosInput]="dadosBancariosInput"></app-dados-bancarios>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Contrato de locação</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-contrato-locacao *ngIf="!isLoadingResults" [contratoLocacaoInput]="contratoLocacaoInput"></app-contrato-locacao>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Documentos da Unidade</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-documento-unidade *ngIf="!isLoadingResults" [documentoUnidadeInput]="documentoUnidadeInput"></app-documento-unidade>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Histórico de Ocorrências</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-historico-ocorrencias *ngIf="!isLoadingResults" [historicoOcorrenciasInput]="historicoOcorrenciasInput"></app-historico-ocorrencias>
+                </mat-expansion-panel>
+
+            </mat-accordion>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isLoadingResults" class="flex">
+                <div>
+                    <button mat-button color="primary" (click)="voltar()">Voltar</button>
+                </div>
+                <div class="flex-fill"></div>
+                <div>
+                    <button mat-raised-button color="primary" (click)="salvarData()" cdkFocusInitial>Salvar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<input #imgProfile class="file-upload" type="file" accept='image/*' (change)="loadImgProfile($event)">

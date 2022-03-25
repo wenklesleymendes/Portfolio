@@ -1,0 +1,344 @@
+@import '../../../../scss/functions.scss';
+
+.body {
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9;
+    // position: fixed;
+}
+
+.main-home {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 0;
+    background-color: #e5e5e5;
+}
+
+.div-titulo {
+    display: flex;
+    margin-top: 5px;
+    // background: #ffffff url("../../../../assets/fundo.png") no-repeat right top fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    justify-content: center;
+    background-color: #e5e5e5;
+}
+
+.div-logo-unidade {
+    display: flex;
+    width: 35%;
+    // margin-right: 16%;
+}
+
+.img-logo-unidade {
+    width: 100%;
+    margin: 7% 0 7% 0;
+}
+
+.div-bem-vindo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding-right: 20px;
+}
+
+.p-bem-vindo {
+    margin: 0;
+    padding: 0;
+}
+
+.p-atendimento {
+    margin: 0;
+    padding: 0;
+}
+
+.p-unidade {
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+}
+
+mat-icon {
+    font-size: 25px;
+}
+
+.botao-sair {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+}
+
+.div-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+
+.div-outbounds-restantes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 35px;
+    background-color: #d2d2d2;
+}
+
+.p-outbounds-restantes {
+    margin: 0;
+    padding: 0;
+}
+
+.div-borda-externa {
+    padding: 3%;
+}
+
+.div-menu-opcoes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 1.5%;
+    padding-bottom: 10%;
+
+    @include ipad {
+        margin-top: 5%;
+        padding-bottom: 15%;
+    }
+}
+
+.div-novo-atendimento {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 150px;
+    // border: 1px solid #ff0000;
+    border-radius: 35px;
+    cursor: pointer;
+    background-color: #003499;
+}
+
+.p-novo-atendimento {
+    font-size: 19px;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.div-pesquisar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 150px;
+    // border: 1px solid #ff0000;
+    border-radius: 35px;
+    cursor: pointer;
+    background-color: #56504c;
+}
+
+.p-pesquisar {
+    font-size: 19px;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.div-outbound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 150px;
+    // border: 1px solid #ff0000;
+    border-radius: 35px;
+    cursor: pointer;
+    background-color: #00cb4d;
+}
+
+.p-outbound {
+    font-size: 19px;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.div-agendados {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 150px;
+    // border: 1px solid #ff0000;
+    border-radius: 35px;
+    cursor: pointer;
+    background-color: #ec7000;
+}
+
+.p-agendados {
+    font-size: 19px;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.div-contatos-prioritarios {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 150px;
+    // border: 1px solid #ff0000;
+    border-radius: 35px;
+    cursor: pointer;
+    background-color: #143135;
+}
+
+.loop-gif-body {
+    width: 37%;
+    margin-top: -14%;
+    margin-bottom: -5%;
+}
+
+.p-contatos-prioritarios {
+    font-size: 19px;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 2%;
+}
+
+.div-rodape {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0 auto 0;
+    background-color: #b2b2b2;
+}
+
+.div-barra-navegacao {
+    display: flex;
+}
+
+.b-home {
+    width: 100px;
+    height: 100%;
+    background-color: #717171;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.b-novo-atendimento {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.b-pesquisar {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.b-outbound {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.b-agendados {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.b-contatos-prioritarios {
+    width: 100px;
+    height: 100%;
+    background-color: unset;
+    color: white;
+    border: none;
+    padding-bottom: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.loop-gif-rodape {
+    width: 100%;
+}
+
+.mat-icon-body {
+    font-size: 45px;
+    color: #ffffff;
+    font-weight: 1000;
+    display: contents;
+}
+
+.mat-icon-button {
+    font-size: 50px;
+    font-weight: 500;
+    display: contents;
+}
+
+::ng-deep .mat-dialog-container {
+    background-color: #f9f9f9;
+}

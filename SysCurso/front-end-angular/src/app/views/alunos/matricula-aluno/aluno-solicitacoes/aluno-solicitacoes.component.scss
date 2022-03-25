@@ -1,0 +1,450 @@
+@import '../../../../../scss/theme.scss';
+@import "../../../../../scss/functions.scss";
+
+.card-principal {
+    margin: 0 auto 0;
+    width: 89%;
+    margin-top: -8px;
+    margin-bottom: 4%;
+    z-index: 0;
+}
+
+mat-checkbox {
+    margin: 0.5rem 1rem;
+}
+
+form {
+    padding-bottom: 0;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-right: 1.5rem;
+}
+
+.grid--auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(26rem, 1fr));
+}
+
+mat-form-field, mat-chip-list, .form-select {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    min-width: 400px;
+}
+
+mat-divider {
+    position: relative !important;
+    align-self: center;
+    margin: 0 2rem;
+}
+
+.grid, .grid--auto-fit-lg {
+    padding: 0;
+}
+
+.sm-column {
+    max-width: 5rem !important;
+    min-width: 5rem !important;
+    width: 5rem !important;
+}
+
+.btn-options {
+    display: flex;
+    justify-content: flex-end;
+}
+
+mat-divider {
+    align-self: center;
+    margin: 0 2rem;
+}
+
+table {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+
+    @include mobile {
+        width: 93%;
+    }
+}
+
+.btn-add {
+    max-width: 300px;
+}
+
+::ng-deep.mat-dialog-container {
+    max-height: 90vh !important;
+    overflow-y: auto;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+
+    mat-label {
+        margin-right: 0.5rem;
+    }
+
+    @include mobile {
+        padding: 0.5rem 0;
+        margin-top: unset;
+    }
+}
+
+.sm {
+    max-width: 3rem !important;
+    min-width: 3rem !important;
+    width: 3rem !important;
+}
+
+.md {
+    max-width: 8rem !important;
+    min-width: 8rem !important;
+    width: 8rem !important;
+}
+
+.bolder {
+    font-weight: bolder;
+}
+
+// img {
+//     max-width: 15rem;
+//     max-height: 15rem;
+// }
+
+.selected {
+    background-color: #dddddd;
+}
+
+@include mobile {
+    form, .mat-form-field, .form-select, .checkbox, .mat-radio-button {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form-registro {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    .form-options {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding-right: 1.5rem;
+    }
+
+    .form-registro {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    .mat-card {
+        padding: 1rem 0 !important;
+    }
+
+    .grid--auto-fill, .grid--auto-fit-lg {
+        grid-template-columns: none;
+    }
+
+    .mat-form-field, .mat-chip-list {
+        min-width: 0 !important;
+    }
+}
+
+.grade-icones {
+    background-color: #f1f1f1;
+}
+
+.icone_grade {
+    width: 25%;
+    height: 75%;
+    padding-bottom: 2%;
+
+    @include mobile {
+        width: 50%;
+        height: 85%;
+    }
+
+    @include ipad {
+        width: 25%;
+        height: 75%;
+    }
+
+    @include bigscreen {
+        width: 20%;
+        height: 70%;
+    }
+}
+
+.nome-unidade-curso {
+    background-color: #ffffff;
+    padding-bottom: 1.5%;
+}
+
+.aluno_curso {
+    font-size: 2.5ex;
+    text-align: center;
+    display: block !important;
+    padding-top: 5px;
+    color: #767171;
+
+    @include mobile {
+        font-size: 13px;
+    }
+}
+
+.aluno_unidade {
+    font-size: 2ex;
+    text-align: center;
+    display: block !important;
+    margin: 0px;
+    color: #767171;
+    
+    @include mobile {
+        font-size: 12px;
+    }
+}
+
+.card-cabeça-portal {
+    background-color: transparent;
+    box-shadow: transparent;
+    padding: 0% !important;
+}
+
+.botao-icone {
+    flex-direction: column;
+}
+
+.p-icone {
+    margin: -5%;
+    padding: 0;
+    color: #534f4f;
+
+    @include mobile {
+        font-size: 12.5px;
+    }
+}
+
+.qwert {
+    max-height: 255px !important;
+    min-height: 195px !important;
+    height: 100%;
+    padding: 0;
+
+    @include mobile {
+        max-height: 165px !important;
+        min-height: 155px !important;
+    }
+
+    @include bigscreen {
+        max-height: 325px !important;
+        min-height: 255px !important;
+    }
+}
+
+.mat-grid-tile .mat-figure {
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    box-sizing: border-box;
+}
+
+.tab-icones-palavras {
+    flex-direction: column;
+}
+
+.example-tab-icon {
+    flex-direction: column;
+}
+
+.grid4 {
+    left: 17% !important;
+}
+
+.grid6 {
+    right: 17% !important;
+    left: 49% !important;
+}
+
+.div-bloco-solicitacoes {
+    background-color: #34af23;
+    margin: 0 auto 0;
+    margin-top: 15px;
+    width: 90%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.titulo-bloco-solicitacoes {
+    color: #f1f1f1;
+    text-align: center;
+}
+
+// .div-solicitacoes {
+
+// }
+
+.card-solicitacoes {
+    text-align: center;
+    margin: 0 auto 0;
+    width: 89%;
+    margin-top: -8px;
+    margin-bottom: 4%;
+    z-index: 0;
+}
+
+.grid-lista-video {
+    grid-area: grid-img-aluno;
+    display: flex;
+    flex-direction: column;
+}
+
+.lista-materias {
+    cursor: pointer;
+}
+
+.icone-materias {
+    color: #34af23;
+}
+
+.mat-divider {
+    width: 100%;
+    margin: 0;
+}
+
+.card-opcoes-solicitacoes {
+    background-color: #d7d7d7;
+    width: 40%;
+    border-radius: 27px;
+    padding: 2%;
+    margin: 0 auto 0;
+    margin-top: 2% !important;
+
+    @include mobile{
+        width: 94%;
+        margin-top: 3% !important;
+        margin-bottom: 7% !important;
+    }
+}
+
+.p-descricao {
+    font-size: 20px;
+    text-align: center;
+    margin: 1px;
+    margin-top: 0;
+
+    @include mobile {
+        font-size: 17px;
+    }
+}
+
+.p-valor {
+    font-size: 18px;
+    text-align: center;
+    margin: 1px;
+    margin-top: 0;
+
+    @include mobile {
+        font-size: 16px;
+    }
+}
+
+.botao-pagar {
+    background-color: #147bcd;
+    margin: 0 0.25em;
+    padding: 0 0.55em;
+}
+
+.p-botao-pagar1 {
+    margin: 0;
+    padding: 0;
+    margin-top: -5px;
+    margin-bottom: -15px;
+    color: #f1f1f1;
+    font-size: 14px;
+}
+
+.p-botao-pagar2 {
+    margin: 0;
+    padding: 0;
+    margin-top: -15px;
+    margin-bottom: -5px;
+    color: #f1f1f1;
+    font-size: 14px;
+}
+
+.p-botao-solicitar {
+    margin: 3px;
+    padding: 0;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    color: #f1f1f1;
+    font-size: 15px;
+}
+
+.imagem-solicitacoes {
+    width: 85%;
+    margin: 0 auto 0;
+
+    @include mobile {
+        width: 100%;
+        margin-left: 5px;
+    }
+}
+
+th.mat-header-cell {
+    text-align: center;
+}
+
+.lado-esquerdo {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.lado-direito {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+@include mobile {
+    .table:before {
+        content: '';
+        display: block;
+        width: 10px;
+        height: 50px;
+        box-shadow: -13px 0 14px -14px rgb(0 0 0 / 70%) inset;
+        -moz-box-shadow: -13px 0 14px -14px rgba(0,0,0,0.7) inset;
+        -webkit-box-shadow: -13px 0 14px -14px rgb(0 0 0 / 70%) inset;
+        -ms-box-shadow: -13px 0 14px -14px rgba(0,0,0,0.7) inset;
+        position: absolute;
+        top: 12px;
+        right: 0;
+        z-index: 1;
+    }
+    
+    .table:after {
+        content: '';
+        background-size: 100%;
+        position: absolute;
+        top: 3.5%;
+        right: 3%;
+        z-index: 99999;
+        width: 70px;
+        height: 60px;
+        background-image: url("../../../../../assets/icon-touch2.gif");
+        background-repeat: no-repeat;
+        pointer-events: none;
+    }
+}

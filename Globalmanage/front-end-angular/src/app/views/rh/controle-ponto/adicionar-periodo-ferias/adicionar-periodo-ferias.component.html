@@ -1,0 +1,140 @@
+<div mat-dialog-title class="flex flex-row">
+    Registrar ausência
+    <div class="flex-fill"></div>
+    <div class="btn-options">
+        <button color="primary" (click)="dialogRef.close(update)" mat-icon-button matTooltip="Fechar">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+</div>
+<div mat-dialog-content>
+    <div class="loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!error;else errorTemplate">
+        <form [formGroup]="form">
+            <div class="grid grid--auto-fit">
+                <mat-form-field>
+                    <mat-label>Início do período</mat-label>
+                    <input matInput formControlName="inicio" [matDatepicker]="dataInicio">
+                    <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
+                    <mat-datepicker #dataInicio></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Fim do período</mat-label>
+                    <input matInput formControlName="termino" [matDatepicker]="dataFim">
+                    <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
+                    <mat-datepicker #dataFim></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="flex form-registro">
+                <mat-form-field class="flex-fill">
+                    <mat-label>Observações</mat-label>
+                    <textarea formControlName="observacao" matInput></textarea>
+                </mat-form-field>
+            </div>
+
+            <div class="grid grid--auto-fill">
+                <mat-form-field>
+                    <mat-label>Descrição do documento</mat-label>
+                    <input formControlName="documento" matInput>
+                </mat-form-field>
+
+                <div class="flex align-center prl-1-5">
+                    <button mat-button type="button" (click)="fileUp.click()" color="primary">
+                        Documento  &nbsp;
+                        <mat-icon>cloud_upload</mat-icon>
+                    </button>
+                    <mat-icon *ngIf="loadedFile" color="primary">check</mat-icon>
+                </div>
+            </div>
+
+            <div class="grid grid--auto-fill">
+                <mat-form-field>
+                    <mat-label>Tipo ausência</mat-label>
+                    <mat-select formControlName="tipoFeriasFolgaFalta">
+                        <mat-option [value]="1"> Folga </mat-option>
+                        <mat-option [value]="2"> Falta</mat-option>
+                        <mat-option [value]="3"> Férias Gozadas 30 dias de Descanso</mat-option>
+                        <mat-option [value]="4"> Férias Vendidas 30 dias </mat-option>
+                        <mat-option [value]="5"> Férias Gozadas 15 dias de Descanso + 15 dias vendidos</mat-option>
+                        <mat-option [value]="6"> Férias Gozadas 20 dias de Descanso + 10 dias vendidos</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </form>
+        
+        <div class="flex flex-fill">
+            <div class="table">
+                <table mat-table [dataSource]="dataSource" [hidden]="isLoadingResults" multiTemplateDataRows>
+                    <ng-container matColumnDef="dataInicio">
+                        <th mat-header-cell *matHeaderCellDef> Data de início </th>
+                        <td mat-cell *matCellDef="let element"> {{element.inicio ? (element.inicio | datePtBr) : '-'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dataFim">
+                        <th mat-header-cell *matHeaderCellDef> Data de fim </th>
+                        <td mat-cell *matCellDef="let element"> {{element.termino ? (element.termino | datePtBr) : '-'}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ausencia">
+                        <th mat-header-cell *matHeaderCellDef> Tipo da ausência  </th>
+                        <td mat-cell *matCellDef="let element"> {{labelAusensia(element.tipoFeriasFolgaFalta)}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="options">
+                        <th mat-header-cell *matHeaderCellDef class="sm-column"> </th>
+                        <td mat-cell *matCellDef="let element; let i = dataIndex">
+                           <div class="btn-options">
+                                <button type="button" color="primary" *ngIf="element.observacao" mat-icon-button matTooltip="Tem observação" 
+                                (click)="expandedElement = expandedElement === element ? null : element">
+                                    <mat-icon>help</mat-icon>
+                                </button>
+                                <button type="button" (click)="editar(element)" color="primary" mat-icon-button matTooltip="Editar" >
+                                    <mat-icon>create</mat-icon>
+                                </button>
+                                <button type="button" (click)="download(element.anexo[0])" color="primary" 
+                                *ngIf="element.anexo.length > 0" mat-icon-button matTooltip="Download" >
+                                    <mat-icon>arrow_downward</mat-icon>
+                                </button>
+                                <button type="button" (click)="removeFerias(i, element.id)" color="warn" mat-icon-button matTooltip="Excluir" >
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                           </div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="expandedDetail">
+                        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                          <div class="example-element-detail"
+                               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                            <p *ngIf="element.observacao">{{ element.observacao ? element.observacao : '-' }}</p>
+                          </div>
+                        </td>
+                      </ng-container>
+                    
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+                          class="example-element-row"
+                          [class.example-expanded-row]="expandedElement === element">
+                      </tr>
+                      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"
+                      (click)="selection.toggle(row)" [ngClass]="{ 'selected': selection.isSelected(row) }"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <mat-progress-bar *ngIf="sendingAnexo" mode="indeterminate"color="primary"></mat-progress-bar>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="adicionar()" color="primary">Adicionar</button>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>
+
+<input #fileUp class="file-upload" type="file" (change)="loadFile($event)">

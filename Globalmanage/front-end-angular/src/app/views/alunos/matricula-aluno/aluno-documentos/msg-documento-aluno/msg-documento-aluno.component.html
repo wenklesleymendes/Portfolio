@@ -1,0 +1,12 @@
+<h1 mat-dialog-title></h1>
+<div mat-dialog-content>
+    <div class="flex flex-column align-center">
+        <mat-icon color="warn">warning</mat-icon>
+        <h1>Motivo da recusa:</h1>
+        <h4 class="center">{{ tipoRecusa }}</h4>
+        <span class="center">{{ data?.mensagem }}</span>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="close()" color="primary">Ok</button>
+</div>

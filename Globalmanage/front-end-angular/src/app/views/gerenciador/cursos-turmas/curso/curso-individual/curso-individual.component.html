@@ -1,0 +1,99 @@
+<div class="body">
+    <div class="flex">
+        <header>{{ (id === 0) ? 'Adicionar' : 'Alterar' }} curso</header>
+        <div class="flex-fill"></div>
+        <div>
+            <button mat-button color="primary" (click)="voltar()">Voltar</button>
+        </div>
+    </div>
+
+    <mat-card class="mat-elevation-z8" *ngIf="!error;else errorTemplate">
+        <mat-card-title></mat-card-title>
+        <mat-card-content>
+            <div class="loading-shade" *ngIf="isLoadingResults">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div class="content" *ngIf="!isLoadingResults">
+                <form [formGroup]="form">
+                    <div class="flex flex-row">
+                        <mat-form-field class="flex-fill">
+                            <mat-label>Curso</mat-label>
+                            <input matInput formControlName="descricao" appTitlecase>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex flex-row">
+                        <mat-form-field>
+                            <mat-label>Supletivo / NacionalTec</mat-label>
+                            <mat-select formControlName="nacionatalTec">
+                                <mat-option [value]="false"> Supletivo  </mat-option>
+                                <mat-option [value]="true"> NacionalTec  </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex flex-row">
+                        <mat-form-field>
+                            <mat-label>Duração</mat-label>
+                            <input matInput formControlName="duracao" appTitlecase>
+                            <mat-error>Informação necessária</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex form-registro">
+                        <mat-form-field class="flex-fill">
+                            <mat-label>Matéria</mat-label>
+                            <input matInput formControlName="matricula">
+                        </mat-form-field>
+                        <div class="flex align-center">
+                            <button mat-button (click)="addMatricula()" type="button" color="primary">
+                                Adicionar &nbsp;
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-fill">
+                        <div class="table">
+                            <table mat-table [dataSource]="dataSource">
+                                <ng-container matColumnDef="descricao">
+                                    <th mat-header-cell *matHeaderCellDef> Matérias adicionadas </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.nomeMateria ? element.nomeMateria : '-'}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="options">
+                                    <th mat-header-cell *matHeaderCellDef class="sm-column"> </th>
+                                    <td mat-cell *matCellDef="let element; let i = index">
+                                       <div class="btn-options">
+                                            <button type="button" (click)="removeMatricula(i, element.id)" color="warn" mat-icon-button matTooltip="Excluir" >
+                                                <mat-icon>delete</mat-icon>
+                                            </button>
+                                       </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                                    (click)="selection.toggle(row)" [ngClass]="{ 'selected': selection.isSelected(row) }"></tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isLoadingResults" class="flex">
+                <div>
+                    <button mat-button color="primary" (click)="voltar()">Voltar</button>
+                </div>
+                <div class="flex-fill"></div>
+                <div>
+                    <button mat-raised-button color="primary" (click)="salvarData()" cdkFocusInitial>Salvar</button>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #errorTemplate>
+    <app-server-error></app-server-error>
+</ng-template>

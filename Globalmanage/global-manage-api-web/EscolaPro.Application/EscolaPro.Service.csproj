@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="FastReport.OpenSource" Version="2020.2.0" />
+    <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2020.3.4" />
+    <PackageReference Include="morelinq" Version="3.3.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="PuppeteerSharp" Version="2.0.4" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EscolaPro.ControleBoleto\EscolaPro.ControleBoleto.csproj" />
+    <ProjectReference Include="..\EscolaPro.ControlePonto\EscolaPro.ControlePonto.csproj" />
+    <ProjectReference Include="..\EscolaPro.Core\EscolaPro.Core.csproj" />
+    <ProjectReference Include="..\EscolaPro.Repository\EscolaPro.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Concretes\NovaPasta\" />
+    <Folder Include="Dto\WhatsApp\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+</Project>
