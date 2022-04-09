@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3A9E2802-11E5-433E-92AA-7AF1D9B3F12F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Formularios</RootNamespace>
+    <AssemblyName>Formularios</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IoC\IocVisao.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Principal\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Principal\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Login\frmCardOperador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Login\frmCardOperador.Designer.cs">
+      <DependentUpon>frmCardOperador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Login\frmListaOperadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Login\frmListaOperadores.Designer.cs">
+      <DependentUpon>frmListaOperadores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Login\frmLoginOperador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Login\frmLoginOperador.Designer.cs">
+      <DependentUpon>frmLoginOperador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Login\frmCadastroOperador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Login\frmCadastroOperador.Designer.cs">
+      <DependentUpon>frmCadastroOperador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Logo\fmLogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Logo\fmLogo.Designer.cs">
+      <DependentUpon>fmLogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Controles\UtilitariosMaterialSkin\Temas.cs" />
+    <Compile Include="Telas\Controles\MessageBox\frmMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Controles\MessageBox\frmMessageBox.Designer.cs">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Telas\Controles\MessageBox\ThermoExamsMessageBox.cs" />
+    <Compile Include="Telas\Controles\ucOperadorCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Telas\Controles\ucOperadorCard.Designer.cs">
+      <DependentUpon>ucOperadorCard.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Principal\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Login\frmCardOperador.resx">
+      <DependentUpon>frmCardOperador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Login\frmListaOperadores.resx">
+      <DependentUpon>frmListaOperadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Login\frmLoginOperador.resx">
+      <DependentUpon>frmLoginOperador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Login\frmCadastroOperador.resx">
+      <DependentUpon>frmCadastroOperador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Controles\MessageBox\frmMessageBox.resx">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Logo\fmLogo.resx">
+      <DependentUpon>fmLogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Controles\ucOperadorCard.resx">
+      <DependentUpon>ucOperadorCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\ModelPrincipal.Entidades.Operador.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\2-Aplicacoes\Processos\Processos.csproj">
+      <Project>{42F6DD2E-CC55-4B17-BB60-9B383EB59D5D}</Project>
+      <Name>Processos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\3-Dominio\ModelPrincipal\ModelPrincipal.csproj">
+      <Project>{e894bac1-300c-4ea7-b34f-52fbdcde5ed7}</Project>
+      <Name>ModelPrincipal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\4-Infraestrutura\Repositorio\Repositorio.csproj">
+      <Project>{ce218bfb-1362-4062-89e4-b016158ccdc7}</Project>
+      <Name>Repositorio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>6.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="MaterialSkin.2">
+      <Version>2.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.Sqlite">
+      <Version>3.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Serilog">
+      <Version>2.10.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Buffers">
+      <Version>4.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.DiagnosticSource">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.IO">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Memory">
+      <Version>4.5.4</Version>
+    </PackageReference>
+    <PackageReference Include="System.Numerics.Vectors">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Security.Cryptography.Algorithms">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Security.Cryptography.Encoding">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Security.Cryptography.Primitives">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Tasks.Extensions">
+      <Version>4.5.4</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\removerCadastro32px.png" />
+    <None Include="Resources\shut-down.png" />
+    <None Include="Resources\satellite-dish.png" />
+    <None Include="Resources\satellite-dish %281%29.png" />
+    <None Include="Resources\APs.PNG" />
+    <None Include="Resources\addCadastro 32px.png" />
+    <Content Include="Resources\chat.png" />
+    <None Include="Resources\Close.png" />
+    <None Include="Resources\Dashboard.PNG" />
+    <None Include="Resources\editarCadastro32px.png" />
+    <Content Include="Resources\error.png" />
+    <Content Include="Resources\exclamation.png" />
+    <None Include="Resources\Image.png" />
+    <None Include="Resources\icono-cliente.png" />
+    <None Include="Resources\fecharTela32px.png" />
+    <Content Include="Resources\information.png" />
+    <None Include="Resources\logoUI.png" />
+    <None Include="Resources\logoUI2.png" />
+    <None Include="Resources\maximize.png" />
+    <None Include="Resources\maximize2.png" />
+    <None Include="Resources\maximize3.png" />
+    <None Include="Resources\Membresia.PNG" />
+    <None Include="Resources\menu.png" />
+    <None Include="Resources\menu2.png" />
+    <None Include="Resources\Minimize.png" />
+    <None Include="Resources\Minimize1.png" />
+    <None Include="Resources\new logo.png" />
+    <None Include="Resources\new logo1.png" />
+    <None Include="Resources\new logo2.png" />
+    <None Include="Resources\new logo3.png" />
+    <None Include="Resources\new logo4.png" />
+    <None Include="Resources\new logo5.png" />
+    <None Include="Resources\Normal.png" />
+    <None Include="Resources\perfil.png" />
+    <None Include="Resources\Planes.PNG" />
+    <None Include="Resources\Logo_TV_2015.png" />
+    <None Include="Resources\pesquisa 32px.png" />
+    <Content Include="Resources\question.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

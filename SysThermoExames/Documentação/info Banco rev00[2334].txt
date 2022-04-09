@@ -1,0 +1,39 @@
+====================================================================
+CONFIGURAÇÕES
+====================================================================
+PathBase
+VersaoAtual
+
+
+====================================================================
+CADASTRO DE PACIENTES
+====================================================================
+
+-----------------------
+Tabela Paciente
+-----------------------
+Index Paciente
+Nome (*)
+RG 
+CPF (*)
+Data Nascimento (*)
+Altura 
+Telefones [1..n] (*)
+Endereço *
+Complemento 
+CEP
+Plano de Saúde 
+Registro no Plano
+Data Cadastro
+Doenças Pré Existentes
+
+-----------------------
+Tabela Exames
+-----------------------
+Index Paciente
+Data *
+Tipo Exame *
+Peso 
+Anaminese
+Laudo *
+Status (Imagens Coletadas, Realizando Laudo, Laudo Pronto, Entregue) *

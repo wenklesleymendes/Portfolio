@@ -1,1 +1,0 @@
-dotnet EscolaPro.OrquestradorReguaContato.dll

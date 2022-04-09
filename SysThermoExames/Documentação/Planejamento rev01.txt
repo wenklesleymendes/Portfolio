@@ -1,0 +1,32 @@
+[ok] Definições:
+	[ok] DB
+		[ok] MongoDB
+		[ok] 1 arquivo de dados de configurações
+		[ok] 1 arquivo de dados de módulos
+	[ok] Views
+		[ok] Winforms
+	[ok] Modularização por plugins
+		[ok] SimpleInjector
+
+[ ] SHELL
+	[ ] [01] Acesso aos dados de configuração (01/12/2021) (Wenklesley)
+		[ ] Informações (Marcelo)
+		[ ] Modelagem do banco
+		[ ] Conexão com banco
+		[ ] View
+
+	[ok] Módulos Testes com acesso ao arquivo de módulos (08/12/2021)
+	[ ]  [05] Importação de imagens diretamente da câmera (Marcelo)
+	[ ]  [04] Visualização das miniaturas de imagens (Marcelo)
+	[ ]  [??] Controle de Acesso (Wenklesley)
+
+[ ] MÓDULOS
+	[ ] [02] Módulo Cadastro de Pacientes
+		[ ] Informações (Marcelo)
+		[ ] Modelagem do banco
+		[ ] Conexão com banco
+		[ ] Views
+
+	[ ] [06] Módulo de edição das imagens (Marcelo)
+	[ ] [03] Módulo de geração de relatório
+		[ ] Usando edição de template do Word.

@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{42314730-53F3-4B04-8AD3-E8CD20EDBFA9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MdPaciente</RootNamespace>
+    <AssemblyName>MdPaciente</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dominio\Enums\EnumAlteracoesHormonais.cs" />
+    <Compile Include="Dominio\Enums\EnumCirurgias.cs" />
+    <Compile Include="Dominio\Enums\EnumDietas.cs" />
+    <Compile Include="Dominio\Enums\EnumEnxaquecas.cs" />
+    <Compile Include="Dominio\Enums\EnumImplantesContraceptivos.cs" />
+    <Compile Include="Dominio\Enums\EnumMenstruacao.cs" />
+    <Compile Include="Dominio\Enums\EnumDisturbiosFobias.cs" />
+    <Compile Include="Dominio\Enums\EnumProteses.cs" />
+    <Compile Include="Dominio\Enums\EnumSexo.cs" />
+    <Compile Include="Dominio\Enums\EnumSindromes.cs" />
+    <Compile Include="Dominio\Enums\EnumTipoExame.cs" />
+    <Compile Include="Dominio\Enums\EnumTipoMedicacao.cs" />
+    <Compile Include="Dominio\ImplantesContraceptivos.cs" />
+    <Compile Include="Dominio\MedicacaoFarmacos.cs" />
+    <Compile Include="Dominio\MetodoContraceptivo.cs" />
+    <Compile Include="Infraestrutura\IRepositorioExames.cs" />
+    <Compile Include="Infraestrutura\RepositorioExames.cs" />
+    <Compile Include="Visao\Telas\Principal\frmMainMdPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Telas\Principal\frmMainMdPaciente.Designer.cs">
+      <DependentUpon>frmMainMdPaciente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\Telas\Paciente\frmCadastro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Telas\Paciente\frmCadastro.Designer.cs">
+      <DependentUpon>frmCadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\Telas\Paciente\frmCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Telas\Paciente\frmCard.Designer.cs">
+      <DependentUpon>frmCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\Telas\Paciente\frmExecoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Telas\Paciente\frmExecoes.Designer.cs">
+      <DependentUpon>frmExecoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\Telas\Exame\frmCadastroExame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Telas\Exame\frmCadastroExame.Designer.cs">
+      <DependentUpon>frmCadastroExame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\Telas\Exame\frmCardExame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Telas\Exame\frmCardExame.Designer.cs">
+      <DependentUpon>frmCardExame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\Telas\Exame\frmExcecoesExame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Telas\Exame\frmExcecoesExame.Designer.cs">
+      <DependentUpon>frmExcecoesExame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\Telas\Exame\frmListaExames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Telas\Exame\frmListaExames.Designer.cs">
+      <DependentUpon>frmListaExames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visao\MaterialSkinThemes.cs" />
+    <Compile Include="Visao\Telas\Controles\ucPacienteCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visao\Telas\Controles\.Designer.cs">
+      <DependentUpon>ucPacienteCard.cs</DependentUpon>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Aplicacoes\ProcessoCadastroPaciente.cs" />
+    <Compile Include="Aplicacoes\Utilitario.cs" />
+    <Compile Include="Dominio\Enums\EnumeradorBase.cs" />
+    <Compile Include="Dominio\Enums\EnumStatus.cs" />
+    <Compile Include="Dominio\Exames.cs" />
+    <Compile Include="Dominio\Paciente.cs" />
+    <Compile Include="Infraestrutura\IoC\IocCadastroPacientes.cs" />
+    <Compile Include="Infraestrutura\IRepositorioPacientes.cs" />
+    <Compile Include="Infraestrutura\RepositorioPacientes.cs" />
+    <Compile Include="Dtos\DtoConfiguracao.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Visao\Telas\Paciente\frmCadastro.resx">
+      <DependentUpon>frmCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Telas\Paciente\frmCard.resx">
+      <DependentUpon>frmCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Telas\Paciente\frmExecoes.resx">
+      <DependentUpon>frmExecoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Telas\Exame\frmCadastroExame.resx">
+      <DependentUpon>frmCadastroExame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Telas\Exame\frmCardExame.resx">
+      <DependentUpon>frmCardExame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Telas\Exame\frmExcecoesExame.resx">
+      <DependentUpon>frmExcecoesExame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Telas\Exame\frmListaExames.resx">
+      <DependentUpon>frmListaExames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Telas\Principal\frmMainMdPaciente.resx">
+      <DependentUpon>frmMainMdPaciente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Telas\Controles\ucPacienteCard.resx">
+      <DependentUpon>ucPacienteCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\DataSources\CadastroPaciente._3_Dominio.Exames.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shell\3-Dominio\ModelPrincipal\ModelPrincipal.csproj">
+      <Project>{e894bac1-300c-4ea7-b34f-52fbdcde5ed7}</Project>
+      <Name>ModelPrincipal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shell\4-Infraestrutura\Repositorio\Repositorio.csproj">
+      <Project>{ce218bfb-1362-4062-89e4-b016158ccdc7}</Project>
+      <Name>Repositorio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shell\Shell\Shell.csproj">
+      <Project>{b3f2abd6-dd50-4bc7-b6a6-0a19cc3076b6}</Project>
+      <Name>Shell</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>6.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="MaterialSkin.2">
+      <Version>2.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.Sqlite">
+      <Version>3.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="MongoDB.Bson">
+      <Version>2.14.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Buffers">
+      <Version>4.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.DiagnosticSource">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Memory">
+      <Version>4.5.4</Version>
+    </PackageReference>
+    <PackageReference Include="System.Numerics.Vectors">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Tasks.Extensions">
+      <Version>4.5.4</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pesquisa 16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pesquisa 32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addCadastro 32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\removerCadastro32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editarCadastro32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\perfil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fecharTela32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\semImagem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Informacoes.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

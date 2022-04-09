@@ -1,0 +1,51 @@
+Sexo: O mesmo enamuerador que usa no paciente
+TipoExame: Enumerador sequintes Dados (MMSS, MMII, TOTAL, FACE, TRONCO)
+
+
+Sera salvo no campo como texto no formato Json
+
+Mestruação: Enumerador Sequintes Dados (Usente, Irregular, Dolorosa)
+
+Síndromes: Enumerador Sequentes Dados (  Diabetes, Artrite Reumatóide, Raynaud, Gota, Lupus, 
+										Litiase biliar, Litiase renal,Dislipidemia, Sinusite)
+										
+Enxaquecas: Enumerador Sequentes Dados (Enxaqueca Frontal, Enxaqueca Temporal direita, 
+										Enxaqueca Temporal esquerda, Enxaqueca Alternante, 
+										Enxaqueca na nuca, Enxaqueca no Topo, Enxaqueca em toda a cabeça, 
+										Enxaqueca Tiara)
+
+
+Distúrbios: Enumerador Sequentes Dados (Distúrbio Fotofobia, Distúrbio Fonofobia, Distúrbio por perfumes / odores, 
+										Distúrbio por má noite de sono, Distúrbio por fome, 
+										Distúrbio Alimentar_______________________________________)
+
+Alterações Hormonais: Enumerador Sequentes Dados(Ovários policísticos, Displasia 
+												 mamária, Endometriose, Varizes, Acne)
+
+Processos cirúrgicos prévios: Enumerador Sequentes Dados (Cirurgia da vesícula biliar, Cirurgia de Histerectomia, 
+													      Cirurgia de Cornetos nasais/sinusite, 
+														  Cirurgia para Câncer de mama, 
+														  Cirurgia na direita, Cirurgia na esquerda, 
+														  Cirurgia de Varizes)
+
+Processos relacionados á prótese: Enumerador Sequentes Dados (Próteses mamárias, Prótese metálica em ossos do corpo, 
+															  Tela de marlex, 
+															  Amputação de membro_______________________)
+
+Dados dos Implantes: Enumerador Sequentes Dados (Implante de anticoncepcional, 
+												 data de implante_________________ DIU/CIU, 
+												 Implante de Cobre, Implante de Mirena, 
+												 data de implante_________)
+
+Tipo de Infiltração: Enumerador Sequentes Dados (Infiltração com corticóide, 
+										         local______________________)
+												 
+
+Dados do anticoncepcional: Enumerador Sequentes Dados (Anticoncepcional____________________, 
+													   tempo de uso___________, anos_______, meses_____)
+
+Dados do Fármaco: Enumerador Sequentes Dados (Sinvastatina ou similar________________________, 
+											  tempo de uso____________, anos_______, meses_______)
+
+Tipos de Fármaco: Enumerador Sequentes Dados (Omeprazol, Corticosteróide, Antiarritmico, Hormônio tireoidiano, 
+											  Antidepressivo, Antihipertensivo)

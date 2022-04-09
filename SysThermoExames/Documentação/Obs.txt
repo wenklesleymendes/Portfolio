@@ -1,0 +1,5 @@
+1 -  Consequi dawlond direto dispositivo da camera as imagens 
+2 -  Desenha N regioes interesses.
+3 -  Relatorios
+4 -  Banco que usar formato json 
+5 -  Nome Projeto(ThermoExams)
