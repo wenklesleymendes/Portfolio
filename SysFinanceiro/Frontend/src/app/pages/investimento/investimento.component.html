@@ -1,0 +1,49 @@
+<navbar></navbar>
+<sidebar></sidebar>
+
+<div class="container-base">
+    <div class="content-page">
+        <div class="card-header">
+            <div class="card-title">
+                Simulador de Investimento CDB
+            </div>
+        </div>
+
+        <form class="form-page" [formGroup]="investimentoForm" (submit)="enviar()">
+
+            <div class="row">
+                <div class="group-row">
+                    <label>Valor</label>
+                    <input type="text" name="valor" id="valor" placeholder="Valor" formControlName="valor" required />
+                    <label class="error-input" *ngIf="investimentoForm.get('valor')?.errors?.['required'] &&
+                    investimentoForm.get('valor')?.touched">
+                        Campo Obrigatório!
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="group-row">
+                    <label for="qtdMeses">Qtd Meses</label>
+                    <input type="text" id="qtdMeses" name="qtdMeses" placeholder="Qtd Meses" formControlName="qtdMeses" required />
+                    <label class="error-input" *ngIf="investimentoForm.get('qtdMeses').hasError('required') && investimentoForm.get('qtdMeses').touched">
+                        Campo Obrigatório!
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="group-row">
+                    <button type="submit" class="btn-primary">Calcular</button>
+                </div>
+            </div>
+        </form>
+
+        <div *ngIf="resultadoCalculo | async as resultado">
+            <h2>Resultado do Cálculo:</h2>
+            <p>Valor Bruto: R$ {{ resultado.ValorBruto | number: '1.2-2' }}</p>
+            <p>Valor Líquido: R$ {{ resultado.ValorLiquido | number: '1.2-2' }}</p>
+        </div>
+        
+    </div>
+</div>
